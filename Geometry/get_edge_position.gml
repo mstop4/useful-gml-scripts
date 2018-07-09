@@ -1,3 +1,9 @@
+/// @func  get_edge_position(player)
+/// @arg   player 
+
+// TODO: This script is still specific to the project it came from.
+//		 Rewrite variable names to generalize it.
+
 var _player = argument[0];
 var _x = _player.x;
 var _y = _player.y;

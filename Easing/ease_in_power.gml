@@ -1,7 +1,8 @@
-/// @param start
-/// @param end
-/// @param amount
-/// @param power
+/// @func  ease_in_power(start, end, amount, power)
+/// @arg   start  
+/// @arg   end    
+/// @arg   amount 
+/// @arg   power  
 
 var _start = argument[0];
 var _end = argument[1];

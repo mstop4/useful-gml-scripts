@@ -1,5 +1,5 @@
-/// @desc prune_path(path)
-/// @arg path
+/// @func  prune_path(path)
+/// @arg   path 
 
 var _path = argument[0];
 var _num_points = path_get_number(_path);
