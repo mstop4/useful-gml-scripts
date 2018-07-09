@@ -1,7 +1,8 @@
-/// @param base_colour
-/// @param variance_hue
-/// @param variance_sat
-/// @param variance_val
+/// @func  vary_colour_hsv(base_colour, variance_hue, variance_sat, variance_val)
+/// @arg   base_colour  
+/// @arg   variance_hue 
+/// @arg   variance_sat 
+/// @arg   variance_val 
 
 var _base_colour = argument[0];
 var _variance_hue = argument[1];

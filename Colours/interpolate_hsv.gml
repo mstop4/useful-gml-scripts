@@ -1,6 +1,7 @@
-/// @param base_colour1
-/// @param base_colour2
-/// @param t
+/// @func  interpolate_hsv(base_colour1, base_colour2, t)
+/// @arg   base_colour1 
+/// @arg   base_colour2 
+/// @arg   t            
 
 var _base_colour1 = argument[0];
 var _base_colour2 = argument[1];

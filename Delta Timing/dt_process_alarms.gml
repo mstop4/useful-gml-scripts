@@ -1,3 +1,5 @@
+/// @func  dt_process_alarms()
+
 for (var i=0; i<16; i++) {
 	if (dt_alarm[i] != -1) {
 		dt_alarm[i] -= dt_scale;

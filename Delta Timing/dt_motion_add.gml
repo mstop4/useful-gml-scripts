@@ -1,5 +1,6 @@
-/// @arg direction
-/// @arg amount
+/// @func  dt_motion_add(direction, amount)
+/// @arg   direction 
+/// @arg   amount    
 
 var _direction = argument[0];
 var _amount = argument[1];

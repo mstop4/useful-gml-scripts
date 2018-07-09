@@ -1,5 +1,6 @@
-/// @desc rgb_to_bgr - converts RGB int/hex to BGR real
-/// @param rgb_color {real} example: $00BBFF or 48127
+/// @func  rgb_to_bgr(rgb)
+/// @desc  converts RGB int/hex to BGR real
+/// @arg   rgb 
 
 var _rgb = argument[0];
 
