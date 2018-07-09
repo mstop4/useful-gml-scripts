@@ -1,9 +1,9 @@
-/// @function soft_clamp(original_value, delta, min, max)
-/// @description Change a value if and only if the new value is between min and max
-/// @param original_value
-/// @param delta
-/// @param min
-/// @param max
+/// @func  soft_clamp(original_value, delta, min, max)
+/// @desc  Change a value if and only if the new value is between min and max
+/// @arg   original_value 
+/// @arg   delta          
+/// @arg   min            
+/// @arg   max            
 
 var _original_value = argument[0];
 var _delta = argument[1];

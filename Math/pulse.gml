@@ -1,7 +1,7 @@
-/// @function pulse(t, min, max)
-/// @param t
-/// @param min
-/// @param max
+/// @func  pulse(t, min, max)
+/// @arg   t   
+/// @arg   min 
+/// @arg   max 
 
 var _t = argument[0];
 var _min = argument[1];

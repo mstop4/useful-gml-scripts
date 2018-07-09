@@ -1,14 +1,17 @@
-/// @desc converts keycode to name of key as a string
-/// @param {real} keycode
+/// @func  keycode_to_string(keycode)
+/// @desc  converts keycode to name of key as a string
+/// @arg   keycode 
+
+var _keycode = argument[0];
 
 {
     // alphanumeric
-    if ((argument[0] >= ord("0") && argument[0] <= ord("9")) || (argument[0] >= ord("A") && argument[0] <= ord("Z")))
-        return string(chr(argument[0]));
+    if ((_keycode >= ord("0") && _keycode <= ord("9")) || (_keycode >= ord("A") && _keycode <= ord("Z")))
+        return string(chr(_keycode));
         
     else
     {
-        switch (argument[0])
+        switch (_keycode)
         {
             case vk_backspace:
                 return "BCKSP";

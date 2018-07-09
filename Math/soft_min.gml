@@ -1,8 +1,8 @@
-/// @function soft_min(original_value, delta, min)
-/// @description Change a value if and only if the new value is mmore than min
-/// @param original_value
-/// @param delta
-/// @param max
+/// @func  soft_min(original_value, delta, min)
+/// @desc  Change a value if and only if the new value is more than min
+/// @arg   original_value 
+/// @arg   delta          
+/// @arg   min 
 
 var _original_value = argument[0];
 var _delta = argument[1];

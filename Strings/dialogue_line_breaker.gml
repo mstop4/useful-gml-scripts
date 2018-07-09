@@ -1,7 +1,7 @@
-/// @func dialogue_line_breaker(string, max_width, font)
-/// @param str
-/// @param max_length
-/// @param font
+/// @func  dialogue_line_breaker(str, max_length, font)
+/// @arg   str        
+/// @arg   max_length 
+/// @arg   font       
 
 var _str = argument[0];
 var _max_length = argument[1];
