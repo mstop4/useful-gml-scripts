@@ -9,7 +9,7 @@ var _max = argument[2];
 
 var _range = _max - _min + 1;
 
-while (_v < _min)
-	_v += _range;
+while (_value < _min)
+	_value += _range;
 
-return (_v - _min) mod _range + _min;
+return (_value - _min) mod _range + _min;
