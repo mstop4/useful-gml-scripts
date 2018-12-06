@@ -7,6 +7,7 @@ var _str = argument[0];
 var _max_length = argument[1];
 var _font = argument[2];
 
+var _old_font = draw_get_font();
 draw_set_font(_font);
     
 // check to see if the string is already short enough to fit on one line.
@@ -77,5 +78,7 @@ for (var i=1; i<=in_str_len; i++)
         out_str += line_buffer + word_buffer;
     }
 }
+
+draw_set_font(_old_font);
     
 return out_str;
