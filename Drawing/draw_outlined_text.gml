@@ -24,7 +24,7 @@ var _alpha = argument[9];
 var _fidelity = argument[10];
 
 draw_set_color(_out_color);
-for (var i=0; i<360; i+=360/4)
+for (var i=0; i<360; i+=360/_fidelity)
 	draw_text(_x + lengthdir_x(1, i),
 			  _y + lengthdir_y(1, i),
 			  _str);
