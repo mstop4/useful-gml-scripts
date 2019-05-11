@@ -24,12 +24,11 @@ var _alpha = argument[9];
 var _fidelity = argument[10];
 
 draw_set_color(_out_color);
-for (var i=0; i<360; i+=360/_fidelity)
-	draw_text(_x + lengthdir_x(1, i),
-			  _y + lengthdir_y(1, i),
-			  _str);
+
+for (var i=0; i<360; i+=360/_fidelity) {
     draw_text_transformed_color(_x + lengthdir_x(_out_width * _xscale, i),
                                  _y + lengthdir_y(_out_width * _yscale, i),
                                  _str,_xscale,_yscale,_angle,_out_color,_out_color,_out_color,_out_color,_alpha);
-                                                                
+}
+
 draw_text_transformed_color(_x,_y,_str,_xscale,_yscale,_angle,_in_color,_in_color,_in_color,_in_color,_alpha);
