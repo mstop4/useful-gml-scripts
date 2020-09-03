@@ -6,7 +6,7 @@
     "path": "folders/Scripts/Useful Script Library/Functions.yy",
   },
   "resourceVersion": "1.0",
-  "name": "colours",
+  "name": "drawing",
   "tags": [],
   "resourceType": "GMScript",
 }

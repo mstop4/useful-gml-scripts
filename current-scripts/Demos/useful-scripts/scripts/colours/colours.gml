@@ -8,7 +8,7 @@ function interpolate_hsv(_base_color1, _base_color2, _t) {
 	var temp_sat = lerp(color_get_saturation(_base_color1), color_get_saturation(_base_color2), _t);
 	var temp_val = lerp(color_get_value(_base_color1), color_get_value(_base_color2), _t);
 
-	return make_color_rgb(temp_hue, temp_sat, temp_val);
+	return make_color_hsv(temp_hue, temp_sat, temp_val);
 }
 
 // NOTE: interpolate_rgb is DEPRECATED. It is redundant since duplicates the native GML

@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Functions",
-    "path": "folders/Scripts/Useful Script Library/Functions.yy",
+    "name": "Structs",
+    "path": "folders/Scripts/Useful Script Library/Structs.yy",
   },
   "resourceVersion": "1.0",
-  "name": "colours",
+  "name": "math_structs",
   "tags": [],
   "resourceType": "GMScript",
 }
