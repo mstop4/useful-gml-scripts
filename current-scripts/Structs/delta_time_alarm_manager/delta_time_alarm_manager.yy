@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Functions",
-    "path": "folders/Scripts/Useful Script Library/Functions.yy",
+    "name": "Structs",
+    "path": "folders/Scripts/Useful Script Library/Structs.yy",
   },
   "resourceVersion": "1.0",
-  "name": "data_structures",
+  "name": "delta_time_alarm_manager",
   "tags": [],
   "resourceType": "GMScript",
 }
