@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Functions",
-    "path": "folders/Scripts/Useful Script Library/Functions.yy",
+    "name": "Standalone",
+    "path": "folders/Useful Script Library/Standalone.yy",
   },
   "resourceVersion": "1.0",
   "name": "data_structures",

@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Demo Scripts",
-    "path": "folders/Scripts/Demo Scripts.yy",
+    "name": "Delta Time Alarm",
+    "path": "folders/Demos/Delta Time Alarm.yy",
   },
   "resourceVersion": "1.0",
   "name": "delta_time_alarm_demo",

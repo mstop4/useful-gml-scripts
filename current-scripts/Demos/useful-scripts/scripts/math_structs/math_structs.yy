@@ -2,8 +2,8 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Structs",
-    "path": "folders/Scripts/Useful Script Library/Structs.yy",
+    "name": "Math",
+    "path": "folders/Standalone/Math.yy",
   },
   "resourceVersion": "1.0",
   "name": "math_structs",

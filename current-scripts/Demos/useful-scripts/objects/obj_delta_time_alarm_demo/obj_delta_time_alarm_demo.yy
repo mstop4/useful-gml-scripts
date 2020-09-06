@@ -30,8 +30,8 @@
   ],
   "overriddenProperties": [],
   "parent": {
-    "name": "Objects",
-    "path": "folders/Objects.yy",
+    "name": "Delta Time Alarm",
+    "path": "folders/Demos/Delta Time Alarm.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_delta_time_alarm_demo",

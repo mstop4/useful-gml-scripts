@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Scripts",
-    "path": "folders/Scripts.yy",
+    "name": "Menu System",
+    "path": "folders/Useful Script Library/Components/Menu System.yy",
   },
   "resourceVersion": "1.0",
-  "name": "debugging",
+  "name": "menu_functions",
   "tags": [],
   "resourceType": "GMScript",
 }
