@@ -159,3 +159,29 @@ function draw_curved_meter(_surface, _x, _y, _inner_radius, _outer_radius, _min_
 		
 	surface_reset_target();
 }
+
+
+/// @func    draw_outlined_text(x, y, string, xscale, yscale, angle, inner_color, outline_color, outline_width, alpha, fidelity)
+/// @desc    Draws text with outline
+/// @param   x          
+/// @param   y          
+/// @param   string        
+/// @param   xscale     
+/// @param   yscale     
+/// @param   angle      
+/// @param   inner_color  
+/// @param   outline_color 
+/// @param   outline_width  
+/// @param   alpha      
+/// @param   fidelity   
+function draw_outlined_text(_x, _y, _string, _xscale, _yscale, _angle, _inner_color, _outline_color, _outline_width, _alpha, _fidelity) {
+	draw_set_color(_outline_color);
+
+	for (var i=0; i<360; i+=360/_fidelity) {
+	    draw_text_transformed_color(_x + lengthdir_x(_outline_width * _xscale, i),
+	                                 _y + lengthdir_y(_outline_width * _yscale, i),
+	                                 _string,_xscale,_yscale,_angle,_outline_color,_outline_color,_outline_color,_outline_color,_alpha);
+	}
+
+	draw_text_transformed_color(_x,_y,_string,_xscale,_yscale,_angle,_inner_color,_inner_color,_inner_color,_inner_color,_alpha);
+}
