@@ -47,8 +47,8 @@
     "children": [],
   },
   "RoomOrder": [
-    {"name":"room_web_demo","path":"rooms/room_web_demo/room_web_demo.yy",},
     {"name":"room_drawing_demo","path":"rooms/room_drawing_demo/room_drawing_demo.yy",},
+    {"name":"room_web_demo","path":"rooms/room_web_demo/room_web_demo.yy",},
     {"name":"room_menu_demo","path":"rooms/room_menu_demo/room_menu_demo.yy",},
     {"name":"room_dta_demo","path":"rooms/room_dta_demo/room_dta_demo.yy",},
   ],
