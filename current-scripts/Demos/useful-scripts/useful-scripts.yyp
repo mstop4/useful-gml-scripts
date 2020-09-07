@@ -52,7 +52,7 @@
     {"folderPath":"folders/Demos.yy","order":1,"resourceVersion":"1.0","name":"Demos","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Useful Script Library.yy","order":0,"resourceVersion":"1.0","name":"Useful Script Library","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Useful Script Library/Components.yy","order":1,"resourceVersion":"1.0","name":"Components","tags":[],"resourceType":"GMFolder",},
-    {"folderPath":"folders/Standalone/Math.yy","order":4,"resourceVersion":"1.0","name":"Math","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Useful Script Library/Standalone/Math.yy","order":4,"resourceVersion":"1.0","name":"Math","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Useful Script Library/Standalone.yy","order":0,"resourceVersion":"1.0","name":"Standalone","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Useful Script Library/Components/Menu System.yy","order":1,"resourceVersion":"1.0","name":"Menu System","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Demos/Menu.yy","order":3,"resourceVersion":"1.0","name":"Menu","tags":[],"resourceType":"GMFolder",},

@@ -3,7 +3,7 @@
   "isCompatibility": false,
   "parent": {
     "name": "Math",
-    "path": "folders/Standalone/Math.yy",
+    "path": "folders/Useful Script Library/Standalone/Math.yy",
   },
   "resourceVersion": "1.0",
   "name": "math_structs",
