@@ -68,8 +68,8 @@
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"04a21201-9f9f-44e2-9a65-b7167035bcca","tags":[],"resourceType":"GMImageLayer",},
   ],
   "parent": {
-    "name": "Drawing",
-    "path": "folders/Demos/Drawing.yy",
+    "name": "Sprites",
+    "path": "folders/Demos/Drawing/Sprites.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_meter",
