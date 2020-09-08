@@ -1,6 +1,6 @@
 /// @func      print(value1[,value2,...])
 /// @desc      Syntactic sugar for show_debug_message
-/// @param {*} [value1]
+/// @param {*} value1
 /// @param {*} [value2]
 /// ...
 function print() {
