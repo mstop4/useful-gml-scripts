@@ -1,16 +1,16 @@
-/// @func    draw_circle_meter(x, y, radius, start_angle, direction, percentage, front_color, back_color, texture, fidelity, alpha)
-/// @desc    Draws circular progress meter on a surface
-/// @param   surface
-/// @param   x          
-/// @param   y          
-/// @param   radius     
-/// @param   start_angle
-/// @param   direction    < 0 = clockwise, > 0 = counter-clockwise. Can't be 0.
-/// @param   percentage 
-/// @param   front_color        
-/// @param   back_color
-/// @param   sprite    
-/// @param   fidelity        
+/// @func             draw_circle_meter(x, y, radius, start_angle, direction, percentage, front_color, back_color, texture, fidelity, alpha)
+/// @desc             Draws circular progress meter on a surface
+/// @param {Surface}  surface
+/// @param {real}     x          
+/// @param {real}     y          
+/// @param {real}     radius     
+/// @param {real}     start_angle
+/// @param {real}     direction    < 0 = clockwise, > 0 = counter-clockwise. Can't be 0.
+/// @param {real}     percentage   0 - 1
+/// @param {Colour}   front_color        
+/// @param {Colour}   back_color
+/// @param {Sprite}   sprite       use -1 for no sprite
+/// @param {integer}  fidelity        
 function draw_circle_meter(_surface, _x, _y, _radius, _start_angle, _direction, _percentage, _front_color, _back_color, _sprite, _fidelity) {
 	if (!surface_exists(_surface) || _direction == 0) return;
 
@@ -78,21 +78,21 @@ function draw_circle_meter(_surface, _x, _y, _radius, _start_angle, _direction, 
 }
 
 
-/// @func    draw_curved_meter(x, y, inner_radius, outer_radius, min_angle, max_angle, direction, percentage, front_color, back_color, sprite, fidelity)
-/// @desc    Draws circular progress meter on a surface
-/// @param   surface
-/// @param   x               
-/// @param   y               
-/// @param   inner_radius    
-/// @param   outer_radius        
-/// @param   min_angle    
-/// @param   max_angle     
-/// @param   direction    < 0 = clockwise, > 0 = counter-clockwise. Can't be 0.
-/// @param   percentage  
-/// @param   front_color     
-/// @param   back_color
-/// @apram   sprite
-/// @param   fidelity        
+/// @func            draw_curved_meter(x, y, inner_radius, outer_radius, min_angle, max_angle, direction, percentage, front_color, back_color, sprite, fidelity)
+/// @desc            Draws circular progress meter on a surface
+/// @param {Surface} surface
+/// @param {real}    x               
+/// @param {real}    y               
+/// @param {real}    inner_radius    
+/// @param {real}    outer_radius        
+/// @param {real}    min_angle    
+/// @param {real}    max_angle     
+/// @param {real}    direction    < 0 = clockwise, > 0 = counter-clockwise. Can't be 0.
+/// @param {real}    percentage   0 - 1  
+/// @param {Colour}  front_color     
+/// @param {Colour}  back_color
+/// @apram {Sprite}  sprite       use -1 for no sprite
+/// @param {integer} fidelity        
 function draw_curved_meter(_surface, _x, _y, _inner_radius, _outer_radius, _min_angle, _max_angle, _direction, _percentage, _front_color, _back_color, _sprite, _fidelity) {
 	if (!surface_exists(_surface) || _direction == 0) return;
 
@@ -172,19 +172,19 @@ function draw_curved_meter(_surface, _x, _y, _inner_radius, _outer_radius, _min_
 }
 
 
-/// @func    draw_outlined_text(x, y, string, xscale, yscale, angle, inner_color, outline_color, outline_width, alpha, fidelity)
-/// @desc    Draws text with outline
-/// @param   x          
-/// @param   y          
-/// @param   string        
-/// @param   xscale     
-/// @param   yscale     
-/// @param   angle      
-/// @param   inner_color  
-/// @param   outline_color 
-/// @param   outline_width  
-/// @param   alpha      
-/// @param   fidelity   
+/// @func            draw_outlined_text(x, y, string, xscale, yscale, angle, inner_color, outline_color, outline_width, alpha, fidelity)
+/// @desc            Draws text with outline
+/// @param {real}    x          
+/// @param {real}    y          
+/// @param {string}  string        
+/// @param {real}    xscale     
+/// @param {real}    yscale     
+/// @param {real}    angle      
+/// @param {Colour}  inner_color  
+/// @param {Colour}  outline_color 
+/// @param {real}    outline_width  
+/// @param {real}    alpha      
+/// @param {integer} fidelity   
 function draw_outlined_text(_x, _y, _string, _xscale, _yscale, _angle, _inner_color, _outline_color, _outline_width, _alpha, _fidelity) {
 	draw_set_color(_outline_color);
 

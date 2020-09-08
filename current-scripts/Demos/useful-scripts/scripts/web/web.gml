@@ -1,6 +1,6 @@
-/// @func url_encode(url)
-/// @desc URL-Encodes a string according to RFC 1738. Based on https://help.yoyogames.com/hc/en-us/articles/216754718-Encoding-URLs
-/// @param url
+/// @func           url_encode(url)
+/// @desc           URL-Encodes a string according to RFC 1738. Based on https://help.yoyogames.com/hc/en-us/articles/216754718-Encoding-URLs
+/// @param {string{ url
 function url_encode(_url) {
 	var _encoded_url = "";
 	

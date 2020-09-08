@@ -3,6 +3,12 @@ function Vector2(_x, _y) constructor {
 	y = _y;
 }
 
+function Vector3(_x, _y, _z) constructor {
+	x = _x;
+	y = _y;
+	z = _z;
+}
+
 function ValueDelta(_value, _delta, _min_v, _max_v) constructor {
 	v = _value;
 	d = _delta;
