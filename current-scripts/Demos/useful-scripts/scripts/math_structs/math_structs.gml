@@ -19,7 +19,7 @@ function Vector3(_x, _y, _z) constructor {
 	}
 }
 
-enum VDLimitMode {
+enum DVLimitMode {
 	NONE,
 	CEILING,
 	FLOOR,
@@ -30,8 +30,8 @@ enum VDLimitMode {
 	WRAP
 }
 
-/// @func ValueDelta(value, delta, min_v, max_v, clamp_mode)
-function ValueDelta(_value, _delta, _min_v, _max_v, _clamp_mode) constructor {
+/// @func DynamicValue(value, delta, min_v, max_v, clamp_mode)
+function DynamicValue(_value, _delta, _min_v, _max_v, _clamp_mode) constructor {
 	v = _value;
 	d = _delta;
 	min_v = _min_v;
@@ -41,35 +41,35 @@ function ValueDelta(_value, _delta, _min_v, _max_v, _clamp_mode) constructor {
 	static update = function() {
 		if (d != 0) {
 			switch (clamp_mode) {
-				case VDLimitMode.NONE:
+				case DVLimitMode.NONE:
 					v += d;
 					break;
 					
-				case VDLimitMode.CEILING:
+				case DVLimitMode.CEILING:
 					v = min(v + d, max_v);
 					break;
 					
-				case VDLimitMode.FLOOR:
+				case DVLimitMode.FLOOR:
 					v = max(v + d, min_v);
 					break;			
 					
-				case VDLimitMode.CLAMP:
+				case DVLimitMode.CLAMP:
 					v = clamp(v + d, min_v, max_v);
 					break;
 					
-				case VDLimitMode.SOFT_CEILING:
+				case DVLimitMode.SOFT_CEILING:
 					v = soft_ceiling(v, d, max_v);
 					break;
 					
-				case VDLimitMode.SOFT_FLOOR:
+				case DVLimitMode.SOFT_FLOOR:
 					v = soft_floor(v, d, min_v);
 					break;			
 					
-				case VDLimitMode.SOFT_CLAMP:
+				case DVLimitMode.SOFT_CLAMP:
 					v = soft_clamp(v, d, min_v, max_v);
 					break;
 					
-				case VDLimitMode.WRAP:
+				case DVLimitMode.WRAP:
 					v = wrap(v + d, min_v, max_v);
 					
 				default:

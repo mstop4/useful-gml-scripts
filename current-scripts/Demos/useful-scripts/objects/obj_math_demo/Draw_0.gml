@@ -7,12 +7,15 @@ draw_text(room_width/2, 16, "Math Demo");
 draw_set_halign(fa_left);
 draw_text(16, 64, "Vectors");
 draw_text(16, 176, "Normalized Vectors");
+draw_text(16, 384, "Soft Limiters");
 draw_text(640, 64, "Cross Products");
 draw_text(640, 176, "Normalized Cross Product");
 
 draw_text(16, 256, "Pulse");
 draw_sprite_ext(spr_meter, 0, 16, 288, 0.25, 0.25, 0, c_gray, 1);
 draw_sprite_ext(spr_meter, 0, 16, 288, 0.25, 0.25, 0, $80FFFF, pulse_t);
+
+draw_text(640, 256, "Wrap");
 
 draw_set_font(fnt_demo);
 // Vectors
@@ -35,3 +38,7 @@ draw_text(640, 208, "c x d / |c x d| = " + cross_product_normalized(vec_C, vec_D
 // Pulse
 draw_text(96, 288, "t: " + string(pulse_counter.v));
 draw_text(176, 288, "p(t): " + string(pulse_t));
+
+// Wrap
+draw_text(640, 288, "t: " + string(wrap_counter.v));
+draw_text(720, 288, "w(t): " + string(wrapped_value));
