@@ -70,13 +70,7 @@ function pulse(_t, _min, _max) {
 /// @param {real} delta     
 /// @param {real} max            
 function soft_ceiling(_value, _delta, _max) {
-	var _new_value = _value + _delta;
-	
-	if (_value > _max) {
-		return _new_value;
-	} else {
-		return min(_new_value, _max);
-	}
+	return _value > _max && _delta > 0 ? min(_value, _max) : _value + _delta;
 }
 
 
@@ -86,13 +80,7 @@ function soft_ceiling(_value, _delta, _max) {
 /// @param {real} delta     
 /// @param {real} min            
 function soft_floor(_value, _delta, _min) {
-	var _new_value = _value + _delta;
-	
-	if (_value < _min) {
-		return _new_value;
-	} else {
-		return max(_new_value, _min);
-	}
+	return _value < _min && _delta < 0 ? max(_value, _min) : _value + _delta;
 }
 
 
@@ -103,13 +91,7 @@ function soft_floor(_value, _delta, _min) {
 /// @param {real} min            
 /// @param {real} max            
 function soft_clamp(_value, _delta, _min, _max) {
-	var _new_value = _value + _delta;
-	
-	if (_value < _min || _value > _max) {
-		return _new_value;
-	} else {
-		return clamp(_new_value, _min, _max);
-	}
+	return (_value > _max && _delta > 0) || (_value < _min && _delta < 0) ? clamp(_value, _min, _max) : _value + _delta;
 }
 
 
@@ -119,7 +101,7 @@ function soft_clamp(_value, _delta, _min, _max) {
 /// @apara {real} min   
 /// @param {real} max   
 function wrap(_value, _min, _max) {
-	var _range = _max - _min + 1;
+	var _range = _max - _min;
 
 	if (_range + _min == 0) return 0;
 
