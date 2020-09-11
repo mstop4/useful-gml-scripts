@@ -1,6 +1,7 @@
 {
   "resources": [
     {"id":{"name":"spr_drawing_back","path":"sprites/spr_drawing_back/spr_drawing_back.yy",},"order":2,},
+    {"id":{"name":"geometry_functions","path":"scripts/geometry_functions/geometry_functions.yy",},"order":1,},
     {"id":{"name":"colours","path":"scripts/colours/colours.yy",},"order":0,},
     {"id":{"name":"fnt_title","path":"fonts/fnt_title/fnt_title.yy",},"order":1,},
     {"id":{"name":"input","path":"scripts/input/input.yy",},"order":4,},
@@ -18,11 +19,11 @@
     {"id":{"name":"obj_delta_time_alarm_demo","path":"objects/obj_delta_time_alarm_demo/obj_delta_time_alarm_demo.yy",},"order":0,},
     {"id":{"name":"spr_meter","path":"sprites/spr_meter/spr_meter.yy",},"order":0,},
     {"id":{"name":"obj_soft_mover","path":"objects/obj_soft_mover/obj_soft_mover.yy",},"order":1,},
-    {"id":{"name":"math_functions","path":"scripts/math_functions/math_functions.yy",},"order":1,},
+    {"id":{"name":"math_functions","path":"scripts/math_functions/math_functions.yy",},"order":2,},
     {"id":{"name":"room_drawing_demo","path":"rooms/room_drawing_demo/room_drawing_demo.yy",},"order":2,},
     {"id":{"name":"drawing","path":"scripts/drawing/drawing.yy",},"order":3,},
     {"id":{"name":"spr_donut_meter","path":"sprites/spr_donut_meter/spr_donut_meter.yy",},"order":1,},
-    {"id":{"name":"math_structs","path":"scripts/math_structs/math_structs.yy",},"order":0,},
+    {"id":{"name":"math_structs","path":"scripts/math_structs/math_structs.yy",},"order":1,},
     {"id":{"name":"room_math_demo","path":"rooms/room_math_demo/room_math_demo.yy",},"order":3,},
     {"id":{"name":"room_web_demo","path":"rooms/room_web_demo/room_web_demo.yy",},"order":1,},
     {"id":{"name":"fnt_demo","path":"fonts/fnt_demo/fnt_demo.yy",},"order":0,},
@@ -31,6 +32,7 @@
     {"id":{"name":"spr_arrow","path":"sprites/spr_arrow/spr_arrow.yy",},"order":1,},
     {"id":{"name":"room_menu_demo","path":"rooms/room_menu_demo/room_menu_demo.yy",},"order":2,},
     {"id":{"name":"delta_time_alarm_manager","path":"scripts/delta_time_alarm_manager/delta_time_alarm_manager.yy",},"order":0,},
+    {"id":{"name":"geometry_structs","path":"scripts/geometry_structs/geometry_structs.yy",},"order":0,},
     {"id":{"name":"obj_menu","path":"objects/obj_menu/obj_menu.yy",},"order":0,},
     {"id":{"name":"obj_drawing_demo","path":"objects/obj_drawing_demo/obj_drawing_demo.yy",},"order":1,},
     {"id":{"name":"debugging","path":"scripts/debugging/debugging.yy",},"order":2,},
@@ -77,6 +79,7 @@
     {"folderPath":"folders/Demos/Web.yy","order":5,"resourceVersion":"1.0","name":"Web","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Demos/Math.yy","order":3,"resourceVersion":"1.0","name":"Math","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Demos/Input.yy","order":2,"resourceVersion":"1.0","name":"Input","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Useful Script Library/Standalone/Math/Geometry.yy","order":0,"resourceVersion":"1.0","name":"Geometry","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":461609314234257646,"resourceVersion":"1.0","name":"audiogroup_default","resourceType":"GMAudioGroup",},
