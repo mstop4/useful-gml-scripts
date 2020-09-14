@@ -30,6 +30,6 @@ function Rectangle(_left, _top, _right, _bottom) constructor {
 	}
 	
 	function bottom_edge() {
-		return new LineSegment(left, _bottom, right, bottom);
+		return new LineSegment(left, bottom, right, bottom);
 	}
 }
