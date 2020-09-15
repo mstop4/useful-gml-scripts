@@ -15,6 +15,7 @@ if (can_reflect) {
 	draw_circle(reflected_laser.a.x, reflected_laser.a.y, 4, false);
 	draw_line(laser.a.x, laser.a.y, reflected_laser.a.x, reflected_laser.a.y);
 	draw_line(reflected_laser.a.x, reflected_laser.a.y, reflected_laser.b.x, reflected_laser.b.y);
+	draw_circle(reflected_laser.b.x, reflected_laser.b.y, 8, false);
 } else {
 	draw_set_alpha(1);
 	draw_line(laser.a.x, laser.a.y, laser.b.x, laser.b.y);

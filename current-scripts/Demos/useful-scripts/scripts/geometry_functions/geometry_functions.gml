@@ -1,86 +1,66 @@
-/// @func              get_edge_position(instance, bounding_box)
-/// @desc              Get the closest position of ans instance to the edge of rectangle
-/// @param {Vector2}   position 
-/// @param {Rectangle} bounding_box
-function get_edge_position(_position, _bounding_box) {
-	var _pos_to_bb_mid = new LineSegment(_position.x,
-		_position.y,
-		_bounding_box.left + _bounding_box.width()/2,
-		_bounding_box.top + _bounding_box.height()/2
-	);
-
-	var _cur_t1 = -1;
+/// @func                get_edge_position(line, bounding_box)
+/// @desc                Get the closest intersection point between a line segment and the edge of a rectangle
+/// @param {LineSegment} line 
+/// @param {Rectangle}   bounding_box
+function get_edge_position(_line, _bounding_box) {
+	var _cur_point = -1;
 	var _cur_dist;
-	var _edge = new Vector2(0, 0);
 	var _closest_dist = 1000000;
 	var _closest_pos = new Vector3(-1, -1, -1);
 			
-	if (!point_in_rectangle(_position.x, _position.y,
-		_bounding_box.left, _bounding_box.top,
-		_bounding_box.right, _bounding_box.bottom)) {
-
-		// left
-		_cur_t1 = ray_line_intersect(_pos_to_bb_mid, _bounding_box.left_edge());
+	// left
+	_cur_point = ray_line_intersect(_line, _bounding_box.left_edge());
 				
-		if (_cur_t1 != -1) {
-			_edge.x = _pos_to_bb_mid.b.x + lengthdir_x(_cur_t1, point_direction(_pos_to_bb_mid.b.x, _pos_to_bb_mid.b.y, _pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y));
-			_edge.y = _pos_to_bb_mid.b.y + lengthdir_y(_cur_t1, point_direction(_pos_to_bb_mid.b.x, _pos_to_bb_mid.b.y, _pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y));
-			_cur_dist = point_distance(_pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y, _edge.x, _edge.y);
+	if (_cur_point != -1) {
+		_cur_dist = point_distance(_line.a.x, _line.a.y, _cur_point.x, _cur_point.y);
 		
-			if (_cur_dist < _closest_dist) {
-				_closest_dist = _cur_dist;
-				_closest_pos.x = _edge.x;
-				_closest_pos.y = _edge.y;
-				_closest_pos.z = point_direction(_pos_to_bb_mid.b.x, _pos_to_bb_mid.b.y, _pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y);
-			}
+		if (_cur_dist < _closest_dist) {
+			_closest_dist = _cur_dist;
+			_closest_pos.x = _cur_point.x;
+			_closest_pos.y = _cur_point.y;
+			_closest_pos.z = point_direction(_line.b.x, _line.b.y, _line.a.x, _line.a.y);
 		}
+	}
 	
-		// right
-		_cur_t1 = ray_line_intersect(_pos_to_bb_mid, _bounding_box.right_edge());
+	// right
+	_cur_point = ray_line_intersect(_line, _bounding_box.right_edge());
 				
-		if (_cur_t1 != -1) {
-			_edge.x = _pos_to_bb_mid.b.x + lengthdir_x(_cur_t1,point_direction(_pos_to_bb_mid.b.x, _pos_to_bb_mid.b.y, _pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y));
-			_edge.y = _pos_to_bb_mid.b.y + lengthdir_y(_cur_t1,point_direction(_pos_to_bb_mid.b.x, _pos_to_bb_mid.b.y, _pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y));
-			_cur_dist = point_distance(_pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y, _edge.x, _edge.y);
+	if (_cur_point != -1) {
+		_cur_dist = point_distance(_line.a.x, _line.a.y, _cur_point.x, _cur_point.y);
 		
-			if (_cur_dist < _closest_dist) {
-				_closest_dist = _cur_dist;
-				_closest_pos.x = _edge.x;
-				_closest_pos.y = _edge.y;
-				_closest_pos.z = point_direction(_pos_to_bb_mid.b.x,_pos_to_bb_mid.b.y,_pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y);
-			}
+		if (_cur_dist < _closest_dist) {
+			_closest_dist = _cur_dist;
+			_closest_pos.x = _cur_point.x;
+			_closest_pos.y = _cur_point.y;
+			_closest_pos.z = point_direction(_line.b.x, _line.b.y, _line.a.x, _line.a.y);
 		}
+	}
 	
-		// top
-		_cur_t1 = ray_line_intersect(_pos_to_bb_mid, _bounding_box.top_edge());
+	// top
+	_cur_point = ray_line_intersect(_line, _bounding_box.top_edge());
 				
-		if (_cur_t1 != -1) {
-			_edge.x = _pos_to_bb_mid.b.x + lengthdir_x(_cur_t1,point_direction(_pos_to_bb_mid.b.x, _pos_to_bb_mid.b.y, _pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y));
-			_edge.y = _pos_to_bb_mid.b.y + lengthdir_y(_cur_t1,point_direction(_pos_to_bb_mid.b.x, _pos_to_bb_mid.b.y, _pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y));
-			_cur_dist = point_distance(_pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y, _edge.x, _edge.y);
+	if (_cur_point != -1) {
+		_cur_dist = point_distance(_line.a.x, _line.a.y, _cur_point.x, _cur_point.y);
 		
-			if (_cur_dist < _closest_dist) {
-				_closest_dist = _cur_dist;
-				_closest_pos.x = _edge.x;
-				_closest_pos.y = _edge.y;
-				_closest_pos.z = point_direction(_pos_to_bb_mid.b.x,_pos_to_bb_mid.b.y,_pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y);
-			}
+		if (_cur_dist < _closest_dist) {
+			_closest_dist = _cur_dist;
+			_closest_pos.x = _cur_point.x;
+			_closest_pos.y = _cur_point.y;
+			_closest_pos.z = point_direction(_line.b.x, _line.b.y, _line.a.x, _line.a.y);
 		}
+	}
 	
-		// bottom
-		_cur_t1 = ray_line_intersect(_pos_to_bb_mid, _bounding_box.bottom_edge());
+	// bottom
+	_cur_point = ray_line_intersect(_line, _bounding_box.bottom_edge());
 				
-		if (_cur_t1 != -1) {
-			_edge.x = _pos_to_bb_mid.b.x + lengthdir_x(_cur_t1,point_direction(_pos_to_bb_mid.b.x, _pos_to_bb_mid.b.y, _pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y));
-			_edge.y = _pos_to_bb_mid.b.y + lengthdir_y(_cur_t1,point_direction(_pos_to_bb_mid.b.x, _pos_to_bb_mid.b.y, _pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y));
-			_cur_dist = point_distance(_pos_to_bb_mid.a.x, _pos_to_bb_mid.a.gravity_direction, _edge.x, _edge.y);
+	if (_cur_point != -1) {
+		_cur_dist = point_distance(_line.a.x, _line.a.y, _cur_point.x, _cur_point.y);
 		
-			if (_cur_dist < _closest_dist) {
-				_closest_dist = _cur_dist;
-				_closest_pos.x = _edge.x;
-				_closest_pos.y = _edge.y;
-				_closest_pos.z = point_direction(_pos_to_bb_mid.b.x,_pos_to_bb_mid.b.y,_pos_to_bb_mid.a.x, _pos_to_bb_mid.a.y);
-			}
+		if (_cur_dist < _closest_dist) {
+			_closest_dist = _cur_dist;
+			_closest_pos.x = _cur_point.x;
+			_closest_pos.y = _cur_point.y;
+			_closest_pos.z = point_direction(_line.b.x, _line.b.y, _line.a.x, _line.a.y);
 		}
 	}
 
