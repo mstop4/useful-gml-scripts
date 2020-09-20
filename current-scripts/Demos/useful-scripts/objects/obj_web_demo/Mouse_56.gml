@@ -1,0 +1,1 @@
+url_request = get_string_async("Enter a URL:", original_url);
