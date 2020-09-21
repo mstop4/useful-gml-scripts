@@ -3,7 +3,7 @@
 /// @param {*} value1
 /// @param {*} [value2]
 /// ...
-function print() {
+function print(_value1) {
 	var _str = "";
 
 	for (var i=0; i<argument_count; i++) {
