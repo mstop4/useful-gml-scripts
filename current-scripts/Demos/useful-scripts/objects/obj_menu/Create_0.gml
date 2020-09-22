@@ -6,4 +6,6 @@ draw_set_font(menu_font);
 item_height = string_height("Ij");
 cursor_width = sprite_get_width(cursor_spr);
 
+ctrl_pressed[MENU_CONTROLS.UP]
+
 menu_functions();

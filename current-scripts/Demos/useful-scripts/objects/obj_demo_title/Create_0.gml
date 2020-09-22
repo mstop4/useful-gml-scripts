@@ -6,6 +6,7 @@ rooms = [
 	room_input_demo,
 	room_math_demo,
 	room_menu_demo,
+	room_strings_demo,
 	room_web_demo
 ];
 num_rooms = array_length(rooms);
@@ -18,6 +19,7 @@ room_names = [
 	"Input",
 	"Math",
 	"Menu",
+	"Strings",
 	"Web"
 ];
 
