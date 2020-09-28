@@ -101,7 +101,7 @@ function soft_clamp(_value, _delta, _min, _max) {
 /// @apara {real} min   
 /// @param {real} max   
 function wrap(_value, _min, _max) {
-	var _range = _max - _min;
+	var _range = _max - _min + 1;
 
 	if (_range + _min == 0) return 0;
 

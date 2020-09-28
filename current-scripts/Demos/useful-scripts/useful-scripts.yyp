@@ -15,7 +15,6 @@
     {"id":{"name":"easings_cubic","path":"scripts/easings_cubic/easings_cubic.yy",},"order":2,},
     {"id":{"name":"menu_structs","path":"scripts/menu_structs/menu_structs.yy",},"order":1,},
     {"id":{"name":"obj_input_demo","path":"objects/obj_input_demo/obj_input_demo.yy",},"order":0,},
-    {"id":{"name":"menu_demo_control","path":"scripts/menu_demo_control/menu_demo_control.yy",},"order":3,},
     {"id":{"name":"obj_web_demo","path":"objects/obj_web_demo/obj_web_demo.yy",},"order":0,},
     {"id":{"name":"obj_quitter","path":"objects/obj_quitter/obj_quitter.yy",},"order":11,},
     {"id":{"name":"data_structures","path":"scripts/data_structures/data_structures.yy",},"order":1,},
@@ -31,6 +30,7 @@
     {"id":{"name":"obj_soft_mover","path":"objects/obj_soft_mover/obj_soft_mover.yy",},"order":1,},
     {"id":{"name":"math_functions","path":"scripts/math_functions/math_functions.yy",},"order":3,},
     {"id":{"name":"room_drawing_demo","path":"rooms/room_drawing_demo/room_drawing_demo.yy",},"order":2,},
+    {"id":{"name":"menu_demo_control_handlers","path":"scripts/menu_demo_control_handlers/menu_demo_control_handlers.yy",},"order":0,},
     {"id":{"name":"drawing","path":"scripts/drawing/drawing.yy",},"order":3,},
     {"id":{"name":"spr_donut_meter","path":"sprites/spr_donut_meter/spr_donut_meter.yy",},"order":1,},
     {"id":{"name":"math_structs","path":"scripts/math_structs/math_structs.yy",},"order":2,},
@@ -104,6 +104,7 @@
     {"folderPath":"folders/Useful Script Library/Standalone/Math/Easings.yy","order":1,"resourceVersion":"1.0","name":"Easings","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Demos/Easings.yy","order":2,"resourceVersion":"1.0","name":"Easings","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Demos/Strings.yy","order":7,"resourceVersion":"1.0","name":"Strings","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Demos/Menu/Demo Scripts.yy","order":3,"resourceVersion":"1.0","name":"Demo Scripts","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":461609314234257646,"resourceVersion":"1.0","name":"audiogroup_default","resourceType":"GMAudioGroup",},

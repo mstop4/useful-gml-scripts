@@ -1,5 +1,6 @@
-for (var i=0; i<num_menu_items; i++) {
-	delete menu_items[| i];
+for (var i=0; i<num_items; i++) {
+	delete items[| i];
 }
 		
-ds_list_destroy(menu_items);
+ds_list_destroy(items);
+delete control_state;
