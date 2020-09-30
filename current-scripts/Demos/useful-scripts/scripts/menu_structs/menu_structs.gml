@@ -29,6 +29,7 @@ function MenuItem(_label) constructor {
 	label = _label;
 }
 
-function MenuSelectable(_label, _on_confirm) : MenuItem(_label) constructor {
-	on_confirm = _on_confirm;
+function MenuSelectable(_label, _on_confirm, _arg_array) : MenuItem(_label) constructor {
+	on_confirm = asset_get_index(_on_confirm);
+	args = _arg_array;
 }

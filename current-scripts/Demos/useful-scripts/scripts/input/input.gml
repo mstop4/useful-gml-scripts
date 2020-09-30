@@ -15,14 +15,18 @@ function keycode_to_string(_keycode) {
 				return "SHIFT";
       case vk_lshift:
         return "LEFT SHIFT";
-      case vk_lcontrol:
-        return "LEFT CTRL";
-      case vk_lalt:
-        return "LEFT ALT";
       case vk_rshift:
         return "RIGHT SHIFT";
+			case vk_control:
+				return "CTRL";
+      case vk_lcontrol:
+        return "LEFT CTRL";
       case vk_rcontrol:
         return "RIGHT CTRL";
+			case vk_alt:
+				return "ALT";
+      case vk_lalt:
+        return "LEFT ALT";
       case vk_ralt:
         return "RIGHT ALT";
       case vk_pause:

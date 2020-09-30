@@ -20,13 +20,12 @@
   "eventList": [
     {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"parent":{"name":"obj_demo_title","path":"objects/obj_demo_title/obj_demo_title.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"parent":{"name":"obj_demo_title","path":"objects/obj_demo_title/obj_demo_title.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
-    {"isDnD":false,"eventNum":1,"eventType":9,"collisionObjectId":null,"parent":{"name":"obj_demo_title","path":"objects/obj_demo_title/obj_demo_title.yy",},"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Demos",
-    "path": "folders/Demos.yy",
+    "name": "Main Menu",
+    "path": "folders/Demos/Main Menu.yy",
   },
   "resourceVersion": "1.0",
   "name": "obj_demo_title",

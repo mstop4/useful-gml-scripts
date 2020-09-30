@@ -23,3 +23,10 @@ room_names = [
 	"Web"
 ];
 
+menu = instance_create_layer(32, 64, layer, obj_menu);
+menu.menu_init(fnt_demo, spr_arrow, "menu_demo_control_handler");
+menu.line_spacing = 16;
+
+for (var i=0; i<num_rooms; i++) {
+	menu.add_menu_selectable(room_names[i], "go_to_demo", [ rooms[i] ]);
+}

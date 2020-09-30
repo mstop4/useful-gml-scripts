@@ -7,8 +7,8 @@ function menu_init(_font, _cursor_sprite, _control_handler) {
 	control_state.control_handler = _handler;
 }
 
-function add_menu_selectable(_label, _on_confirm) {
-	var _new = new MenuSelectable(_label, _on_confirm);
+function add_menu_selectable(_label, _on_confirm, _arg_array) {
+	var _new = new MenuSelectable(_label, _on_confirm, _arg_array);
 	ds_list_add(items, _new);
 	num_items++;
 }
