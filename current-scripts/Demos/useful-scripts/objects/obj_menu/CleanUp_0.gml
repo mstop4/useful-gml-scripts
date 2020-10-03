@@ -1,4 +1,5 @@
 for (var i=0; i<num_items; i++) {
+	items[| i].destroy();
 	delete items[| i];
 }
 		

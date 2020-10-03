@@ -24,9 +24,21 @@ room_names = [
 ];
 
 menu = instance_create_layer(32, 64, layer, obj_menu);
-menu.menu_init(fnt_demo, spr_arrow, "menu_demo_control_handler");
+menu.menu_init({
+	font: fnt_demo,
+	cursor_spr: spr_arrow, 
+	cursor_move_sfx: snd_menu_move,
+	cursor_change_sfx: -1,
+	cursor_confirm_sfx: -1,
+	control_handler: "menu_demo_control_handler"
+});
 menu.line_spacing = 16;
 
 for (var i=0; i<num_rooms; i++) {
-	menu.add_menu_selectable(room_names[i], "go_to_demo", [ rooms[i] ]);
+	menu.add_menu_selectable({
+		label: room_names[i],
+		on_confirm_func: "go_to_demo",
+		on_confirm_args: [ rooms[i] ],
+		silent_on_confirm: false
+	});
 }

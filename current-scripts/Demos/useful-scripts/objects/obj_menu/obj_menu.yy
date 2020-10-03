@@ -32,6 +32,12 @@
         "GMSprite",
       ],"resourceVersion":"1.0","name":"cursor_spr","tags":[],"resourceType":"GMObjectProperty",},
     {"varType":0,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],"resourceVersion":"1.0","name":"cursor_padding","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":5,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[
+        "GMSound",
+      ],"resourceVersion":"1.0","name":"cursor_move_sfx","tags":[],"resourceType":"GMObjectProperty",},
+    {"varType":5,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[
+        "GMSound",
+      ],"resourceVersion":"1.0","name":"cursor_confirm_sfx","tags":[],"resourceType":"GMObjectProperty",},
   ],
   "overriddenProperties": [],
   "parent": {
