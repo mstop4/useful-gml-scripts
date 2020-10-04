@@ -1,4 +1,5 @@
 rooms = [
+	room_control_manager_demo,
 	room_drawing_demo,
 	room_dta_demo,
 	room_easing_demo,
@@ -12,6 +13,7 @@ rooms = [
 num_rooms = array_length(rooms);
 
 room_names = [
+	"Control Manager",
 	"Drawing",
 	"Delta Time Alarm",
 	"Easings",
