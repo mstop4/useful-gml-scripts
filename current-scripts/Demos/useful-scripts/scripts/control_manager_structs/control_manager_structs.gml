@@ -5,7 +5,8 @@ enum CONTROLS {
 	RIGHT,
 	A,
 	B,
-	C,
+	X,
+	Y,
 	MAX
 }
 
