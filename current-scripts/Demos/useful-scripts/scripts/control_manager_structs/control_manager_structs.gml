@@ -61,18 +61,59 @@ function ControlManagerPlayer() constructor {
 			ctrl_released[i] = false;
 		}
 
-			ctrl_any_pressed = false;
+		ctrl_any_pressed = false;
+		var _cached_value;
 
 		if (keyboard_enabled) {
 			for (var i=0; i<CONTROLS.MAX; i++) {
 				if (keyboard_control_source[i] == CONTROL_TYPE.MOUSE) {
-					ctrl_held[i] = mouse_check_button(keyboard_map[i]);
-					ctrl_pressed[i] = mouse_check_button_pressed(keyboard_map[i]);
-					ctrl_released[i] = mouse_check_button_released(keyboard_map[i]);
+					// Held
+					_cached_value = variable_struct_get(_control_manager.input_state_cache.mouse.held, string(keyboard_map[i]));
+					if (is_undefined(_cached_value)) {
+						_cached_value = mouse_check_button(keyboard_map[i]);
+						variable_struct_set(_control_manager.input_state_cache.mouse.held, string(keyboard_map[i]), _cached_value);
+					}
+					ctrl_held[i] = _cached_value;
+					
+					// Pressed
+					_cached_value = variable_struct_get(_control_manager.input_state_cache.mouse.pressed, string(keyboard_map[i]));
+					if (is_undefined(_cached_value)) {
+						_cached_value = mouse_check_button_pressed(keyboard_map[i]);
+						variable_struct_set(_control_manager.input_state_cache.mouse.pressed, string(keyboard_map[i]), _cached_value);
+					}
+					ctrl_pressed[i] = _cached_value;
+					
+					// Released
+					_cached_value = variable_struct_get(_control_manager.input_state_cache.mouse.released, string(keyboard_map[i]));
+					if (is_undefined(_cached_value)) {
+						_cached_value = mouse_check_button_released(keyboard_map[i]);
+						variable_struct_set(_control_manager.input_state_cache.mouse.released, string(keyboard_map[i]), _cached_value);
+					}
+					ctrl_released[i] = _cached_value;
 				} else {
-					ctrl_held[i] = keyboard_check(keyboard_map[i]);
-					ctrl_pressed[i] = keyboard_check_pressed(keyboard_map[i]);
-					ctrl_released[i] = keyboard_check_released(keyboard_map[i]);
+					// Held
+					_cached_value = variable_struct_get(_control_manager.input_state_cache.keyboard.held, string(keyboard_map[i]));
+					if (is_undefined(_cached_value)) {
+						_cached_value = keyboard_check(keyboard_map[i]);
+						variable_struct_set(_control_manager.input_state_cache.keyboard.held, string(keyboard_map[i]), _cached_value);
+					}
+					ctrl_held[i] = _cached_value;
+					
+					// Pressed
+					_cached_value = variable_struct_get(_control_manager.input_state_cache.keyboard.pressed, string(keyboard_map[i]));
+					if (is_undefined(_cached_value)) {
+						_cached_value = keyboard_check_pressed(keyboard_map[i]);
+						variable_struct_set(_control_manager.input_state_cache.keyboard.pressed, string(keyboard_map[i]), _cached_value);
+					}
+					ctrl_pressed[i] = _cached_value;
+					
+					// Released
+					_cached_value = variable_struct_get(_control_manager.input_state_cache.keyboard.released, string(keyboard_map[i]));
+					if (is_undefined(_cached_value)) {
+						_cached_value = keyboard_check_released(keyboard_map[i]);
+						variable_struct_set(_control_manager.input_state_cache.keyboard.released, string(keyboard_map[i]), _cached_value);
+					}
+					ctrl_released[i] = _cached_value;
 				}
 			}
 	
@@ -153,7 +194,7 @@ function ControlManagerPlayer() constructor {
 		axis_pressed.x = ctrl_pressed[CONTROLS.RIGHT] - ctrl_pressed[CONTROLS.LEFT]; 
 		axis_pressed.y = ctrl_pressed[CONTROLS.DOWN] - ctrl_pressed[CONTROLS.UP];
 	}
-
+	
 	function clear_all_input() {
 		for (var i=0; i<CONTROLS.MAX; i++) {
 			ctrl_held[i] = false;
