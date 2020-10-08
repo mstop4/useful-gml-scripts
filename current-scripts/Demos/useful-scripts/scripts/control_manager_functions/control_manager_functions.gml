@@ -4,3 +4,11 @@ function add_player() {
 	num_players++;
 	return _new_player;
 }
+
+function get_player(_index) {
+	if (ds_list_size(self.players) > _index) {
+		return self.players[| _index];
+	}
+	
+	return noone;
+}

@@ -17,6 +17,13 @@ enum CONTROL_TYPE {
 	MAX
 }
 
+enum CONTROL_STATE {
+	HELD,
+	PRESSED,
+	RELEASED,
+	MAX
+}
+
 function ControlManagerPlayer() constructor {
 	for (var i=0; i<CONTROLS.MAX; i++) {
 		keyboard_map[i] = -1;
@@ -42,12 +49,40 @@ function ControlManagerPlayer() constructor {
 	stick_deadzone = 0.1;
 	stick_threshold = 0.5;
 	
-	function set_control(_control_type, _control_source, _control, _value) {
+	function set_control_map(_control_type, _control_source, _control, _value) {
 		if (_control_type == CONTROL_TYPE.KEYBOARD) {
 			keyboard_control_source[_control] = _control_source;
 			keyboard_map[_control] = _value;
 		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
 			gamepad_map[_control] = _value;
+		}
+	}
+	
+	function get_control_map(_control_type, _control) {
+		if (_control_type == CONTROL_TYPE.KEYBOARD) {
+			return {
+				control_source: keyboard_control_source[_control],
+				control: keyboard_map[_control]
+			};
+		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
+			return {
+				control_source: _control_type,
+				control: gamepad_map[_control]
+			}; 
+		} else {
+			return noone;
+		}
+	}
+	
+	function get_control_state(_control, _control_state) {
+		if (_control_state == CONTROL_STATE.HELD) {
+			return ctrl_held[_control];
+		} else if (_control_state == CONTROL_STATE.PRESSED) {
+			return ctrl_pressed[_control];
+		} else if (_control_state == CONTROL_STATE.RELEASED) {
+			return ctrl_released[_control];
+		} else {
+			return noone;
 		}
 	}
 	
@@ -61,7 +96,7 @@ function ControlManagerPlayer() constructor {
 			ctrl_released[i] = false;
 		}
 
-			ctrl_any_pressed = false;
+		ctrl_any_pressed = false;
 
 		if (keyboard_enabled) {
 			for (var i=0; i<CONTROLS.MAX; i++) {
