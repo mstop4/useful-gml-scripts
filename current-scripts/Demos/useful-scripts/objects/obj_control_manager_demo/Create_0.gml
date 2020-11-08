@@ -10,7 +10,8 @@ control_labels[CONTROLS.Y] = "Y";
 num_controls = CONTROLS.MAX;
 
 control_manager = instance_create_layer(0, 0, layer, obj_control_manager);
-my_player = control_manager.add_player();
+var _player_index = control_manager.add_player();
+my_player = control_manager.get_player(_player_index);
 
 my_player.set_control_map(CONTROL_TYPE.KEYBOARD, CONTROL_TYPE.KEYBOARD, CONTROLS.UP, vk_up);
 my_player.set_control_map(CONTROL_TYPE.KEYBOARD, CONTROL_TYPE.KEYBOARD, CONTROLS.DOWN, vk_down);
