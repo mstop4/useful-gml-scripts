@@ -78,6 +78,29 @@ function dialogue_line_breaker(_str, _max_width, _font) {
 	return _out_str;
 }
 
+/// @func          split_string(str, delimiter)
+/// @desc          Splits string into substrings
+/// @arg {string}  str
+/// @arg {string}  delimiter
+function split_string(_str, _delimiter) {
+	var _substrings = [];
+	var _str_len = string_length(_str);
+	var _buffer = "";
+	
+	for (var i=1; i<=_str_len; i++) {
+		var _char = string_char_at(_str, i);
+		if (_char == _delimiter) {
+			array_push(_substrings, _buffer);
+			_buffer = "";
+		} else {
+			_buffer += _char;
+		}
+	}
+	
+	array_push(_substrings, _buffer);
+	return _substrings;
+}
+
 /// @func          pad_string(str, char, position, width)
 /// @desc          Pads a string with char until it is a certain width
 /// @arg {string}  str
