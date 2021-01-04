@@ -63,6 +63,19 @@ function pulse(_t, _min, _max) {
 		: 0;
 }
 
+/// @func         blin(a, b, c, d, w1, w2)
+/// @param {real} a
+/// @param {real} b
+/// @param {real} c
+/// @param {real} d 
+/// @param {real} w1
+/// @param {real} w2
+function blin(a, b, c, d, w1, w2) {
+	var _ab = lerp(a, b, w1);
+	var _cd = lerp(c, d, w1);
+	return lerp(_ab, _cd, w2);
+}
+
 
 /// @func         soft_ceiling(value, delta, max)
 /// @desc         Allows values higher than max to go below, but not values lower than max to go above

@@ -25,10 +25,23 @@ enum CONTROL_STATE {
 }
 
 function ControlManagerPlayer() constructor {
+	keyboard_enabled = true;
+	gamepad_enabled = true;
+	touch_enabled = true;
+	tilt_enabled = true;
+	gamepad_slot = 0;
+	gamepad_stick_enabled = true;
+	gamepad_stick_to_dpad = true;
+	stick_deadzone = 0.1;
+	stick_threshold = 0.5;
+	max_touches = 8;
+	
+	// Mappable Controls
 	for (var i=0; i<CONTROLS.MAX; i++) {
 		keyboard_map[i] = -1;
-		keyboard_control_source[i] = CONTROL_TYPE.KEYBOARD;
+		// keyboard_control_source[i] = CONTROL_TYPE.KEYBOARD;
 		gamepad_map[i] = -1;
+		touch_map[i] = -1;
 		
 		ctrl_held[i] = false;
 		ctrl_pressed[i] = false;
@@ -36,18 +49,16 @@ function ControlManagerPlayer() constructor {
 	}
 
 	ctrl_any_pressed = false;
+	
+	// Always tracked controls
+	// Gamepad
 	axis_held = new Vector2(0, 0);
 	axis_pressed = new Vector2(0, 0);
 	stick_input = new Vector2(0, 0);
 	prev_stick_input = new Vector2(0, 0);
 	
-	keyboard_enabled = true;
-	gamepad_enabled = true;
-	gamepad_slot = 0;
-	gamepad_stick_enabled = true;
-	gamepad_stick_to_dpad = true;
-	stick_deadzone = 0.1;
-	stick_threshold = 0.5;
+	// Touch
+	
 	
 	function set_control_map(_control_type, _control_source, _control, _value) {
 		if (_control_type == CONTROL_TYPE.KEYBOARD) {
