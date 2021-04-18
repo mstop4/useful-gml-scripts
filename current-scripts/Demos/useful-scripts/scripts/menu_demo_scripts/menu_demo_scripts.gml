@@ -1,3 +1,3 @@
 function menu_demo_on_confirm(_args) {
-	print(":O ", _args[0]);
+	show_message(":O ", _args[0]);
 }

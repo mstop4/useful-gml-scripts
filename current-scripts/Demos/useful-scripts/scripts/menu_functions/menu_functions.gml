@@ -1,3 +1,10 @@
+/// @func  add_menu_selectable(config)
+/// @param config 
+//         - font
+//         - cursor_spr
+//         - cursor_move_sfx
+//         - cursor_change_sfx
+//         - cursor_confirm_sfx
 function menu_init(_config) {
 	menu_font = _config.font;
 	cursor_spr = _config.cursor_spr;
@@ -5,9 +12,6 @@ function menu_init(_config) {
 	cursor_move_sfx = _config.cursor_move_sfx;
 	cursor_change_sfx = _config.cursor_change_sfx;
 	cursor_confirm_sfx = _config.cursor_confirm_sfx;
-	
-	var _handler = asset_get_index(_config.control_handler);
-	control_state.control_handler = _handler;
 }
 
 /// @func  add_menu_selectable(config)

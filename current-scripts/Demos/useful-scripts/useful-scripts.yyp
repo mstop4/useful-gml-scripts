@@ -33,7 +33,6 @@
     {"id":{"name":"obj_control_manager_demo","path":"objects/obj_control_manager_demo/obj_control_manager_demo.yy",},"order":0,},
     {"id":{"name":"math_functions","path":"scripts/math_functions/math_functions.yy",},"order":3,},
     {"id":{"name":"room_drawing_demo","path":"rooms/room_drawing_demo/room_drawing_demo.yy",},"order":2,},
-    {"id":{"name":"menu_demo_control_handlers","path":"scripts/menu_demo_control_handlers/menu_demo_control_handlers.yy",},"order":0,},
     {"id":{"name":"drawing","path":"scripts/drawing/drawing.yy",},"order":3,},
     {"id":{"name":"spr_donut_meter","path":"sprites/spr_donut_meter/spr_donut_meter.yy",},"order":1,},
     {"id":{"name":"main_menu_functions","path":"scripts/main_menu_functions/main_menu_functions.yy",},"order":3,},
@@ -126,7 +125,7 @@
   ],
   "IncludedFiles": [],
   "MetaData": {
-    "IDEVersion": "2.3.1.542",
+    "IDEVersion": "2.3.2.560",
   },
   "resourceVersion": "1.4",
   "name": "useful-scripts",

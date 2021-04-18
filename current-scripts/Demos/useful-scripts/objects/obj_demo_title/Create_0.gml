@@ -32,7 +32,6 @@ menu.menu_init({
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: -1,
 	cursor_confirm_sfx: -1,
-	control_handler: "menu_demo_control_handler"
 });
 menu.line_spacing = 16;
 
