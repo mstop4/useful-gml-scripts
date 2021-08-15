@@ -1,11 +1,11 @@
-/// @func  add_menu_selectable(config)
-/// @param config 
-//         - font
-//         - cursor_spr
-//         - cursor_move_sfx
-//         - cursor_change_sfx
-//         - cursor_confirm_sfx
-function menu_init(_config) {
+/// @func  column_menu_init(config)
+/// @param config
+//         - {font}   font
+//         - {sprite} cursor_spr
+//         - {sound}  cursor_move_sfx
+//         - {sound}  cursor_change_sfx
+//         - {sound}  cursor_confirm_sfx
+function column_menu_init(_config) {
 	menu_font = _config.font;
 	cursor_spr = _config.cursor_spr;
 	cursor_padding = sprite_get_width(cursor_spr) + 16;
@@ -14,19 +14,19 @@ function menu_init(_config) {
 	cursor_confirm_sfx = _config.cursor_confirm_sfx;
 }
 
-/// @func  add_menu_selectable(config)
+/// @func  column_menu_add_selectable(config)
 /// @param config 
-//         - label
-//         - on_confirm_func
-//         - on_confirm_args
-//         - silent_on_confirm
-function add_menu_selectable(_config) {
+//         - {string}   label
+//         - {function} on_confirm_func
+//         - {array}    on_confirm_args
+//         - {boolean}  silent_on_confirm
+function column_menu_add_selectable(_config) {
 	var _new = new MenuSelectable(_config);
 	ds_list_add(items, _new);
 	num_items++;
 }
 
-/// @func  add_menu_spinner(config)
+/// @func  column_menu_add_spinner(config)
 /// @param config 
 //         - {string}   label
 //         - {array}    values
@@ -37,7 +37,7 @@ function add_menu_selectable(_config) {
 //         - {array}    on_change_args
 //         - {boolean}  silent_on_confirm
 //         - {boolean}  silent_on_change
-function add_menu_spinner(_config) {
+function column_menu_add_spinner(_config) {
 	var _new = new MenuSpinner(_config);
 	ds_list_add(items, _new);
 	num_items++;
