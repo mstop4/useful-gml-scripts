@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Demo Scripts",
-    "path": "folders/Demos/Menu/Demo Scripts.yy",
+    "name": "Base Menu",
+    "path": "folders/Useful Script Library/Components/Menu System/Base Menu.yy",
   },
   "resourceVersion": "1.0",
-  "name": "menu_demo_scripts",
+  "name": "menu_base_functions",
   "tags": [],
   "resourceType": "GMScript",
 }

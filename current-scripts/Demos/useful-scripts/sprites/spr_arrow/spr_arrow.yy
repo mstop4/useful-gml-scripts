@@ -67,9 +67,10 @@
   "layers": [
     {"visible":true,"isLocked":false,"blendMode":0,"opacity":100.0,"displayName":"default","resourceVersion":"1.0","name":"b91a95bf-691e-4be7-9c61-13132ae647db","tags":[],"resourceType":"GMImageLayer",},
   ],
+  "nineSlice": null,
   "parent": {
-    "name": "Menu",
-    "path": "folders/Demos/Menu.yy",
+    "name": "Column Menu",
+    "path": "folders/Demos/Column Menu.yy",
   },
   "resourceVersion": "1.0",
   "name": "spr_arrow",

@@ -6,7 +6,8 @@ rooms = [
 	room_laser_demo,
 	room_input_demo,
 	room_math_demo,
-	room_menu_demo,
+	room_column_menu_demo,
+	room_grid_menu_demo,
 	room_strings_demo,
 	room_web_demo
 ];
@@ -20,13 +21,14 @@ room_names = [
 	"Geometry",
 	"Input",
 	"Math",
-	"Menu",
+	"Column Menu",
+	"Grid Menu",
 	"Strings",
 	"Web"
 ];
 
-menu = instance_create_layer(32, 64, layer, obj_menu);
-menu.menu_init({
+menu = instance_create_layer(32, 64, layer, obj_column_menu);
+menu.column_menu_init({
 	font: fnt_demo,
 	cursor_spr: spr_arrow, 
 	cursor_move_sfx: snd_menu_move,
@@ -36,7 +38,7 @@ menu.menu_init({
 menu.line_spacing = 16;
 
 for (var i=0; i<num_rooms; i++) {
-	menu.add_menu_selectable({
+	menu.column_menu_add_selectable({
 		label: room_names[i],
 		on_confirm_func: "go_to_demo",
 		on_confirm_args: [ rooms[i] ],

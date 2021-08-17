@@ -23,11 +23,11 @@
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Menu",
-    "path": "folders/Demos/Menu.yy",
+    "name": "Column Menu",
+    "path": "folders/Demos/Column Menu.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_menu_demo",
+  "name": "obj_column_menu_demo",
   "tags": [],
   "resourceType": "GMObject",
 }

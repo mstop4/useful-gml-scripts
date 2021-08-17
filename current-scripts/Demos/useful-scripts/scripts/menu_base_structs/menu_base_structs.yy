@@ -2,11 +2,11 @@
   "isDnD": false,
   "isCompatibility": false,
   "parent": {
-    "name": "Menu System",
-    "path": "folders/Useful Script Library/Components/Menu System.yy",
+    "name": "Base Menu",
+    "path": "folders/Useful Script Library/Components/Menu System/Base Menu.yy",
   },
   "resourceVersion": "1.0",
-  "name": "menu_functions",
+  "name": "menu_base_structs",
   "tags": [],
   "resourceType": "GMScript",
 }

@@ -23,12 +23,14 @@ function MenuControlState() constructor {
 		pressed_state[MENU_CONTROLS.LEFT] = keyboard_check_pressed(vk_left);
 		pressed_state[MENU_CONTROLS.RIGHT] = keyboard_check_pressed(vk_right);
 		pressed_state[MENU_CONTROLS.CONFIRM] = keyboard_check_pressed(vk_enter);
+		pressed_state[MENU_CONTROLS.CANCEL] = keyboard_check_pressed(vk_backspace);
 	
 		held_state[MENU_CONTROLS.UP] = keyboard_check(vk_up);
 		held_state[MENU_CONTROLS.DOWN] = keyboard_check(vk_down);
-		held_state[MENU_CONTROLS.LEFT] = keyboard_check_pressed(vk_left);
-		held_state[MENU_CONTROLS.RIGHT] = keyboard_check_pressed(vk_right);
+		held_state[MENU_CONTROLS.LEFT] = keyboard_check(vk_left);
+		held_state[MENU_CONTROLS.RIGHT] = keyboard_check(vk_right);
 		held_state[MENU_CONTROLS.CONFIRM] = keyboard_check(vk_enter);
+		held_state[MENU_CONTROLS.CANCEL] = keyboard_check(vk_backspace);
 	}
 }
 
@@ -81,5 +83,27 @@ function MenuSpinner(_config) : MenuSelectable(_config) constructor {
 	
 	function get_full_label() {
 		return concat(label, ": ", values[cur_index]);
+	}
+}
+
+/// @func  MenuKeyConfig(config)
+/// @param config 
+//         - {string}   label
+//         - {array}    inital_keycode
+//         - {function} on_confirm_func
+//         - {array}    on_confirm_args
+//         - {boolean}  silent_on_confirm
+function MenuKeyConfig(_config) : MenuItem(_config) constructor {
+	ds_list_add(types, "keyconfig");
+	on_confirm_func = asset_get_index(_config.on_confirm_func);
+	on_confirm_args = _config.on_confirm_args;
+	silent_on_confirm = _config.silent_on_confirm;
+	keycode = _config.inital_keycode;
+	discovery_mode = false;
+	
+	function get_full_label() {
+		return discovery_mode
+			?	concat(label, ": _")
+			: concat(label, ": ", keycode_to_string(keycode));
 	}
 }

@@ -13,8 +13,8 @@
   "soundFile": "snd_menu_move.wav",
   "duration": 0.797494,
   "parent": {
-    "name": "Menu",
-    "path": "folders/Demos/Menu.yy",
+    "name": "Column Menu",
+    "path": "folders/Demos/Column Menu.yy",
   },
   "resourceVersion": "1.0",
   "name": "snd_menu_move",
