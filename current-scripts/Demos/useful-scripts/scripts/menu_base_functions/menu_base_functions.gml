@@ -1,3 +1,12 @@
+/// @func  menu_base_init(menu_font, cursor_spr)
+/// @param {Font} menu_font
+/// @param {Sprite} cursor_spr
+function menu_base_init(_menu_font, _cursor_spr) {
+	draw_set_font(_menu_font);
+	item_height = string_height("Ij");
+	cursor_width = sprite_get_width(_cursor_spr);
+}
+
 /// @func  handle_selectable(item)
 /// @param {MenuSelectable} item
 function handle_selectable(_item) {

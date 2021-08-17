@@ -6,6 +6,8 @@
 //         - {sound}  cursor_change_sfx
 //         - {sound}  cursor_confirm_sfx
 function column_menu_init(_config) {
+	self.menu_base_init(_config.font, _config.cursor_spr);	
+	
 	menu_font = _config.font;
 	cursor_spr = _config.cursor_spr;
 	cursor_padding = sprite_get_width(cursor_spr) + 16;
