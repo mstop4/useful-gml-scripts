@@ -25,3 +25,20 @@ function handle_spinner(_item, _direction) {
 		audio_play_sound(cursor_change_sfx, 1, false);
 	}
 }
+
+/// @func  handle_key_config(item)
+/// @param {MenuSpinner} item
+function handle_key_config(_item) {
+	if (_item.discovery_mode) {
+		_item.keycode = keyboard_key;
+		_item.discovery_mode = false;
+		self.active_key_config = noone;
+		self.enabled = true;
+		io_clear();
+	} else {
+		_item.discovery_mode = true;
+		self.enabled = false;
+		self.active_key_config = _item;
+		io_clear();
+	}
+}

@@ -42,3 +42,16 @@ function column_menu_add_spinner(_config) {
 	ds_list_add(items, _new);
 	num_items++;
 }
+
+/// @param column_menu_add_key_config(config)
+/// @param config 
+//         - {string}   label
+//         - {array}    inital_keycode
+//         - {function} on_confirm_func
+//         - {array}    on_confirm_args
+//         - {boolean}  silent_on_confirm
+function column_menu_add_key_config(_config) {
+	var _new = new MenuKeyConfig(_config);
+	ds_list_add(items, _new);
+	num_items++;
+}

@@ -58,3 +58,21 @@ function grid_menu_add_spinner(_x, _y, _config) {
 	var _new = new MenuSpinner(_config);
 	items[# _x, _y] = _new;
 }
+
+/// @param grid_menu_add_key_config(x, y, config)
+/// @param x
+/// @param y
+/// @param config 
+//         - {string}   label
+//         - {array}    inital_keycode
+//         - {function} on_confirm_func
+//         - {array}    on_confirm_args
+//         - {boolean}  silent_on_confirm
+function grid_menu_add_key_config(_x, _y, _config) {
+	if (_x < 0 || _x >= ds_grid_width(items)
+		|| _y < 0 || _x >= ds_grid_height(items))
+			return;
+			
+	var _new = new MenuKeyConfig(_config);
+	items[# _x, _y] = _new;
+}
