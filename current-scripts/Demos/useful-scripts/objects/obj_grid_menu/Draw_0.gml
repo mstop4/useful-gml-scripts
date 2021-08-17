@@ -1,6 +1,6 @@
 draw_set_font(menu_font);
 for (var i=0; i<ds_grid_width(items); i++) {
-	var _x = x + (cursor_width + cursor_padding) * (i+1) + column_width * i;
+	var _x = x + cursor_padding * (i+1) + column_width * i;
 
 	for (var j=0; j<ds_grid_height(items); j++) {
 		var _item = items[# i, j];
@@ -30,6 +30,6 @@ for (var i=0; i<ds_grid_width(items); i++) {
 }
 
 draw_sprite(cursor_spr, 0,
-	x + (cursor_width + cursor_padding + column_width) * pos.x,
+	x + (cursor_padding + column_width) * pos.x,
 	y + (item_height + line_spacing) * pos.y
 );

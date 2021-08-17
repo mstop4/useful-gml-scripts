@@ -1,5 +1,5 @@
 draw_set_font(menu_font);
-var _x = x + cursor_width + cursor_padding;
+var _x = x + cursor_padding;
 
 for (var i=0; i<num_items; i++) {
 	var _item = items[| i];
