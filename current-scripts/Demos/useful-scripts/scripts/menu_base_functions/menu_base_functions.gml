@@ -31,19 +31,19 @@ function handle_spinner_confirm(_item) {
 	}
 }
 
-/// @func  handle_spinner_change(item, direction)
+/// @func  handle_spinner_change(item, delta)
 /// @param {MenuSpinner} item
-/// @param {number} direction -1 or 1
-function handle_spinner_change(_item, _direction) {
+/// @param {number} delta -1 or 1
+function handle_spinner_change(_item, _delta) {
 	var _num_values = array_length(_item.values);
-	_item.cur_index = wrap(_item.cur_index+_direction, 0, _num_values-1);
+	_item.cur_index = wrap(_item.cur_index+_delta, 0, _num_values-1);
 		
 	if (script_exists(_item.on_change_func)) {
 		script_execute(
 			_item.on_change_func,
 			_item.cur_index,
 			_item.values[_item.cur_index],
-			_direction,
+			_delta,
 			_item.on_change_args
 		);
 	}
