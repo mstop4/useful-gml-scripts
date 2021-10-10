@@ -20,7 +20,7 @@ my_player.set_control_map(CONTROL_TYPE.KEYBOARD, CONTROL_TYPE.KEYBOARD, CONTROLS
 my_player.set_control_map(CONTROL_TYPE.KEYBOARD, CONTROL_TYPE.KEYBOARD, CONTROLS.A, ord("A"));
 my_player.set_control_map(CONTROL_TYPE.KEYBOARD, CONTROL_TYPE.KEYBOARD, CONTROLS.B, ord("B"));
 my_player.set_control_map(CONTROL_TYPE.KEYBOARD, CONTROL_TYPE.KEYBOARD, CONTROLS.X, ord("X"));
-my_player.set_control_map(CONTROL_TYPE.KEYBOARD, CONTROL_TYPE.MOUSE, CONTROLS.Y, mb_left);
+my_player.set_control_map(CONTROL_TYPE.KEYBOARD, CONTROL_TYPE.KEYBOARD, CONTROLS.Y, ord("Y"));
 
 my_player.set_control_map(CONTROL_TYPE.GAMEPAD, -1, CONTROLS.A, gp_face1);
 my_player.set_control_map(CONTROL_TYPE.GAMEPAD, -1, CONTROLS.B, gp_face2);

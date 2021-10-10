@@ -8,7 +8,7 @@ enum MENU_CONTROLS {
 	MAX
 }
 
-function MenuControlState() constructor {
+function MenuControlState(_control_manager) constructor {
 	pressed_state = [];
 	held_state = [];
 	
@@ -73,8 +73,11 @@ function MenuSelectable(_config) : MenuItem(_config) constructor {
 //         - {array}    on_change_args
 //         - {boolean}  silent_on_confirm
 //         - {boolean}  silent_on_change
-function MenuSpinner(_config) : MenuSelectable(_config) constructor {
+function MenuSpinner(_config) : MenuItem(_config) constructor {
 	ds_list_add(types, "spinner");
+	on_confirm_func = asset_get_index(_config.on_confirm_func);
+	on_confirm_args = _config.on_confirm_args;
+	silent_on_confirm = _config.silent_on_confirm;
 	values = _config.values;
 	cur_index = clamp(_config.init_index, 0, array_length(values));
 	on_change_func = asset_get_index(_config.on_change_func);
@@ -90,13 +93,13 @@ function MenuSpinner(_config) : MenuSelectable(_config) constructor {
 /// @param config 
 //         - {string}   label
 //         - {array}    inital_keycode
-//         - {function} on_confirm_func
-//         - {array}    on_confirm_args
+//         - {function} on_change_func
+//         - {array}    on_change_args
 //         - {boolean}  silent_on_confirm
 function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 	ds_list_add(types, "keyconfig");
-	on_confirm_func = asset_get_index(_config.on_confirm_func);
-	on_confirm_args = _config.on_confirm_args;
+	on_change_func = asset_get_index(_config.on_change_func);
+	on_change_args = _config.on_change_args;
 	silent_on_confirm = _config.silent_on_confirm;
 	keycode = _config.inital_keycode;
 	discovery_mode = false;

@@ -44,6 +44,8 @@ menu.grid_menu_add_selectable(1, 0, {
 menu.grid_menu_add_key_config(1, 1, { 
 	label: "Qux",
 	inital_keycode: vk_space,
+	on_change_func: -1,
+	on_change_args: -1,
 	on_confirm_func: -1,
 	on_confirm_args: [-1],
 	silent_on_confirm: false
