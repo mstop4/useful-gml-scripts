@@ -8,7 +8,7 @@ enum MENU_CONTROLS {
 	MAX
 }
 
-function MenuControlState(_control_manager) constructor {
+function MenuControlState() constructor {
 	pressed_state = [];
 	held_state = [];
 	
