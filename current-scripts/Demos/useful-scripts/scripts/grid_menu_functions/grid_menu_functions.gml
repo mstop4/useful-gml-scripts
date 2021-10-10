@@ -9,8 +9,8 @@
 //         - {sound}  cursor_change_sfx
 //         - {sound}  cursor_confirm_sfx
 function grid_menu_init(_config) {
-	self.menu_base_init(_config.font, _config.cursor_spr);	
-
+	self.menu_base_init(_config.font, _config.cursor_spr);
+	
 	column_width = _config.column_width;
 	menu_font = _config.font;
 	cursor_spr = _config.cursor_spr;
@@ -20,6 +20,28 @@ function grid_menu_init(_config) {
 	cursor_confirm_sfx = _config.cursor_confirm_sfx;
 	
 	ds_grid_resize(items, _config.width, _config.height);
+}
+
+/// @func grid_menu_get_item_by_index(x, y)
+/// @param {number} x
+/// @param {number} y
+function grid_menu_get_item_by_index(_x, _y) {
+	return self.items[# _x, _y];
+}
+
+/// @func grid_menu_get_item_by_label(label)
+/// @param {string} label
+function grid_menu_get_item_by_label(_label) {
+	var _width = ds_grid_width(items);
+	var _height = ds_grid_height(items);
+	
+	for (var i=0; i<_width; i++) {
+		for (var j=0; j<_height; j++) {		
+			if (self.items[# i, j].label == _label) return self.items[# i, j];
+		}
+	}
+	
+	return noone;
 }
 
 /// @func  grid_menu_add_selectable(x, y, config)
@@ -36,7 +58,9 @@ function grid_menu_add_selectable(_x, _y, _config) {
 			return;
 	
 	var _new = new MenuSelectable(_config);
+	_new.parent_menu = self;
 	items[# _x, _y] = _new;
+	return _new;
 }
 
 /// @func  grid_menu_add_spinner(x, y, config)
@@ -58,7 +82,9 @@ function grid_menu_add_spinner(_x, _y, _config) {
 			return;
 	
 	var _new = new MenuSpinner(_config);
+	_new.parent_menu = self;
 	items[# _x, _y] = _new;
+	return _new;
 }
 
 /// @param grid_menu_add_key_config(x, y, config)
@@ -76,5 +102,7 @@ function grid_menu_add_key_config(_x, _y, _config) {
 			return;
 			
 	var _new = new MenuKeyConfig(_config);
+	_new.parent_menu = self;
 	items[# _x, _y] = _new;
+	return _new;
 }

@@ -39,7 +39,13 @@ function handle_spinner_change(_item, _direction) {
 	_item.cur_index = wrap(_item.cur_index+_direction, 0, _num_values-1);
 		
 	if (script_exists(_item.on_change_func)) {
-		script_execute(_item.on_change_func, _item.cur_index, _item.values[_item.cur_index], _item.on_change_args);
+		script_execute(
+			_item.on_change_func,
+			_item.cur_index,
+			_item.values[_item.cur_index],
+			_direction,
+			_item.on_change_args
+		);
 	}
 		
 	if (!_item.silent_on_change && audio_exists(cursor_change_sfx)) {

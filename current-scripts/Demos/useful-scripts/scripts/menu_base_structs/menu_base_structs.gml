@@ -41,6 +41,7 @@ function MenuItem(_config) constructor {
 	types = ds_list_create();
 	ds_list_add(types, "item");
 	label = _config.label;
+	parent_menu = noone;
 	
 	function destroy() {
 		ds_list_destroy(types);
@@ -61,6 +62,24 @@ function MenuSelectable(_config) : MenuItem(_config) constructor {
 	silent_on_confirm = _config.silent_on_confirm;
 }
 
+/// @func  MenuSpinnerBase(config)
+/// @param config 
+//         - {string}   label
+//         - {function} on_confirm_func
+//         - {array}    on_confirm_args
+//         - {function} on_change_func
+//         - {array}    on_change_args
+//         - {boolean}  silent_on_confirm
+//         - {boolean}  silent_on_change
+function MenuSpinnerBase(_config) : MenuItem(_config) constructor {
+	ds_list_add(types, "spinner");
+	on_confirm_func = asset_get_index(_config.on_confirm_func);
+	on_confirm_args = _config.on_confirm_args;
+	silent_on_confirm = _config.silent_on_confirm;
+	on_change_func = asset_get_index(_config.on_change_func);
+	on_change_args = _config.on_change_args;
+	silent_on_change = _config.silent_on_change;
+}
 
 /// @func  MenuSpinner(config)
 /// @param config 
@@ -73,16 +92,9 @@ function MenuSelectable(_config) : MenuItem(_config) constructor {
 //         - {array}    on_change_args
 //         - {boolean}  silent_on_confirm
 //         - {boolean}  silent_on_change
-function MenuSpinner(_config) : MenuItem(_config) constructor {
-	ds_list_add(types, "spinner");
-	on_confirm_func = asset_get_index(_config.on_confirm_func);
-	on_confirm_args = _config.on_confirm_args;
-	silent_on_confirm = _config.silent_on_confirm;
+function MenuSpinner(_config) : MenuSpinnerBase(_config) constructor {
 	values = _config.values;
 	cur_index = clamp(_config.init_index, 0, array_length(values));
-	on_change_func = asset_get_index(_config.on_change_func);
-	on_change_args = _config.on_change_args;
-	silent_on_change = _config.silent_on_change;
 	
 	function get_full_label() {
 		return concat(label, ": ", values[cur_index]);
