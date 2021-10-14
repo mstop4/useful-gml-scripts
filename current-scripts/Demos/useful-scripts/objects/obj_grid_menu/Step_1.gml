@@ -35,7 +35,14 @@ if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
 
 if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {
 	var _cur_pos = pos.x;
-	var _item = -1;
+	var _item = items[# pos.x, pos.y];
+	
+	if (is_struct(_item)) {
+		if (ds_list_find_index(_item.types, "spinner") != -1) {
+			self.handle_spinner_change(_item, -1);
+			return;
+		}
+	}
 	
 	do {
 		pos.x = wrap(pos.x-1, 0, ds_grid_width(items)-1);
@@ -43,16 +50,18 @@ if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {
 	} until (is_struct(_item) || _cur_pos == pos.x)
 
 	audio_play_sound(cursor_move_sfx, 1, false);
-	
-	if (!is_struct(_item)) return;
-
-	if (ds_list_find_index(_item.types, "spinner") != -1)
-		self.handle_spinner_change(_item, -1);
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.RIGHT]) {
 	var _cur_pos = pos.x;
-	var _item = -1;
+	var _item = items[# pos.x, pos.y];
+	
+	if (is_struct(_item)) {
+		if (ds_list_find_index(_item.types, "spinner") != -1) {
+			self.handle_spinner_change(_item, 1);
+			return;
+		}
+	}
 	
 	do {
 		pos.x = wrap(pos.x+1, 0, ds_grid_width(items)-1);
@@ -60,11 +69,6 @@ if (control_state.pressed_state[MENU_CONTROLS.RIGHT]) {
 	} until (is_struct(_item) || _cur_pos == pos.x)
 	
 	audio_play_sound(cursor_move_sfx, 1, false);
-	
-	if (!is_struct(_item)) return;
-
-	if (ds_list_find_index(_item.types, "spinner") != -1)
-		self.handle_spinner_change(_item, 1);
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
