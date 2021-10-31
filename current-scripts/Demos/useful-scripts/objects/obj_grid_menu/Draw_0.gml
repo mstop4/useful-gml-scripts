@@ -1,4 +1,5 @@
-draw_set_font(menu_font);
+event_inherited();
+
 for (var i=0; i<ds_grid_width(items); i++) {
 	var _x = x + cursor_padding * (i+1) + column_width * i;
 

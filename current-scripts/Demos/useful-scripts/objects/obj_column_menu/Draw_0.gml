@@ -1,4 +1,4 @@
-draw_set_font(menu_font);
+event_inherited();
 var _x = x + cursor_padding;
 
 for (var i=0; i<num_items; i++) {

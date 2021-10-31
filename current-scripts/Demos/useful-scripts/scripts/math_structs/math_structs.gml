@@ -47,30 +47,34 @@ enum DVLimitMode {
 }
 
 /// @func DynamicValue(value, delta, min_v, max_v, clamp_mode)
-function DynamicValue(_value, _delta, _min_v, _max_v, _clamp_mode) constructor {
+function DynamicValue(_value, _delta, _min_v, _max_v, _clamp_mode, _stop_outside_range) constructor {
 	v = _value;
 	d = _delta;
 	min_v = _min_v;
 	max_v = _max_v;
 	clamp_mode = _clamp_mode;
+	stop_outside_range = _stop_outside_range;
 
 	static update = function() {
 		if (d != 0) {
+			var _old_v = v;
+			var _new_v = v + d;
+
 			switch (clamp_mode) {
 				case DVLimitMode.NONE:
-					v += d;
+					v = _new_v;
 					break;
 					
 				case DVLimitMode.CEILING:
-					v = min(v + d, max_v);
+					v = min(_new_v, max_v);
 					break;
 					
 				case DVLimitMode.FLOOR:
-					v = max(v + d, min_v);
+					v = max(_new_v, min_v);
 					break;			
 					
 				case DVLimitMode.CLAMP:
-					v = clamp(v + d, min_v, max_v);
+					v = clamp(_new_v, min_v, max_v);
 					break;
 					
 				case DVLimitMode.SOFT_CEILING:
@@ -86,10 +90,14 @@ function DynamicValue(_value, _delta, _min_v, _max_v, _clamp_mode) constructor {
 					break;
 					
 				case DVLimitMode.WRAP:
-					v = wrap(v + d, min_v, max_v);
+					v = wrap(_new_v, min_v, max_v);
 					
 				default:
-					v += d;
+					v = _new_v;
+			}
+			
+			if (stop_outside_range && _old_v == v) {
+				d = 0;
 			}
 		}
 	}
