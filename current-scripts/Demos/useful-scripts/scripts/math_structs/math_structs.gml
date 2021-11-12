@@ -46,13 +46,13 @@ enum DVLimitMode {
 	WRAP
 }
 
-/// @func DynamicValue(value, delta, min_v, max_v, clamp_mode)
-function DynamicValue(_value, _delta, _min_v, _max_v, _clamp_mode, _stop_outside_range) constructor {
+/// @func DynamicValue(value, delta, min_v, max_v, limit_mode, stop_outside_range)
+function DynamicValue(_value, _delta, _min_v, _max_v, _limit_mode, _stop_outside_range) constructor {
 	v = _value;
 	d = _delta;
 	min_v = _min_v;
 	max_v = _max_v;
-	clamp_mode = _clamp_mode;
+	limit_mode = _limit_mode;
 	stop_outside_range = _stop_outside_range;
 
 	static update = function() {
@@ -60,7 +60,7 @@ function DynamicValue(_value, _delta, _min_v, _max_v, _clamp_mode, _stop_outside
 			var _old_v = v;
 			var _new_v = v + d;
 
-			switch (clamp_mode) {
+			switch (limit_mode) {
 				case DVLimitMode.NONE:
 					v = _new_v;
 					break;

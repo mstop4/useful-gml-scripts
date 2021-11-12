@@ -31,6 +31,7 @@
     {"id":{"name":"obj_delta_time_alarm_demo","path":"objects/obj_delta_time_alarm_demo/obj_delta_time_alarm_demo.yy",},"order":0,},
     {"id":{"name":"obj_demo_title","path":"objects/obj_demo_title/obj_demo_title.yy",},"order":1,},
     {"id":{"name":"obj_grid_menu","path":"objects/obj_grid_menu/obj_grid_menu.yy",},"order":0,},
+    {"id":{"name":"obj_text_object","path":"objects/obj_text_object/obj_text_object.yy",},"order":0,},
     {"id":{"name":"spr_meter","path":"sprites/spr_meter/spr_meter.yy",},"order":0,},
     {"id":{"name":"obj_soft_mover","path":"objects/obj_soft_mover/obj_soft_mover.yy",},"order":1,},
     {"id":{"name":"obj_control_manager_demo","path":"objects/obj_control_manager_demo/obj_control_manager_demo.yy",},"order":0,},
@@ -130,6 +131,7 @@
     {"folderPath":"folders/Useful Script Library/Components/Menu System/Column Menu.yy","order":1,"resourceVersion":"1.0","name":"Column Menu","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Useful Script Library/Components/Menu System/Grid Menu.yy","order":2,"resourceVersion":"1.0","name":"Grid Menu","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Useful Script Library/Components/Menu System/Base Menu.yy","order":0,"resourceVersion":"1.0","name":"Base Menu","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Useful Script Library/Components/Text Object.yy","order":4,"resourceVersion":"1.0","name":"Text Object","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
