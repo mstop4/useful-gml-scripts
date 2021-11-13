@@ -32,5 +32,5 @@ for (var i=0; i<ds_grid_width(items); i++) {
 
 draw_sprite(cursor_spr, 0,
 	x + (cursor_padding + column_width) * pos.x,
-	y + (item_height + line_spacing) * pos.y
+	y + (item_height + line_spacing) * pos.y + item_height / 2
 );

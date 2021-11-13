@@ -5,6 +5,7 @@ function menu_base_init(_menu_font, _cursor_spr) {
 	draw_set_font(_menu_font);
 	item_height = string_height("Ij");
 	cursor_width = sprite_get_width(_cursor_spr);
+	cursor_height = sprite_get_height(_cursor_spr);
 }
 
 /// @func  handle_selectable_confirm(item)
@@ -73,4 +74,25 @@ function handle_key_config_change(_item) {
 		self.active_key_config = _item;
 		io_clear();
 	}
+}
+
+function menu_switch(_next_menu, _on_switch_cb, _on_switch_cb_args) {
+	enabled = false;
+	self.menu_fade_out(_next_menu, _on_switch_cb, _on_switch_cb_args);
+}
+
+function menu_fade_out(_next_menu, _on_end_cb, _on_end_cb_args) {
+	next_menu = _next_menu;
+	on_fade_out_end = asset_get_index(_on_end_cb);
+	on_fade_out_end_args = _on_end_cb_args;
+	menu_alpha.v = 1;
+	menu_alpha.d = -1/menu_fade_time;
+	alarm[11] = menu_fade_time;
+}
+
+function menu_fade_in() {
+	visible = true;
+	menu_alpha.v = 0;
+	menu_alpha.d = 1/menu_fade_time;
+	alarm[10] = menu_fade_time;
 }
