@@ -15,8 +15,10 @@ draw_text(16, 256, "Pulse");
 draw_sprite_ext(spr_meter, 0, 16, 288, 0.25, 0.25, 0, c_gray, 1);
 draw_sprite_ext(spr_meter, 0, 16, 288, 0.25, 0.25, 0, $80FFFF, pulse_t);
 
-draw_text(640, 256, "Wrap");
-draw_text(640, 336, "Blin");
+draw_text(640, 256, "Vector Operations");
+
+draw_text(640, 368, "Wrap");
+draw_text(640, 448, "Blin");
 
 draw_set_font(fnt_demo);
 // Vectors
@@ -40,13 +42,17 @@ draw_text(640, 208, "c x d / |c x d| = " + cross_product_normalized(vec_C, vec_D
 draw_text(96, 288, "t: " + string(pulse_counter.v));
 draw_text(176, 288, "p(t): " + string(pulse_t));
 
+// Vector Operations
+draw_text(640, 288, "a + b = " + string(vec_A.add(vec_B).to_string()));
+draw_text(640, 320, "c - d = " + string(vec_C.subtract(vec_D).to_string()));
+
 // Wrap
-draw_text(640, 288, "t: " + string(wrap_counter.v));
-draw_text(720, 288, "w(t): " + string(wrapped_value));
+draw_text(640, 400, "t: " + string(wrap_counter.v));
+draw_text(720, 400, "w(t): " + string(wrapped_value));
 
 // Blin
 for (var i=0; i<5; i++) {
 	for (var j=0; j<5; j++) {
-		draw_text(640 + i*64, 368 + j*32, string(blin_values[# i, j]));
+		draw_text(640 + i*64, 480 + j*32, string(blin_values[# i, j]));
 	}
 }

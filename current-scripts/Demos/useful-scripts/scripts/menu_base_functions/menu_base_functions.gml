@@ -37,7 +37,7 @@ function handle_spinner_confirm(_item) {
 /// @param {number} delta -1 or 1
 function handle_spinner_change(_item, _delta) {
 	var _num_values = array_length(_item.values);
-	_item.cur_index = wrap(_item.cur_index+_delta, 0, _num_values-1);
+	_item.cur_index = wrap(_item.cur_index+_delta, 0, _num_values);
 		
 	if (script_exists(_item.on_change_func)) {
 		script_execute(
