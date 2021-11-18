@@ -18,17 +18,17 @@
   "physicsKinematic": false,
   "physicsShapePoints": [],
   "eventList": [
-    {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
     {"isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
+    {"isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,"resourceVersion":"1.0","name":"","tags":[],"resourceType":"GMEvent",},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Strings",
-    "path": "folders/Demos/Strings.yy",
+    "name": "Data Structures",
+    "path": "folders/Demos/Data Structures.yy",
   },
   "resourceVersion": "1.0",
-  "name": "obj_strings_demo",
+  "name": "obj_data_structures_demo",
   "tags": [],
   "resourceType": "GMObject",
 }

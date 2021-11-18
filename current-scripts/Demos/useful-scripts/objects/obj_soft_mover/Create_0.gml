@@ -1,4 +1,4 @@
-actual_xpos = new DynamicValue(start_v, start_d, actual_min, actual_max, DVLimitMode.NONE);
+actual_xpos = new DynamicValue(start_v, start_d, actual_min, actual_max, DVLimitMode.NONE, false);
 soft_clamp_xpos = start_v;
 soft_ceiling_xpos = start_v;
 soft_floor_xpos = start_v;

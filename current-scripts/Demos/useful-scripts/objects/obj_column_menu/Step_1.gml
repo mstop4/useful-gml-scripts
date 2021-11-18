@@ -9,12 +9,12 @@ if (!enabled) exit;
 control_state.poll_input();
 
 if (control_state.pressed_state[MENU_CONTROLS.UP]) {
-	pos = wrap(pos-1, 0, num_items-1);
+	pos = wrap(pos-1, 0, num_items);
 	audio_play_sound(cursor_move_sfx, 1, false);
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
-	pos = wrap(pos+1, 0, num_items-1);
+	pos = wrap(pos+1, 0, num_items);
 	audio_play_sound(cursor_move_sfx, 1, false);
 }
 
