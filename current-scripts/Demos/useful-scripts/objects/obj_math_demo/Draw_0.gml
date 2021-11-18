@@ -16,6 +16,7 @@ draw_sprite_ext(spr_meter, 0, 16, 288, 0.25, 0.25, 0, c_gray, 1);
 draw_sprite_ext(spr_meter, 0, 16, 288, 0.25, 0.25, 0, $80FFFF, pulse_t);
 
 draw_text(640, 256, "Wrap");
+draw_text(640, 336, "Blin");
 
 draw_set_font(fnt_demo);
 // Vectors
@@ -42,3 +43,10 @@ draw_text(176, 288, "p(t): " + string(pulse_t));
 // Wrap
 draw_text(640, 288, "t: " + string(wrap_counter.v));
 draw_text(720, 288, "w(t): " + string(wrapped_value));
+
+// Blin
+for (var i=0; i<5; i++) {
+	for (var j=0; j<5; j++) {
+		draw_text(640 + i*64, 368 + j*32, string(blin_values[# i, j]));
+	}
+}

@@ -27,11 +27,11 @@ function Vector3(_x, _y, _z) constructor {
 	}
 	
 	static add = function(_vec3) {
-		return new Vector2(x + _vec3.x, y + _vec3.y, z + _vec3.z);
+		return new Vector3(x + _vec3.x, y + _vec3.y, z + _vec3.z);
 	}
 	
 	static subtract = function(_vec3) {
-		return new Vector2(x - _vec3.x, y - _vec3.y, z - _vec3.z);
+		return new Vector3(x - _vec3.x, y - _vec3.y, z - _vec3.z);
 	}
 }
 
@@ -91,6 +91,7 @@ function DynamicValue(_value, _delta, _min_v, _max_v, _limit_mode, _stop_outside
 					
 				case DVLimitMode.WRAP:
 					v = wrap(_new_v, min_v, max_v);
+					break;
 					
 				default:
 					v = _new_v;
