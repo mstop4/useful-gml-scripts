@@ -101,14 +101,28 @@ function split_string(_str, _delimiter) {
 	return _substrings;
 }
 
-/// @func          pad_string(str, char, position, width)
-/// @desc          Pads a string with char until it is a certain width
+/// @func          pad_string_width(str, char, position, width)
+/// @desc          Pads a string with char until it is a certain width (in pixels)
 /// @arg {string}  str
 /// @arg {string}  char
 /// @arg {integer} position
 /// @arg {real}    width
-function pad_string(_str, _char, _position, _width) {
+function pad_string_width(_str, _char, _position, _width) {
 	while (string_width(_str + _char) < _width) {
+		_str = string_insert(_char, _str, _position);
+	}
+
+	return _str;
+}
+
+/// @func          pad_string_width(str, char, position, width)
+/// @desc          Pads a string with char until it is a certain length (in characters)
+/// @arg {string}  str
+/// @arg {string}  char
+/// @arg {integer} position
+/// @arg {real}    width
+function pad_string_length(_str, _char, _position, _width) {
+	while (string_length(_str + _char) < _width) {
 		_str = string_insert(_char, _str, _position);
 	}
 
