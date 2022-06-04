@@ -18,7 +18,7 @@ room_names = [
 	"Control Manager",
 	"Data Structures",
 	"Drawing",
-	"Delta Time Alarm",
+	"Delta Time Alarm (deprecated)",
 	"Easings",
 	"Geometry",
 	"Input",
