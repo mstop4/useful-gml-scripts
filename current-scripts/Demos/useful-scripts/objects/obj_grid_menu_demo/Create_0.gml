@@ -1,4 +1,4 @@
-menu = instance_create_layer(32, 32, layer, obj_grid_menu);
+menu = instance_create_layer(32, 64, layer, obj_grid_menu);
 menu.grid_menu_init({
 	width: 2,
 	height: 3,

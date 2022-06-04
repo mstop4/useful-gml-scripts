@@ -9,6 +9,7 @@ rooms = [
 	room_math_demo,
 	room_column_menu_demo,
 	room_grid_menu_demo,
+	room_nested_menu_demo,
 	room_strings_demo,
 	room_web_demo
 ];
@@ -25,6 +26,7 @@ room_names = [
 	"Math",
 	"Column Menu",
 	"Grid Menu",
+	"Nested Menu",
 	"Strings",
 	"Web"
 ];
@@ -37,7 +39,7 @@ menu.column_menu_init({
 	cursor_change_sfx: -1,
 	cursor_confirm_sfx: -1,
 });
-menu.line_spacing = 16;
+menu.line_spacing = 8;
 
 for (var i=0; i<num_rooms; i++) {
 	menu.column_menu_add_selectable({

@@ -26,4 +26,6 @@ for (var i=0; i<num_items; i++) {
 	}
 }
 
-draw_sprite(cursor_spr, 0, x, y + (item_height + line_spacing) * pos + item_height / 2);
+if (enabled) {
+	draw_sprite(cursor_spr, 0, x, y + (item_height + line_spacing) * pos + item_height / 2);
+}

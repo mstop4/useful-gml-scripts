@@ -22,22 +22,24 @@ function grid_menu_init(_config) {
 	ds_grid_resize(items, _config.width, _config.height);
 }
 
-/// @func grid_menu_get_item_by_index(x, y)
+/// @func grid_menu_get_item_by_index(menu, x, y)
+/// @param {obj_grid_menu} menu
 /// @param {number} x
 /// @param {number} y
-function grid_menu_get_item_by_index(_x, _y) {
-	return self.items[# _x, _y];
+function grid_menu_get_item_by_index(_menu, _x, _y) {
+	return _menu.items[# _x, _y];
 }
 
-/// @func grid_menu_get_item_by_label(label)
+/// @func grid_menu_get_item_by_label(menu, label)
+/// @param {obj_grid_menu} menu
 /// @param {string} label
-function grid_menu_get_item_by_label(_label) {
+function grid_menu_get_item_by_label(_menu, _label) {
 	var _width = ds_grid_width(items);
 	var _height = ds_grid_height(items);
 	
 	for (var i=0; i<_width; i++) {
 		for (var j=0; j<_height; j++) {		
-			if (self.items[# i, j].label == _label) return self.items[# i, j];
+			if (_menu.items[# i, j].label == _label) return _menu.items[# i, j];
 		}
 	}
 	

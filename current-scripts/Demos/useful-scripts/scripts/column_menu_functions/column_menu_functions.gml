@@ -16,17 +16,19 @@ function column_menu_init(_config) {
 	cursor_confirm_sfx = _config.cursor_confirm_sfx;
 }
 
-/// @func column_menu_get_item_by_index(index)
+/// @func column_menu_get_item_by_index(menu, index)
+/// @param {obj_column_menu} menu
 /// @param {number} index
-function column_menu_get_item_by_index(_index) {
-	return self.items[| _index];
+function column_menu_get_item_by_index(_menu, _index) {
+	return _menu.items[| _index];
 }
 
-/// @func column_menu_get_item_by_label(label)
+/// @func column_menu_get_item_by_label(menu, label)
+/// @param {obj_column_menu} menu
 /// @param {string} label
-function column_menu_get_item_by_label(_label) {
+function column_menu_get_item_by_label(_menu, _label) {
 	for (var i=0; i<num_items; i++) {
-		if (self.items[| i].label == _label) return self.items[| i];
+		if (_menu.items[| i].label == _label) return _menu.items[| i];
 	}
 	
 	return noone;
@@ -43,7 +45,7 @@ function column_menu_add_selectable(_config) {
 	ds_list_add(items, _new);
 	num_items++;
 	_new.parent_menu = self;
-		return _new;
+	return _new;
 }
 
 /// @func  column_menu_add_spinner(config)

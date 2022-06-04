@@ -2,10 +2,12 @@
 /// @param {Font} menu_font
 /// @param {Sprite} cursor_spr
 function menu_base_init(_menu_font, _cursor_spr) {
+	var _old_font = draw_get_font();
 	draw_set_font(_menu_font);
 	item_height = string_height("Ij");
 	cursor_width = sprite_get_width(_cursor_spr);
 	cursor_height = sprite_get_height(_cursor_spr);
+	draw_set_font(_old_font);
 }
 
 /// @func  handle_selectable_confirm(item)
