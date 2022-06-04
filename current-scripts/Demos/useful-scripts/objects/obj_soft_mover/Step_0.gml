@@ -1,9 +1,5 @@
 actual_xpos.update();
 
-if (actual_xpos.v <= actual_xpos.min_v || actual_xpos.v >= actual_xpos.max_v) {
-	actual_xpos.d *= -1;
-}
-
 soft_clamp_xpos = soft_clamp(actual_xpos.v, actual_xpos.d, limit_min, limit_max);
 soft_ceiling_xpos = soft_ceiling(actual_xpos.v, actual_xpos.d, limit_max);
 soft_floor_xpos = soft_floor(actual_xpos.v, actual_xpos.d, limit_min);

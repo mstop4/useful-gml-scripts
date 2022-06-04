@@ -11,6 +11,6 @@ reset_graph = function() {
 surf = surface_create(surf_width, surf_height);
 reset_graph();
 
-t = new DynamicValue(0, 1, 0, surf_width, DVLimitMode.CEILING, false);
+t = new Tween(0, 1, 0, surf_width, TweenLimitMode.CEILING, false);
 ev = 0;
 easing_func_id = asset_get_index(easing_func);

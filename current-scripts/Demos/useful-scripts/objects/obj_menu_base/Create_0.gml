@@ -6,7 +6,7 @@ cursor_height = 1;
 
 control_state = new MenuControlState();
 active_key_config = noone;
-menu_alpha = new DynamicValue(1, 0, 0, 1, DVLimitMode.CLAMP, true);
+menu_alpha = new Tween(1, 0, 0, 1, TweenLimitMode.CLAMP, true);
 
 next_menu = noone;
 on_fade_out_end = noone;
