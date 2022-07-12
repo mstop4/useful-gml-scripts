@@ -22,6 +22,10 @@ my_player.set_control_map(CONTROL_TYPE.KEYBOARD, CONTROL_TYPE.KEYBOARD, CONTROLS
 my_player.set_control_map(CONTROL_TYPE.KEYBOARD, CONTROL_TYPE.KEYBOARD, CONTROLS.X, ord("X"));
 my_player.set_control_map(CONTROL_TYPE.KEYBOARD, CONTROL_TYPE.KEYBOARD, CONTROLS.Y, ord("Y"));
 
+my_player.set_control_map(CONTROL_TYPE.GAMEPAD, -1, CONTROLS.UP, gp_padu);
+my_player.set_control_map(CONTROL_TYPE.GAMEPAD, -1, CONTROLS.DOWN, gp_padd);
+my_player.set_control_map(CONTROL_TYPE.GAMEPAD, -1, CONTROLS.LEFT, gp_padl);
+my_player.set_control_map(CONTROL_TYPE.GAMEPAD, -1, CONTROLS.RIGHT, gp_padr);
 my_player.set_control_map(CONTROL_TYPE.GAMEPAD, -1, CONTROLS.A, gp_face1);
 my_player.set_control_map(CONTROL_TYPE.GAMEPAD, -1, CONTROLS.B, gp_face2);
 my_player.set_control_map(CONTROL_TYPE.GAMEPAD, -1, CONTROLS.X, gp_face3);
