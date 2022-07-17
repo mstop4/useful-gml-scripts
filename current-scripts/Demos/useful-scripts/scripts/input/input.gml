@@ -1,3 +1,22 @@
+#macro vk_clear 12
+#macro vk_caps_lock 20
+#macro vk_left_command 91
+#macro vk_right_command 92
+#macro vk_menu 93
+#macro vk_num_lock 144
+#macro vk_scroll_lock 145
+#macro vk_semicolon 186
+#macro vk_equals 187
+#macro vk_comma 188
+#macro vk_hyphen 189
+#macro vk_period 190
+#macro vk_slash 191
+#macro vk_backtick 192
+#macro vk_left_bracket 219
+#macro vk_backslash 220
+#macro vk_right_bracket 221
+#macro vk_single_quote 222
+
 /// @func            keycode_to_string(keycode)
 /// @desc            converts keycode to name of key as a string
 /// @param {integer} keycode 
@@ -7,6 +26,8 @@ function keycode_to_string(_keycode) {
       return string(chr(_keycode));
 	} else {
     switch (_keycode) {
+			case vk_tab:
+				return "TAB";
       case vk_backspace:
         return "BACKSPACE";
       case vk_enter:
@@ -114,43 +135,41 @@ function keycode_to_string(_keycode) {
       case vk_f12:
         return "F12";
                 
-			case 9:
-				return "TAB";
-			case 12:
+			case vk_clear:
 				return "CLEAR";
-			case 20:
+			case vk_caps_lock:
 				return "CAPS LOCK"
-			case 91:
+			case vk_left_command:
 				return "LEFT WINDOWS/COMMAND";
-			case 92:
+			case vk_right_command:
 				return "RIGHT WINDOWS/COMMAND";
-			case 93:
+			case vk_menu:
 				return "MENU";
-			case 144:
+			case vk_num_lock:
 				return "NUM LOCK";
-			case 145:
+			case vk_scroll_lock:
 				return "SCROLL LOCK";
-      case 186:
+      case vk_semicolon:
         return ";";
-      case 187:
+      case vk_equals:
         return "=";
-      case 188:
+      case vk_comma:
         return ",";
-      case 189:
+      case vk_hyphen:
         return "-";
-      case 190:
+      case vk_period:
         return ".";
-      case 191:
+      case vk_slash:
         return "/";
-      case 192:
+      case vk_backtick:
         return "`";
-      case 219:
+      case vk_left_bracket:
         return "[";
-      case 220:
+      case vk_backslash:
         return "\\";
-      case 221:
+      case vk_right_bracket:
         return "]";
-      case 222:
+      case vk_single_quote:
 				return "'";
                 
       case vk_nokey:
