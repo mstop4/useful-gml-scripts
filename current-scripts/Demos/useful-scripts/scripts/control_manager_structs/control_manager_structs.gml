@@ -104,7 +104,7 @@ function ControlManagerPlayer() constructor {
 	
 	function get_bindings(_control_type, _control) {
 		if (_control_type == CONTROL_TYPE.KEYBOARD) {
-			return  keyboard_map[_control];
+			return keyboard_map[_control];
 		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
 			return gamepad_map[_control];
 		} else {
@@ -268,10 +268,10 @@ function ControlManagerPlayer() constructor {
 		  }
 		}
 
-		axis_held.x = stick_dpad_held[CONTROLS.RIGHT] - stick_dpad_held[CONTROLS.LEFT]; 
-		axis_held.y = stick_dpad_held[CONTROLS.DOWN] - stick_dpad_held[CONTROLS.UP]; 
-		axis_pressed.x = stick_dpad_pressed[CONTROLS.RIGHT] - stick_dpad_pressed[CONTROLS.LEFT]; 
-		axis_pressed.y = stick_dpad_pressed[CONTROLS.DOWN] - stick_dpad_pressed[CONTROLS.UP];
+		axis_held.x = stick_dpad_held[DPAD_DIRECTION.RIGHT] - stick_dpad_held[DPAD_DIRECTION.LEFT]; 
+		axis_held.y = stick_dpad_held[DPAD_DIRECTION.DOWN] - stick_dpad_held[DPAD_DIRECTION.UP]; 
+		axis_pressed.x = stick_dpad_pressed[DPAD_DIRECTION.RIGHT] - stick_dpad_pressed[DPAD_DIRECTION.LEFT]; 
+		axis_pressed.y = stick_dpad_pressed[DPAD_DIRECTION.DOWN] - stick_dpad_pressed[DPAD_DIRECTION.UP];
 	}
 
 	function clear_all_input() {
