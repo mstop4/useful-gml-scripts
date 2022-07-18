@@ -124,7 +124,7 @@ function ControlManagerPlayer() constructor {
 		}
 	}
 	
-	function process_input(_control_manager) {
+	function process_input() {
 		prev_stick_input.x = stick_input.x;
 		prev_stick_input.y = stick_input.y;
 
