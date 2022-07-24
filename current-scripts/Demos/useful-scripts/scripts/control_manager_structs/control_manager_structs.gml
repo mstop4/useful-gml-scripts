@@ -238,23 +238,23 @@ function ControlManagerPlayer() constructor {
 					// Check Left-Stick-as-D-Pad values
 					if (_map_value == gp_padd) {
 						ctrl_held[i] = ctrl_held[i] || stick_dpad_held[DPAD_DIRECTION.DOWN];
-						ctrl_pressed[i] = ctrl_held[i] || stick_dpad_pressed[DPAD_DIRECTION.DOWN];
-						ctrl_released[i] = ctrl_held[i] || stick_dpad_released[DPAD_DIRECTION.DOWN];
+						ctrl_pressed[i] = ctrl_pressed[i] || stick_dpad_pressed[DPAD_DIRECTION.DOWN];
+						ctrl_released[i] = ctrl_released[i] || stick_dpad_released[DPAD_DIRECTION.DOWN];
 					}
 					if (_map_value == gp_padl) {
 						ctrl_held[i] = ctrl_held[i] || stick_dpad_held[DPAD_DIRECTION.LEFT];
-						ctrl_pressed[i] = ctrl_held[i] || stick_dpad_pressed[DPAD_DIRECTION.LEFT];
-						ctrl_released[i] = ctrl_held[i] || stick_dpad_released[DPAD_DIRECTION.LEFT];
+						ctrl_pressed[i] = ctrl_pressed[i] || stick_dpad_pressed[DPAD_DIRECTION.LEFT];
+						ctrl_released[i] = ctrl_released[i] || stick_dpad_released[DPAD_DIRECTION.LEFT];
 					}
 					if (_map_value == gp_padr) {
 						ctrl_held[i] = ctrl_held[i] || stick_dpad_held[DPAD_DIRECTION.RIGHT];
-						ctrl_pressed[i] = ctrl_held[i] || stick_dpad_pressed[DPAD_DIRECTION.RIGHT];
-						ctrl_released[i] = ctrl_held[i] || stick_dpad_released[DPAD_DIRECTION.RIGHT];
+						ctrl_pressed[i] = ctrl_pressed[i] || stick_dpad_pressed[DPAD_DIRECTION.RIGHT];
+						ctrl_released[i] = ctrl_released[i] || stick_dpad_released[DPAD_DIRECTION.RIGHT];
 					}
 					if (_map_value == gp_padu) {
 						ctrl_held[i] = ctrl_held[i] || stick_dpad_held[DPAD_DIRECTION.UP];
-						ctrl_pressed[i] = ctrl_held[i] || stick_dpad_pressed[DPAD_DIRECTION.UP];
-						ctrl_released[i] = ctrl_held[i] || stick_dpad_released[DPAD_DIRECTION.UP];
+						ctrl_pressed[i] = ctrl_pressed[i] || stick_dpad_pressed[DPAD_DIRECTION.UP];
+						ctrl_released[i] = ctrl_released[i] || stick_dpad_released[DPAD_DIRECTION.UP];
 					}
 				}
 			}
