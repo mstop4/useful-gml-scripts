@@ -7,6 +7,15 @@ control_labels[CONTROLS.JUMP] = "Jump";
 control_labels[CONTROLS.INTERACT] = "Interact";
 control_labels[CONTROLS.ITEM] = "Item";
 
+control_prompts[CONTROLS.UP] = [0, 8, 16, 24];
+control_prompts[CONTROLS.DOWN] = [1, 9, 17, 25];
+control_prompts[CONTROLS.LEFT] = [2, 10, 18, 26];
+control_prompts[CONTROLS.RIGHT] = [3, 11, 19, 27];
+control_prompts[CONTROLS.SHOOT] = [4, 12, 22];
+control_prompts[CONTROLS.JUMP] = [5, 13, 20];
+control_prompts[CONTROLS.INTERACT] = [6, 14, 21];
+control_prompts[CONTROLS.ITEM] = [7, 15, 23];
+
 num_controls = CONTROLS.MAX;
 
 control_manager = instance_create_layer(0, 0, layer, obj_control_manager);

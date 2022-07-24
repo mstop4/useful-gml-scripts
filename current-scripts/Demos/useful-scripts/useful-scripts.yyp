@@ -28,6 +28,7 @@
     {"id":{"name":"obj_nested_menu_demo","path":"objects/obj_nested_menu_demo/obj_nested_menu_demo.yy",},"order":0,},
     {"id":{"name":"obj_strings_demo","path":"objects/obj_strings_demo/obj_strings_demo.yy",},"order":1,},
     {"id":{"name":"web","path":"scripts/web/web.yy",},"order":8,},
+    {"id":{"name":"spr_prompts","path":"sprites/spr_prompts/spr_prompts.yy",},"order":0,},
     {"id":{"name":"obj_math_demo","path":"objects/obj_math_demo/obj_math_demo.yy",},"order":0,},
     {"id":{"name":"nested_menu_structs","path":"scripts/nested_menu_structs/nested_menu_structs.yy",},"order":2,},
     {"id":{"name":"delta_time_alarm_demo","path":"scripts/delta_time_alarm_demo/delta_time_alarm_demo.yy",},"order":1,},
@@ -146,6 +147,7 @@
     {"folderPath":"folders/Useful Script Library/Standalone/Math/Tweens.yy","order":4,"resourceVersion":"1.0","name":"Tweens","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Useful Script Library/Components/Menu System/Nested Menu.yy","order":3,"resourceVersion":"1.0","name":"Nested Menu","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Demos/Nested Menu.yy","order":11,"resourceVersion":"1.0","name":"Nested Menu","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Demos/Control Manager/Sprites.yy","order":2,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},
