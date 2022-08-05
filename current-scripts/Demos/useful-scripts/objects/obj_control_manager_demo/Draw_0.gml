@@ -2,10 +2,12 @@ draw_set_font(fnt_title);
 draw_set_colour(c_white);
 draw_text(16, 16, "Control Manager Demo");
 
-draw_text(640, 96, "Gamepad Supported: " + (gamepad_is_supported() ? "Yes" : "No"));
-draw_text(640, 128, "Gamepad Connected: " + (gamepad_is_connected(0) ? "Yes" : "No"));
-draw_text(640, 160, "GUID: " + gamepad_get_guid(0));
-draw_text(640, 192, "Description: " + gamepad_get_description(0));
+draw_text(640, 96, "Gamepads Supported: " + (gamepad_is_supported() ? "Yes" : "No"));
+draw_text(640, 128, "Gamepads Detected: " + string(num_controllers_connected));
+draw_text(640, 192, "Current Slot: " + string(current_gamepad_index + 1) + "/" + string(device_count));
+draw_text(640, 224, "Gamepad Connected: " + (gamepad_connected[current_gamepad_index] ? "Yes" : "No"));
+draw_text(640, 256, "GUID: " + gamepad_get_guid(current_gamepad_index));
+draw_text(640, 286, "Description: " + gamepad_get_description(current_gamepad_index));
 
 for (var i=0; i<num_controls; i++) {
 	var _pressed = my_player.get_control_state(i, CONTROL_STATE.HELD);

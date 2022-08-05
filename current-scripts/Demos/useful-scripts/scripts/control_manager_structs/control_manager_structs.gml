@@ -112,6 +112,11 @@ function ControlManagerPlayer() constructor {
 		}
 	}
 	
+	function set_gamepad_slot(_index) {
+		gamepad_slot = _index;
+		clear_all_input();
+	}
+	
 	function get_control_state(_control, _control_state) {
 		if (_control_state == CONTROL_STATE.HELD) {
 			return ctrl_held[_control];

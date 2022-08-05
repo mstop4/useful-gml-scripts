@@ -48,3 +48,17 @@ my_player.set_binding(CONTROL_TYPE.GAMEPAD, CONTROL_SOURCE.GAMEPAD, CONTROLS.SHO
 my_player.set_binding(CONTROL_TYPE.GAMEPAD, CONTROL_SOURCE.GAMEPAD, CONTROLS.JUMP, 0, gp_face1);
 my_player.set_binding(CONTROL_TYPE.GAMEPAD, CONTROL_SOURCE.GAMEPAD, CONTROLS.INTERACT, 0, gp_face2);
 my_player.set_binding(CONTROL_TYPE.GAMEPAD, CONTROL_SOURCE.GAMEPAD, CONTROLS.ITEM, 0, gp_face4);
+
+num_controllers_connected = 0;
+current_gamepad_index = 0;
+device_count = gamepad_get_device_count();
+
+for (var i=0; i<device_count; i++) {
+	var _is_connected = gamepad_is_connected(i);
+	if (_is_connected) {
+		num_controllers_connected++;
+	}
+	gamepad_connected[i] = _is_connected;
+}
+
+my_player.set_gamepad_slot(current_gamepad_index);
