@@ -2,6 +2,11 @@ draw_set_font(fnt_title);
 draw_set_colour(c_white);
 draw_text(16, 16, "Control Manager Demo");
 
+draw_text(640, 96, "Gamepad Supported: " + (gamepad_is_supported() ? "Yes" : "No"));
+draw_text(640, 128, "Gamepad Connected: " + (gamepad_is_connected(0) ? "Yes" : "No"));
+draw_text(640, 160, "GUID: " + gamepad_get_guid(0));
+draw_text(640, 192, "Description: " + gamepad_get_description(0));
+
 for (var i=0; i<num_controls; i++) {
 	var _pressed = my_player.get_control_state(i, CONTROL_STATE.HELD);
 	var _text_colour = _pressed ? c_lime : c_white;
