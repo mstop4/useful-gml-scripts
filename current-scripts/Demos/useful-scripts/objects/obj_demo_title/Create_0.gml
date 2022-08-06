@@ -31,6 +31,12 @@ room_names = [
 	"Web"
 ];
 
+os_type_str = get_os_type_string(os_type);
+os_version_str = get_os_version_string(os_version);
+os_browser_str = get_os_browser_string(os_browser);
+os_language = os_get_language();
+os_region = os_get_region();
+
 menu = instance_create_layer(32, 64, layer, obj_column_menu);
 menu.column_menu_init({
 	font: fnt_demo,
