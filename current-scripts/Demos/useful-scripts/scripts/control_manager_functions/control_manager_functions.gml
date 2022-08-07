@@ -1,3 +1,7 @@
+function init_steam_deck_info() {
+	steam_deck_info = get_steam_deck_info();
+}
+
 function add_player() {
 	var _new_player = new ControlManagerPlayer();
 	ds_list_add(players, _new_player);
