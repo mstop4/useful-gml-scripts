@@ -1,3 +1,6 @@
+/// @func init_steam_deck_info
+/// @desc Calls get_steam_deck_info from system scripts and stores results locally.
+///       Note: Doesn't work if called at the very start of the game. Wait a few steps before calling it.
 function init_steam_deck_info() {
 	steam_deck_info = get_steam_deck_info();
 }

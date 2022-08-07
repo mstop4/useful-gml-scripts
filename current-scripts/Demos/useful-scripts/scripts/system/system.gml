@@ -82,6 +82,7 @@ function get_os_browser_string(_os_browser) {
 
 /// @func get_steam_deck_info()
 /// @desc Checks if game is running on Steam Deck and which gamepad slot the controls are connected to
+/// Note: Doesn't work if called at the very start of the game. Wait a few steps before calling it.
 /// @returns {boolean}
 function get_steam_deck_info() {
 	var _result = {
