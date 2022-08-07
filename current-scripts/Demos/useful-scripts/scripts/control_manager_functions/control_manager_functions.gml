@@ -12,3 +12,11 @@ function get_player(_index) {
 	
 	return noone;
 }
+
+function is_on_steam_deck() {
+	return self.steam_deck_info.is_on_steam_deck;
+}
+
+function get_steam_deck_gamepad_index() {
+	return self.steam_deck_info.gamepad_index;
+}

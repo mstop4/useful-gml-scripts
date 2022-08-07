@@ -12,6 +12,7 @@
     {"id":{"name":"room_laser_demo","path":"rooms/room_laser_demo/room_laser_demo.yy",},"order":1,},
     {"id":{"name":"obj_easing_demo","path":"objects/obj_easing_demo/obj_easing_demo.yy",},"order":0,},
     {"id":{"name":"input","path":"scripts/input/input.yy",},"order":4,},
+    {"id":{"name":"room_system_info","path":"rooms/room_system_info/room_system_info.yy",},"order":1,},
     {"id":{"name":"easings_quartic","path":"scripts/easings_quartic/easings_quartic.yy",},"order":3,},
     {"id":{"name":"column_menu_functions","path":"scripts/column_menu_functions/column_menu_functions.yy",},"order":1,},
     {"id":{"name":"room_input_demo","path":"rooms/room_input_demo/room_input_demo.yy",},"order":1,},
@@ -68,6 +69,7 @@
     {"id":{"name":"spr_arrow","path":"sprites/spr_arrow/spr_arrow.yy",},"order":1,},
     {"id":{"name":"room_column_menu_demo","path":"rooms/room_column_menu_demo/room_column_menu_demo.yy",},"order":3,},
     {"id":{"name":"delta_time_alarm_manager","path":"scripts/delta_time_alarm_manager/delta_time_alarm_manager.yy",},"order":0,},
+    {"id":{"name":"obj_system_info","path":"objects/obj_system_info/obj_system_info.yy",},"order":0,},
     {"id":{"name":"column_menu_demo_scripts","path":"scripts/column_menu_demo_scripts/column_menu_demo_scripts.yy",},"order":1,},
     {"id":{"name":"room_title","path":"rooms/room_title/room_title.yy",},"order":0,},
     {"id":{"name":"geometry_structs","path":"scripts/geometry_structs/geometry_structs.yy",},"order":0,},
@@ -114,6 +116,7 @@
     {"roomId":{"name":"room_grid_menu_demo","path":"rooms/room_grid_menu_demo/room_grid_menu_demo.yy",},},
     {"roomId":{"name":"room_data_structures_demo","path":"rooms/room_data_structures_demo/room_data_structures_demo.yy",},},
     {"roomId":{"name":"room_nested_menu_demo","path":"rooms/room_nested_menu_demo/room_nested_menu_demo.yy",},},
+    {"roomId":{"name":"room_system_info","path":"rooms/room_system_info/room_system_info.yy",},},
   ],
   "Folders": [
     {"folderPath":"folders/Fonts.yy","order":2,"resourceVersion":"1.0","name":"Fonts","tags":[],"resourceType":"GMFolder",},
@@ -149,6 +152,7 @@
     {"folderPath":"folders/Useful Script Library/Components/Menu System/Nested Menu.yy","order":3,"resourceVersion":"1.0","name":"Nested Menu","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Demos/Nested Menu.yy","order":11,"resourceVersion":"1.0","name":"Nested Menu","tags":[],"resourceType":"GMFolder",},
     {"folderPath":"folders/Demos/Control Manager/Sprites.yy","order":2,"resourceVersion":"1.0","name":"Sprites","tags":[],"resourceType":"GMFolder",},
+    {"folderPath":"folders/Demos/System Info.yy","order":14,"resourceVersion":"1.0","name":"System Info","tags":[],"resourceType":"GMFolder",},
   ],
   "AudioGroups": [
     {"targets":-1,"resourceVersion":"1.3","name":"audiogroup_default","resourceType":"GMAudioGroup",},

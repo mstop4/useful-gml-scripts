@@ -50,7 +50,9 @@ my_player.set_binding(CONTROL_TYPE.GAMEPAD, CONTROL_SOURCE.GAMEPAD, CONTROLS.INT
 my_player.set_binding(CONTROL_TYPE.GAMEPAD, CONTROL_SOURCE.GAMEPAD, CONTROLS.ITEM, 0, gp_face4);
 
 num_controllers_connected = 0;
-current_gamepad_index = 0;
+current_gamepad_index = control_manager.is_on_steam_deck()
+	? control_manager.get_steam_deck_gamepad_index()
+	: 0;
 device_count = gamepad_get_device_count();
 
 for (var i=0; i<device_count; i++) {

@@ -1,4 +1,5 @@
+control_manager_functions();
+
 players = ds_list_create();
 num_players = 0;
-
-control_manager_functions();
+steam_deck_info = get_steam_deck_info();
