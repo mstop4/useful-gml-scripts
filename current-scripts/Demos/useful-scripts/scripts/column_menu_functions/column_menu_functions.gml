@@ -87,7 +87,6 @@ function column_menu_add_spinner(_config) {
 	ds_list_add(items, _new);
 	num_items++;
 	_new.parent_menu = self;
-	column_menu_update_view_height();
 	return _new;
 }
 
@@ -103,6 +102,5 @@ function column_menu_add_key_config(_config) {
 	ds_list_add(items, _new);
 	num_items++;
 	_new.parent_menu = self;
-	column_menu_update_view_height();
 	return _new;
 }

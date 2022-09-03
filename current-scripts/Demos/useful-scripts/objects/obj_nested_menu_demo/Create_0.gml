@@ -1,6 +1,7 @@
 submenu[0] = instance_create_layer(0, 0, layer, obj_column_menu);
 submenu[0].column_menu_init({
 	font: fnt_demo,
+	view_height: 0,
 	cursor_spr: spr_arrow, 
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: snd_menu_move,
@@ -36,6 +37,7 @@ submenu[0].column_menu_add_spinner({
 submenu[1] = instance_create_layer(0, 0, layer, obj_column_menu);
 submenu[1].column_menu_init({
 	font: fnt_demo,
+	view_height: 0,
 	cursor_spr: spr_arrow, 
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: snd_menu_move,
@@ -78,6 +80,7 @@ submenu[1].column_menu_add_key_config({
 main_menu = instance_create_layer(32, 64, layer, obj_nested_menu);
 main_menu.nested_menu_init({
 	font: fnt_demo,
+	view_height: 0,
 	column_width: 192,
 	cursor_spr: spr_arrow, 
 	cursor_move_sfx: snd_menu_move,

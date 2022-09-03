@@ -1,6 +1,7 @@
 menu = instance_create_layer(32, 64, layer, obj_column_menu);
 menu.column_menu_init({
 	font: fnt_demo,
+	view_height: 0,
 	cursor_spr: spr_arrow, 
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: snd_menu_move,
