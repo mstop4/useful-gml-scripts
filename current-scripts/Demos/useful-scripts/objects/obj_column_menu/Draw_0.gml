@@ -1,12 +1,12 @@
 event_inherited();
 var _x = x + cursor_padding;
 
-for (var i=0; i<num_items; i++) {
+for (var i=view_area.x; i<=view_area.y; i++) {
 	var _item = items[| i];
 	var _type = _item.types[| ds_list_size(_item.types)-1];
-	
-	var _y = y + (item_height + line_spacing) * i;
-	
+
+	var _y = y + (item_height + line_spacing) * (i - view_area.x);
+
 	switch (_type) {
 		case "item":
 		case "selectable":
@@ -27,5 +27,5 @@ for (var i=0; i<num_items; i++) {
 }
 
 if (enabled) {
-	draw_sprite(cursor_spr, 0, x, y + (item_height + line_spacing) * pos + item_height / 2);
+	draw_sprite(cursor_spr, 0, x, y + (item_height + line_spacing) * (pos - view_area.x) + item_height / 2);
 }

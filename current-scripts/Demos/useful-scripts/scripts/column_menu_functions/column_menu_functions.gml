@@ -1,5 +1,6 @@
 /// @func  column_menu_init(config)
 /// @param config
+//         - {real} view_height
 //         - {font}   font
 //         - {sprite} cursor_spr
 //         - {sound}  cursor_move_sfx
@@ -8,12 +9,33 @@
 function column_menu_init(_config) {
 	self.menu_base_init(_config.font, _config.cursor_spr);
 	
+  view_height = _config.view_height;
 	menu_font = _config.font;
 	cursor_spr = _config.cursor_spr;
 	cursor_padding = sprite_get_width(cursor_spr) + 16;
 	cursor_move_sfx = _config.cursor_move_sfx;
 	cursor_change_sfx = _config.cursor_change_sfx;
 	cursor_confirm_sfx = _config.cursor_confirm_sfx;
+}
+
+/// @func column_menu_update_view()
+function column_menu_update_view() {
+	if (view_height > 0) {
+		if (pos < view_area.x) {
+			view_area.x = pos;
+			view_area.y = pos + view_height - 1;
+		} else if (pos > view_area.y) {
+			view_area.y = pos;
+			view_area.x = pos - (view_height - 1);
+		}
+	}
+}
+
+/// @func column_menu_update_view_area()
+function column_menu_update_view_area() {
+	view_area.y = view_height < 1
+		? num_items - 1
+		: min(num_items, pos + view_height - 1);
 }
 
 /// @func column_menu_get_item_by_index(menu, index)
@@ -45,6 +67,7 @@ function column_menu_add_selectable(_config) {
 	ds_list_add(items, _new);
 	num_items++;
 	_new.parent_menu = self;
+	column_menu_update_view_area();
 	return _new;
 }
 
@@ -64,6 +87,7 @@ function column_menu_add_spinner(_config) {
 	ds_list_add(items, _new);
 	num_items++;
 	_new.parent_menu = self;
+	column_menu_update_view_height();
 	return _new;
 }
 
@@ -79,5 +103,6 @@ function column_menu_add_key_config(_config) {
 	ds_list_add(items, _new);
 	num_items++;
 	_new.parent_menu = self;
+	column_menu_update_view_height();
 	return _new;
 }

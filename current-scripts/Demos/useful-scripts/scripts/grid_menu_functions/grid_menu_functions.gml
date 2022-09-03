@@ -2,6 +2,8 @@
 /// @param config 
 //         - {real}   width
 //         - {real}   height
+//		     - {real}   view_width
+//         - {real}   view_height
 //				 - {number} column_width
 //         - {font}   font
 //         - {sprite} cursor_spr
@@ -12,6 +14,8 @@ function grid_menu_init(_config) {
 	self.menu_base_init(_config.font, _config.cursor_spr);
 	
 	column_width = _config.column_width;
+	view_width = _config.view_width;
+	view_height = _config.view_height;
 	menu_font = _config.font;
 	cursor_spr = _config.cursor_spr;
 	cursor_padding = sprite_get_width(cursor_spr) + 16;
@@ -20,6 +24,40 @@ function grid_menu_init(_config) {
 	cursor_confirm_sfx = _config.cursor_confirm_sfx;
 	
 	ds_grid_resize(items, _config.width, _config.height);
+	
+	view_area.left = 0;
+	view_area.right = view_width < 1
+		? _config.width - 1
+		: _config.view_width - 1;
+
+
+	view_area.top = 0;
+	view_area.bottom = view_height < 1
+		? _config.height - 1
+		: _config.view_height - 1;
+}
+
+/// @func grid_menu_update_view()
+function grid_menu_update_view() {
+	if (view_height > 0) {
+		if (pos.y < view_area.top) {
+			view_area.top = pos.y;
+			view_area.bottom = pos.y + view_height - 1;
+		} else if (pos.y > view_area.bottom) {
+			view_area.bottom = pos.y;
+			view_area.top = pos.y - (view_height - 1);
+		}
+	}
+
+	if (view_width > 0) {
+		if (pos.x < view_area.left) {
+			view_area.left = pos.x;
+			view_area.right = pos.x + view_height - 1;
+		} else if (pos.x > view_area.right) {
+			view_area.right = pos.x;
+			view_area.left = pos.x - (view_height - 1);
+		}
+	}
 }
 
 /// @func grid_menu_get_item_by_index(menu, x, y)

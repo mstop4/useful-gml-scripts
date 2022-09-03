@@ -18,6 +18,8 @@ if (control_state.pressed_state[MENU_CONTROLS.UP]) {
 		_item = items[# pos.x, pos.y];
 	} until (is_struct(_item) || _cur_pos == pos.y)
 
+	self.grid_menu_update_view();
+
 	audio_play_sound(cursor_move_sfx, 1, false);
 }
 
@@ -29,6 +31,8 @@ if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
 		pos.y = wrap(pos.y+1, 0, ds_grid_height(items));
 		_item = items[# pos.x, pos.y];
 	} until (is_struct(_item) || _cur_pos == pos.y)
+	
+	self.grid_menu_update_view();
 
 	audio_play_sound(cursor_move_sfx, 1, false);
 }
@@ -48,6 +52,8 @@ if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {
 		pos.x = wrap(pos.x-1, 0, ds_grid_width(items));
 		_item = items[# pos.x, pos.y];
 	} until (is_struct(_item) || _cur_pos == pos.x)
+	
+	self.grid_menu_update_view();
 
 	audio_play_sound(cursor_move_sfx, 1, false);
 }
