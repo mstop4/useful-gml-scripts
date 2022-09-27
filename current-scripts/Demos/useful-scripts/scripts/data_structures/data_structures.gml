@@ -40,6 +40,25 @@ function array_is_subset(_a, _b) {
 	return true;
 }
 
+function shuffle_array(_array) {
+  var _current_index = array_length(_array);
+	var _random_index;
+
+  // While there remain elements to shuffle
+  while (_current_index != 0) {
+    // Pick a remaining element
+    _random_index = irandom(_current_index - 1);
+    _current_index--;
+
+    // And swap it with the current element
+		var _temp = _array[_current_index];
+		_array[_current_index] = _array[_random_index];
+		_array[_random_index] = _temp;
+  }
+
+  return _array;
+}
+
 /// @func          file_jsonc_parse(filename)
 /// @desc					 Parses a JSON with Comments from file, stripping out the comments
 /// @param {Array} filename

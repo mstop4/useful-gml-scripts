@@ -122,7 +122,7 @@ function pad_string_width(_str, _char, _position, _width) {
 /// @arg {integer} position
 /// @arg {real}    width
 function pad_string_length(_str, _char, _position, _width) {
-	while (string_length(_str + _char) < _width) {
+	while (string_length(_str + _char) <= _width) {
 		_str = string_insert(_char, _str, _position);
 	}
 
