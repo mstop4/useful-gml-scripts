@@ -10,6 +10,7 @@ rooms = [
 	room_column_menu_demo,
 	room_grid_menu_demo,
 	room_nested_menu_demo,
+	room_key_config_menu_demo,
 	room_strings_demo,
 	room_web_demo,
 	room_system_info
@@ -28,6 +29,7 @@ room_names = [
 	"Column Menu",
 	"Grid Menu",
 	"Nested Menu",
+	"Key Config Menu",
 	"Strings",
 	"Web",
 	"System Info"

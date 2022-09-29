@@ -1,8 +1,11 @@
 {
   "resourceType": "GMObject",
   "resourceVersion": "1.0",
-  "name": "obj_nested_menu_demo",
-  "spriteId": null,
+  "name": "obj_key_config_actor",
+  "spriteId": {
+    "name": "spr_key_config_actor",
+    "path": "sprites/spr_key_config_actor/spr_key_config_actor.yy",
+  },
   "solid": false,
   "visible": true,
   "managed": true,
@@ -23,12 +26,12 @@
   "physicsShapePoints": [],
   "eventList": [
     {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":0,"collisionObjectId":null,},
-    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":8,"collisionObjectId":null,},
+    {"resourceType":"GMEvent","resourceVersion":"1.0","name":"","isDnD":false,"eventNum":0,"eventType":3,"collisionObjectId":null,},
   ],
   "properties": [],
   "overriddenProperties": [],
   "parent": {
-    "name": "Nested Menu",
-    "path": "folders/Demos/Nested Menu.yy",
+    "name": "Key Config Menu",
+    "path": "folders/Demos/Key Config Menu.yy",
   },
 }

@@ -16,13 +16,15 @@ for (var i=view_area.left; i<=view_area.right; i++) {
 				draw_text(_x, _y, _item.label);
 				break;
 			
-			case "spinner":
-				draw_text(_x, _y, _item.get_full_label());
-				break;
-				
-			case "keyconfig":
-				draw_text(_x, _y, _item.get_full_label());
-				break;
+		case "spinner":
+			draw_text(_x, _y, _item.label);
+			draw_text(_x + label_width, _y, _item.get_value());
+			break;
+			
+		case "keyconfig":
+			draw_text(_x, _y, _item.label);
+			draw_text(_x + label_width, _y, _item.get_value());
+			break;
 		
 			default:
 				draw_text(_x, _y, _item.label);

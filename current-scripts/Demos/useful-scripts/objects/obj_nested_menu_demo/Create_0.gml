@@ -33,6 +33,7 @@ submenu[0].column_menu_add_spinner({
 	silent_on_confirm: false,
 	silent_on_change: false
 });
+submenu[0].label_width = 96;
 
 submenu[1] = instance_create_layer(0, 0, layer, obj_column_menu);
 submenu[1].column_menu_init({

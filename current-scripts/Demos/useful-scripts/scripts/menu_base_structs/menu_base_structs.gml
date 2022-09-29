@@ -99,6 +99,10 @@ function MenuSpinner(_config) : MenuSpinnerBase(_config) constructor {
 	function get_full_label() {
 		return concat(label, ": ", values[cur_index]);
 	}
+	
+	function get_value() {
+		return values[cur_index];
+	}
 }
 
 /// @func  MenuKeyConfig(config)
@@ -120,5 +124,11 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 		return discovery_mode
 			?	concat(label, ": _")
 			: concat(label, ": ", keycode_to_string(keycode));
+	}
+	
+	function get_value() {
+		return discovery_mode
+			?	"_"
+			: keycode_to_string(keycode);
 	}
 }
