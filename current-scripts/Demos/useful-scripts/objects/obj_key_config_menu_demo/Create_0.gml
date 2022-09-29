@@ -15,10 +15,10 @@ control_manager = instance_create_layer(0, 0, layer, obj_control_manager);
 var _player_index = control_manager.add_player();
 my_player = control_manager.get_player(_player_index);
 
-my_player.set_binding(CONTROL_TYPE.KEYBOARD, CONTROL_SOURCE.KEYBOARD, CONTROLS.UP, 0, control_binding[CONTROLS.UP] );
-my_player.set_binding(CONTROL_TYPE.KEYBOARD, CONTROL_SOURCE.KEYBOARD, CONTROLS.DOWN, 0, control_binding[CONTROLS.DOWN] );
-my_player.set_binding(CONTROL_TYPE.KEYBOARD, CONTROL_SOURCE.KEYBOARD, CONTROLS.LEFT, 0, control_binding[CONTROLS.LEFT] );
-my_player.set_binding(CONTROL_TYPE.KEYBOARD, CONTROL_SOURCE.KEYBOARD, CONTROLS.RIGHT, 0, control_binding[CONTROLS.RIGHT] );
+my_player.set_binding(CONTROL_TYPE.KEYBOARD_AND_MOUSE, CONTROL_SOURCE.KEYBOARD, CONTROLS.UP, 0, control_binding[CONTROLS.UP] );
+my_player.set_binding(CONTROL_TYPE.KEYBOARD_AND_MOUSE, CONTROL_SOURCE.KEYBOARD, CONTROLS.DOWN, 0, control_binding[CONTROLS.DOWN] );
+my_player.set_binding(CONTROL_TYPE.KEYBOARD_AND_MOUSE, CONTROL_SOURCE.KEYBOARD, CONTROLS.LEFT, 0, control_binding[CONTROLS.LEFT] );
+my_player.set_binding(CONTROL_TYPE.KEYBOARD_AND_MOUSE, CONTROL_SOURCE.KEYBOARD, CONTROLS.RIGHT, 0, control_binding[CONTROLS.RIGHT] );
 
 current_gamepad_index = control_manager.is_on_steam_deck()
 	? control_manager.get_steam_deck_gamepad_index()
