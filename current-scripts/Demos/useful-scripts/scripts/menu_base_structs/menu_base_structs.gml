@@ -125,8 +125,26 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 	silent_on_confirm = _config.silent_on_confirm;
 	kbm_bindings = _config.initial_kbm_bindings;
 	gamepad_bindings = _config.initial_gamepad_bindings;
-	discovery_mode = CONTROL_TYPE.NONE;
-	discovery_index = -1;
+	current_binding_index = 0;
+	discovery_mode = false;
+	discovery_binding_info = false;
+	
+	function get_binding_info() {
+		if (current_binding_index < 0) return false;
+		if (current_binding_index >= GAMEPAD_MAX_BINDINGS_PER_CONTROL + KEYBOARD_MAX_BINDINGS_PER_CONTROL) return false;
+		
+		if (current_binding_index < KEYBOARD_MAX_BINDINGS_PER_CONTROL) {
+			return {
+				control_type: CONTROL_TYPE.KEYBOARD_AND_MOUSE,
+				control_index: current_binding_index,
+			}
+		} else {
+			return {
+				control_type: CONTROL_TYPE.GAMEPAD,
+				control_index: current_binding_index - KEYBOARD_MAX_BINDINGS_PER_CONTROL,
+			}
+		}
+	}
 	
 	function get_full_label(_control_type, _index) {
 		return concat(label, ":", get_value(_control_type, _index));
@@ -134,17 +152,21 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 	
 	function get_value(_control_type, _index) {
 		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
-			if (_index > array_length(kbm_bindings)) {
-				return "???";
-			} else if _index == discovery_index {
+			if (_index >= array_length(kbm_bindings)) {
+				return "-";
+			} else if (discovery_binding_info
+				&& discovery_binding_info.control_type == _control_type
+				&& discovery_binding_info.control_index == _index) {
 				return "_";
 			} else {
 				return keycode_to_string(kbm_bindings[_index]);
 			}
 		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
-			if (_index > array_length(gamepad_bindings)) {
-				return "???";
-			} else if _index == discovery_index {
+			if (_index >= array_length(gamepad_bindings)) {
+				return "-";
+			} else if (discovery_binding_info
+				&& discovery_binding_info.control_type == _control_type
+				&& discovery_binding_info.control_index == _index) {
 				return "_";
 			} else {
 				return string(gamepad_bindings[_index]);

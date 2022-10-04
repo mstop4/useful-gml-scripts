@@ -45,3 +45,9 @@ my_player.set_binding(CONTROL_TYPE.GAMEPAD, CONTROL_SOURCE.GAMEPAD, CONTROLS.MEN
 my_player.set_binding(CONTROL_TYPE.GAMEPAD, CONTROL_SOURCE.GAMEPAD, CONTROLS.MENU_RIGHT, 0, gp_padr);
 my_player.set_binding(CONTROL_TYPE.GAMEPAD, CONTROL_SOURCE.GAMEPAD, CONTROLS.MENU_CONFIRM, 0, gp_face1);
 my_player.set_binding(CONTROL_TYPE.GAMEPAD, CONTROL_SOURCE.GAMEPAD, CONTROLS.MENU_CANCEL, 0, gp_face2);
+
+current_gamepad_index = inst_control_manager.is_on_steam_deck()
+	? inst_control_manager.get_steam_deck_gamepad_index()
+	: 0;
+	
+my_player.set_gamepad_slot(current_gamepad_index);

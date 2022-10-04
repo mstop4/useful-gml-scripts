@@ -1,5 +1,6 @@
 menu = instance_create_layer(32, 64, layer, obj_grid_menu);
 menu.grid_menu_init({
+	player_controller: inst_control_manager.get_player(0),
 	width: 2,
 	height: 3,
 	view_width: 0,
@@ -43,12 +44,9 @@ menu.grid_menu_add_selectable(1, 0, {
 	silent_on_confirm: false
 });
 
-menu.grid_menu_add_key_config(1, 1, { 
+menu.grid_menu_add_selectable(1, 1, { 
 	label: "Qux",
-	inital_keycode: vk_space,
-	on_change_func: -1,
-	on_change_args: -1,
-	on_confirm_func: -1,
-	on_confirm_args: [-1],
+	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_args: ["Qux"],
 	silent_on_confirm: false
 });

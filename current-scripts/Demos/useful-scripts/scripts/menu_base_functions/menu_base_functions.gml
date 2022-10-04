@@ -97,7 +97,19 @@ function menu_base_draw_item(_item, _x, _y) {
 			
 	case "keyconfig":
 		draw_text(_x, _y, _item.label);
-		draw_text(_x + label_width, _y, _item.get_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, 0));
+		var _cur_x = _x + label_width;
+		
+		for (var i=0; i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; i++) {
+			var _item_value = _item.get_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
+			draw_text(_cur_x, _y, _item_value);
+			_cur_x += binding_spacing;
+		}
+		
+		for (var i=0; i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; i++) {
+			var _item_value = _item.get_value(CONTROL_TYPE.GAMEPAD, i);
+			draw_text(_cur_x, _y, _item_value);
+			_cur_x += binding_spacing;
+		}
 		break;
 		
 		default:

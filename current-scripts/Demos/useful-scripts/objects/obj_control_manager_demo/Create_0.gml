@@ -18,11 +18,11 @@ control_prompts[CONTROLS.ITEM] = [7, 15, 23];
 
 num_controls = 8;
 
-my_player = inst_control_manager.get_player(_player_index);
+my_player = inst_control_manager.get_player(0);
 
 num_controllers_connected = 0;
-current_gamepad_index = control_manager.is_on_steam_deck()
-	? control_manager.get_steam_deck_gamepad_index()
+current_gamepad_index = inst_control_manager.is_on_steam_deck()
+	? inst_control_manager.get_steam_deck_gamepad_index()
 	: 0;
 device_count = gamepad_get_device_count();
 
