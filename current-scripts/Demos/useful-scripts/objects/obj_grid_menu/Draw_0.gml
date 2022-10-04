@@ -7,28 +7,8 @@ for (var i=view_area.left; i<=view_area.right; i++) {
 		var _item = items[# i, j];
 		if (!is_struct(_item)) continue;
 
-		var _type = _item.types[| ds_list_size(_item.types)-1];
 		var _y = y + (item_height + line_spacing) * (j-view_area.top);
-	
-		switch (_type) {
-			case "item":
-			case "selectable":
-				draw_text(_x, _y, _item.label);
-				break;
-			
-		case "spinner":
-			draw_text(_x, _y, _item.label);
-			draw_text(_x + label_width, _y, _item.get_value());
-			break;
-			
-		case "keyconfig":
-			draw_text(_x, _y, _item.label);
-			draw_text(_x + label_width, _y, _item.get_value());
-			break;
-		
-			default:
-				draw_text(_x, _y, _item.label);
-		}
+		self.menu_base_draw_item(_item, _x, _y);
 	}
 }
 

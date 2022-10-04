@@ -1,8 +1,8 @@
-if (keyboard_check_pressed(vk_anykey)) {
-	if (active_key_config != noone) {
-		self.handle_key_config_change(active_key_config);
-		exit;
-	}
+if (active_key_config != noone) {
+	var _check_kbm = active_key_config.discovery_mode == CONTROL_TYPE.KEYBOARD_AND_MOUSE && keyboard_check_pressed(vk_anykey);
+	var _check_gamepad = active_key_config.discovery_mode == CONTROL_TYPE.GAMEPAD && keyboard_check_pressed(vk_anykey);
+	self.handle_key_config_change(active_key_config);
+	exit;
 }
 
 if (!enabled) exit;

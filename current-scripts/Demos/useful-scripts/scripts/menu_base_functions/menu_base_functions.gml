@@ -1,7 +1,10 @@
-/// @func  menu_base_init(menu_font, cursor_spr)
+/// @func  menu_base_init(player_controller, menu_font, cursor_spr)
+/// @param {} player_controller
 /// @param {Font} menu_font
 /// @param {Sprite} cursor_spr
-function menu_base_init(_menu_font, _cursor_spr) {
+function menu_base_init(_player_controller, _menu_font, _cursor_spr) {
+	player_controller = _player_controller;
+	control_state = new MenuControlState(_player_controller);
 	var _old_font = draw_get_font();
 	draw_set_font(_menu_font);
 	item_height = string_height("Ij");
@@ -59,9 +62,9 @@ function handle_spinner_change(_item, _delta) {
 /// @func  handle_key_config_change(item)
 /// @param {MenuSpinner} item
 function handle_key_config_change(_item) {
-	if (_item.discovery_mode) {
+	if (_item.discovery_mode != CONTROL_TYPE.NONE) {
 		_item.keycode = keyboard_key;
-		_item.discovery_mode = false;
+		_item.discovery_mode = CONTROL_TYPE.NONE;
 		self.active_key_config = noone;
 		self.enabled = true;
 		
@@ -75,6 +78,30 @@ function handle_key_config_change(_item) {
 		self.enabled = false;
 		self.active_key_config = _item;
 		io_clear();
+	}
+}
+
+function menu_base_draw_item(_item, _x, _y) {
+	var _type = _item.types[| ds_list_size(_item.types)-1];
+
+	switch (_type) {
+		case "item":
+		case "selectable":
+			draw_text(_x, _y, _item.label);
+			break;
+			
+	case "spinner":
+		draw_text(_x, _y, _item.label);
+		draw_text(_x + label_width, _y, _item.get_value());
+		break;
+			
+	case "keyconfig":
+		draw_text(_x, _y, _item.label);
+		draw_text(_x + label_width, _y, _item.get_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, 0));
+		break;
+		
+		default:
+			draw_text(_x, _y, _item.label);
 	}
 }
 

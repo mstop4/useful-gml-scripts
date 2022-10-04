@@ -38,7 +38,8 @@ menu.column_menu_init({
 
 menu.column_menu_add_key_config({ 
 	label: control_labels[CONTROLS.UP],
-	inital_keycode: control_binding[CONTROLS.UP],
+	initial_kbm_bindings: [control_binding[CONTROLS.UP]],
+	initial_gamepad_bindings: [gp_padu],
 	on_change_func: -1,
 	on_change_args: -1,
 	on_confirm_func: -1,
@@ -46,9 +47,11 @@ menu.column_menu_add_key_config({
 	silent_on_confirm: false
 });
 
+/*
 menu.column_menu_add_key_config({ 
 	label: control_labels[CONTROLS.DOWN],
-	inital_keycode: control_binding[CONTROLS.DOWN],
+	initial_kbm_bindings: [control_binding[CONTROLS.DOWN]],
+	initial_gamepad_bindings: [gp_padd],
 	on_change_func: -1,
 	on_change_args: -1,
 	on_confirm_func: -1,
@@ -58,7 +61,8 @@ menu.column_menu_add_key_config({
 
 menu.column_menu_add_key_config({ 
 	label: control_labels[CONTROLS.LEFT],
-	inital_keycode: control_binding[CONTROLS.LEFT],
+	initial_kbm_bindings: [control_binding[CONTROLS.LEFT]],
+	initial_gamepad_bindings: [gp_padl],
 	on_change_func: -1,
 	on_change_args: -1,
 	on_confirm_func: -1,
@@ -68,12 +72,13 @@ menu.column_menu_add_key_config({
 
 menu.column_menu_add_key_config({ 
 	label: control_labels[CONTROLS.RIGHT],
-	inital_keycode: control_binding[CONTROLS.RIGHT],
+	initial_kbm_bindings: [control_binding[CONTROLS.RIGHT]],
+	initial_gamepad_bindings: [gp_padr],
 	on_change_func: -1,
 	on_change_args: -1,
 	on_confirm_func: -1,
 	on_confirm_args: [-1],
 	silent_on_confirm: false
 });
-
+*/
 menu.label_width = 96;
