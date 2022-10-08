@@ -8,31 +8,35 @@ if (active_key_config != noone && discovery_mode == MENU_DISCOVERY_MODE.DISCOVER
 control_state.poll_input();
 
 if (control_state.pressed_state[MENU_CONTROLS.UP]) {
-	var _cur_pos = pos.y;
-	var _item = -1;
+	if (active_key_config == noone) {
+		var _cur_pos = pos.y;
+		var _item = -1;
 	
-	do {
-		pos.y = wrap(pos.y-1, 0, ds_grid_height(items));
-		_item = items[# pos.x, pos.y];
-	} until (is_struct(_item) || _cur_pos == pos.y)
+		do {
+			pos.y = wrap(pos.y-1, 0, ds_grid_height(items));
+			_item = items[# pos.x, pos.y];
+		} until (is_struct(_item) || _cur_pos == pos.y)
 
-	self.grid_menu_update_view();
+		self.grid_menu_update_view();
 
-	audio_play_sound(cursor_move_sfx, 1, false);
+		audio_play_sound(cursor_move_sfx, 1, false);
+	}
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
-	var _cur_pos = pos.y;
-	var _item = -1;
+	if (active_key_config == noone) {
+		var _cur_pos = pos.y;
+		var _item = -1;
 	
-	do {
-		pos.y = wrap(pos.y+1, 0, ds_grid_height(items));
-		_item = items[# pos.x, pos.y];
-	} until (is_struct(_item) || _cur_pos == pos.y)
+		do {
+			pos.y = wrap(pos.y+1, 0, ds_grid_height(items));
+			_item = items[# pos.x, pos.y];
+		} until (is_struct(_item) || _cur_pos == pos.y)
 	
-	self.grid_menu_update_view();
+		self.grid_menu_update_view();
 
-	audio_play_sound(cursor_move_sfx, 1, false);
+		audio_play_sound(cursor_move_sfx, 1, false);
+	}
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {

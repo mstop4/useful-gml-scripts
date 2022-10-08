@@ -8,15 +8,19 @@ if (active_key_config != noone && discovery_mode == MENU_DISCOVERY_MODE.DISCOVER
 control_state.poll_input();
 
 if (control_state.pressed_state[MENU_CONTROLS.UP]) {
-	pos = wrap(pos-1, 0, num_items);
-	self.column_menu_update_view();	
-	audio_play_sound(cursor_move_sfx, 1, false);
+	if (active_key_config == noone) {
+		pos = wrap(pos-1, 0, num_items);
+		self.column_menu_update_view();	
+		audio_play_sound(cursor_move_sfx, 1, false);
+	}
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
-	pos = wrap(pos+1, 0, num_items);
-	self.column_menu_update_view();	
-	audio_play_sound(cursor_move_sfx, 1, false);
+	if (active_key_config == noone) {
+		pos = wrap(pos+1, 0, num_items);
+		self.column_menu_update_view();	
+		audio_play_sound(cursor_move_sfx, 1, false);
+	}
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {
