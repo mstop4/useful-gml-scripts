@@ -1,6 +1,6 @@
 if (keyboard_check_pressed(vk_anykey)) {
 	if (active_key_config != noone) {
-		self.handle_key_config_change(active_key_config);
+		self.handle_key_config_confirm(active_key_config);
 	}
 }
 
@@ -25,7 +25,7 @@ if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
 if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
 	if (active_item == noone) {
 		nested_menu_toggle_submenu_by_index(self, pos);
-		io_clear();
+		player_controller.clear_all_input();
 	}
 }
 
@@ -36,6 +36,6 @@ if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
 		if (_submenu.active_key_config != noone) exit;
 		
 		nested_menu_toggle_submenu_by_index(self, -1);
-		io_clear();
+		player_controller.clear_all_input();
 	}
 }

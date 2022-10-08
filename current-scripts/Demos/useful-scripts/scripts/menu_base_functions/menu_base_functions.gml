@@ -59,25 +59,79 @@ function handle_spinner_change(_item, _delta) {
 	}
 }
 
-/// @func  handle_key_config_change(item)
-/// @param {MenuSpinner} item
-function handle_key_config_change(_item) {
-	if (_item.discovery_mode != CONTROL_TYPE.NONE) {
-		_item.keycode = keyboard_key;
-		_item.discovery_mode = CONTROL_TYPE.NONE;
-		self.active_key_config = noone;
-		self.enabled = true;
-		
-		if (script_exists(_item.on_change_func)) {
-			script_execute(_item.on_change_func, keyboard_key, _item.on_change_args);
-		}
+/// @func  handle_key_config_select(item, delta)
+/// @param {MenuKeyConfig} item
+/// @param {number} delta
+function handle_key_config_select(_item, _delta) {
+	var _num_values = KEYBOARD_MAX_BINDINGS_PER_CONTROL + GAMEPAD_MAX_BINDINGS_PER_CONTROL;
+	_item.current_binding_index = wrap(_item.current_binding_index+_delta, 0, _num_values);
+	
+	if (!_item.silent_on_change && audio_exists(cursor_change_sfx)) {
+		audio_play_sound(cursor_change_sfx, 1, false);
+	}
+}
 
-		io_clear();
-	} else {
-		_item.discovery_mode = true;
-		self.enabled = false;
+/// @func  handle_key_config_confirm(item)
+/// @param {MenuKeyConfig} item
+function handle_key_config_confirm(_item) {
+	if (discovery_mode == MENU_DISCOVERY_MODE.NONE) {
+		// Not selected
+		_item.current_binding_index = 0;
+		discovery_mode = MENU_DISCOVERY_MODE.SELECTING;
 		self.active_key_config = _item;
+	} else if (discovery_mode == MENU_DISCOVERY_MODE.SELECTING) {
+		// Selecting
+		discovery_mode = MENU_DISCOVERY_MODE.DISCOVERING;
+		_item.discovery_binding_info = _item.get_binding_info();
 		io_clear();
+	}
+}
+
+/// @func handle_key_config_cancel(item)
+function handle_key_config_cancel() {
+	if (discovery_mode == MENU_DISCOVERY_MODE.SELECTING) {
+		// Selecting
+		discovery_mode = MENU_DISCOVERY_MODE.NONE;
+		self.active_key_config = noone;		
+	}
+}
+
+/// @func handle_key_config_discovery()
+function handle_key_config_discovery() {
+	var _control_type = active_key_config.discovery_binding_info.control_type;
+
+	if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
+		var _last_pressed = control_state.control_any_pressed();
+		if (_last_pressed.control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE && _last_pressed != -1) {
+			var _control_index = active_key_config.discovery_binding_info.control_index;
+			active_key_config.kbm_bindings[_control_index] = _last_pressed.control_pressed;
+			player_controller.set_binding(_control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed);
+			discovery_mode = MENU_DISCOVERY_MODE.NONE;
+			active_key_config.discovery_binding_info = -1;
+
+			if (script_exists(self.active_key_config.on_change_func)) {
+				script_execute(self.active_key_config.on_change_func, _control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed, self.active_key_config.on_change_args);
+			}
+
+			self.active_key_config = noone;
+			io_clear();
+		}
+	} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
+		var _last_pressed = control_state.control_any_pressed();
+		if (_last_pressed.control_type == CONTROL_TYPE.GAMEPAD && _last_pressed != -1) {
+			var _control_index = active_key_config.discovery_binding_info.control_index;
+			active_key_config.gamepad_bindings[_control_index] = _last_pressed.control_pressed;
+			player_controller.set_binding(_control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed);
+			discovery_mode = MENU_DISCOVERY_MODE.NONE;
+			active_key_config.discovery_binding_info = -1;
+
+			if (script_exists(self.active_key_config.on_change_func)) {
+				script_execute(self.active_key_config.on_change_func, _control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed, self.active_key_config.on_change_args);
+			}
+
+			self.active_key_config = noone;
+			io_clear();
+		}
 	}
 }
 
@@ -98,17 +152,30 @@ function menu_base_draw_item(_item, _x, _y) {
 	case "keyconfig":
 		draw_text(_x, _y, _item.label);
 		var _cur_x = _x + label_width;
+		var _cur_binding_index = 0;
 		
 		for (var i=0; i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; i++) {
 			var _item_value = _item.get_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
 			draw_text(_cur_x, _y, _item_value);
+			if (discovery_mode != MENU_DISCOVERY_MODE.NONE && _cur_binding_index == _item.current_binding_index) {
+				draw_sprite(sub_cursor_spr, 0, _cur_x - cursor_padding, _y + item_height / 2);
+			}
+			
 			_cur_x += binding_spacing;
+			_cur_binding_index++;
 		}
+		
+		_cur_x += binding_type_spacing;
 		
 		for (var i=0; i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; i++) {
 			var _item_value = _item.get_value(CONTROL_TYPE.GAMEPAD, i);
 			draw_text(_cur_x, _y, _item_value);
+			if (discovery_mode != MENU_DISCOVERY_MODE.NONE && _cur_binding_index == _item.current_binding_index) {
+				draw_sprite(sub_cursor_spr, 0, _cur_x - cursor_padding, _y + item_height / 2);
+			}			
+	
 			_cur_x += binding_spacing;
+			_cur_binding_index++;
 		}
 		break;
 		

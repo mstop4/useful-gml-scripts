@@ -1,7 +1,7 @@
 if (active_key_config != noone) {
-	var _check_kbm = active_key_config.discovery_mode == CONTROL_TYPE.KEYBOARD_AND_MOUSE && keyboard_check_pressed(vk_anykey);
-	var _check_gamepad = active_key_config.discovery_mode == CONTROL_TYPE.GAMEPAD && keyboard_check_pressed(vk_anykey);
-	self.handle_key_config_change(active_key_config);
+	var _check_kbm = discovery_mode == CONTROL_TYPE.KEYBOARD_AND_MOUSE && keyboard_check_pressed(vk_anykey);
+	var _check_gamepad = discovery_mode == CONTROL_TYPE.GAMEPAD && keyboard_check_pressed(vk_anykey);
+	self.handle_key_config_confirm(active_key_config);
 	exit;
 }
 
@@ -88,5 +88,5 @@ if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
 		self.handle_selectable_confirm(_item);
 		
 	else if (ds_list_find_index(_item.types, "keyconfig") != -1)
-		self.handle_key_config_change(_item);
+		self.handle_key_config_confirm(_item);
 }

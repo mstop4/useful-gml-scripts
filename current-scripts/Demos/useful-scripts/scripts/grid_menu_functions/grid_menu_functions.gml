@@ -133,11 +133,13 @@ function grid_menu_add_spinner(_x, _y, _config) {
 /// @param y
 /// @param config 
 //         - {string}   label
+//				 - {CONTROLS} control
 //         - {array}    initial_kbm_bindings
 //         - {array}    initial_gamepad_bindings
 //         - {function} on_change_func
 //         - {array}    on_change_args
 //         - {boolean}  silent_on_confirm
+//         - {boolean}  silent_on_change
 function grid_menu_add_key_config(_x, _y, _config) {
 	if (_x < 0 || _x >= ds_grid_width(items)
 		|| _y < 0 || _x >= ds_grid_height(items))

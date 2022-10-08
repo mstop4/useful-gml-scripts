@@ -65,7 +65,7 @@ function ControlManagerPlayer() constructor {
 	ctrl_any_pressed = {
 		control_type: CONTROL_TYPE.NONE,
 		control_source: CONTROL_SOURCE.NONE,
-		control_index: -1
+		control_pressed: -1
 	};
 	
 	// Always tracked controls
@@ -147,7 +147,7 @@ function ControlManagerPlayer() constructor {
 
 		ctrl_any_pressed.control_type = CONTROL_TYPE.NONE;
 		ctrl_any_pressed.control_source = CONTROL_SOURCE.NONE;
-		ctrl_any_pressed.control_index = -1;
+		ctrl_any_pressed.control_pressed = -1;
 
 		for (var i=0; i<DPAD_DIRECTION.MAX; i++) {
 			stick_dpad_held[i] = false;
@@ -180,7 +180,7 @@ function ControlManagerPlayer() constructor {
 			if (keyboard_check_pressed(vk_anykey)) {
 				ctrl_any_pressed.control_type = CONTROL_TYPE.KEYBOARD_AND_MOUSE;
 				ctrl_any_pressed.control_source = CONTROL_SOURCE.KEYBOARD;
-				ctrl_any_pressed.control_index = keyboard_key;
+				ctrl_any_pressed.control_pressed = keyboard_key;
 			}
 		}
 
@@ -283,7 +283,7 @@ function ControlManagerPlayer() constructor {
 		    if (gamepad_button_check_pressed(gamepad_slot, i)) {
 					ctrl_any_pressed.control_type = CONTROL_TYPE.GAMEPAD;
 					ctrl_any_pressed.control_source = CONTROL_SOURCE.GAMEPAD;
-					ctrl_any_pressed.control_index = i;
+					ctrl_any_pressed.control_pressed = i;
 		      break;
 		    }
 		  }
@@ -304,7 +304,7 @@ function ControlManagerPlayer() constructor {
 	
 		ctrl_any_pressed.control_type = CONTROL_TYPE.NONE;
 		ctrl_any_pressed.control_source = CONTROL_SOURCE.NONE;
-		ctrl_any_pressed.control_index = -1;
+		ctrl_any_pressed.control_pressed = -1;
 		
 		for (var i=0; i<DPAD_DIRECTION.MAX; i++) {
 			stick_dpad_held[i] = false;

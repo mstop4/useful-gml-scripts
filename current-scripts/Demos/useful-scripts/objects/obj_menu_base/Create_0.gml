@@ -4,6 +4,7 @@ item_height = 1;
 cursor_width = 1;
 cursor_height = 1;
 
+discovery_mode = MENU_DISCOVERY_MODE.NONE;
 active_key_config = noone;
 menu_alpha = new Tween(1, 0, 0, 1, TweenLimitMode.CLAMP, true);
 

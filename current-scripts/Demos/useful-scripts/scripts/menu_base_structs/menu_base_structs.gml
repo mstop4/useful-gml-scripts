@@ -8,6 +8,12 @@ enum MENU_CONTROLS {
 	MAX
 }
 
+enum MENU_DISCOVERY_MODE {
+	NONE,
+	SELECTING,
+	DISCOVERING
+}
+
 function MenuControlState(_player_inst) constructor {
 	pressed_state = [];
 	held_state = [];
@@ -118,15 +124,17 @@ function MenuSpinner(_config) : MenuSpinnerBase(_config) constructor {
 //         - {function} on_change_func
 //         - {array}    on_change_args
 //         - {boolean}  silent_on_confirm
+//         - {boolean}  silent_on_change
 function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 	ds_list_add(types, "keyconfig");
 	on_change_func = asset_get_index(_config.on_change_func);
 	on_change_args = _config.on_change_args;
 	silent_on_confirm = _config.silent_on_confirm;
+	silent_on_change = _config.silent_on_change;
+	control = _config.control;
 	kbm_bindings = _config.initial_kbm_bindings;
 	gamepad_bindings = _config.initial_gamepad_bindings;
 	current_binding_index = 0;
-	discovery_mode = false;
 	discovery_binding_info = false;
 	
 	function get_binding_info() {
@@ -169,7 +177,7 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 				&& discovery_binding_info.control_index == _index) {
 				return "_";
 			} else {
-				return string(gamepad_bindings[_index]);
+				return gamepad_constant_to_string(gamepad_bindings[_index]);
 			}
 		} else {
 			return "???";

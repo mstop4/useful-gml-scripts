@@ -95,11 +95,13 @@ function column_menu_add_spinner(_config) {
 /// @param column_menu_add_key_config(config)
 /// @param config 
 //         - {string}   label
+//				 - {CONTROLS} control
 //         - {array}    initial_kbm_bindings
 //         - {array}    initial_gamepad_bindings
 //         - {function} on_change_func
 //         - {array}    on_change_args
 //         - {boolean}  silent_on_confirm
+//         - {boolean}  silent_on_change
 function column_menu_add_key_config(_config) {
 	var _new = new MenuKeyConfig(_config);
 	ds_list_add(items, _new);

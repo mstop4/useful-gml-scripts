@@ -1,10 +1,9 @@
-if (keyboard_check_pressed(vk_anykey)) {
-	if (active_key_config != noone) {
-		self.handle_key_config_change(active_key_config);
-	}
-}
-
 if (!enabled) exit;
+
+if (active_key_config != noone && discovery_mode == MENU_DISCOVERY_MODE.DISCOVERING) {
+	self.handle_key_config_discovery();
+	exit;
+}
 
 control_state.poll_input();
 
@@ -25,6 +24,10 @@ if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {
 
 	if (ds_list_find_index(_item.types, "spinner") != -1)
 		self.handle_spinner_change(_item, -1);
+		
+	else if (ds_list_find_index(_item.types, "keyconfig") != -1
+		&& active_key_config == _item)
+		self.handle_key_config_select(_item, -1);
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.RIGHT]) {
@@ -32,6 +35,10 @@ if (control_state.pressed_state[MENU_CONTROLS.RIGHT]) {
 
 	if (ds_list_find_index(_item.types, "spinner") != -1)
 		self.handle_spinner_change(_item, 1);
+		
+	else if (ds_list_find_index(_item.types, "keyconfig") != -1
+		&& active_key_config == _item)
+		self.handle_key_config_select(_item, 1);
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
@@ -44,5 +51,13 @@ if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
 		self.handle_selectable_confirm(_item);
 		
 	else if (ds_list_find_index(_item.types, "keyconfig") != -1)
-		self.handle_key_config_change(_item);
+		self.handle_key_config_confirm(_item);
+}
+
+if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
+	var _item = items[| pos];	
+		
+	if (ds_list_find_index(_item.types, "keyconfig") != -1
+			&& active_key_config == _item)
+		self.handle_key_config_cancel();
 }
