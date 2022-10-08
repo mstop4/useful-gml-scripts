@@ -99,39 +99,31 @@ function handle_key_config_cancel() {
 /// @func handle_key_config_discovery()
 function handle_key_config_discovery() {
 	var _control_type = active_key_config.discovery_binding_info.control_type;
+	var _last_pressed = control_state.control_any_pressed();
+	
+	if (_last_pressed.control_type == _control_type && _last_pressed != -1) {
+		var _control_index = active_key_config.discovery_binding_info.control_index;
+		var _binding_key = "";		
+		
+		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
+			_binding_key = "kbm_bindings";
+		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
+		_binding_key = "gamepad_bindings";
+		} else {
+			return;
+		}		
+		
+		active_key_config[$ _binding_key][_control_index] = _last_pressed.control_pressed;
+		player_controller.set_binding(_control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed);
+		discovery_mode = MENU_DISCOVERY_MODE.NONE;
+		active_key_config.discovery_binding_info = -1;
 
-	if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
-		var _last_pressed = control_state.control_any_pressed();
-		if (_last_pressed.control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE && _last_pressed != -1) {
-			var _control_index = active_key_config.discovery_binding_info.control_index;
-			active_key_config.kbm_bindings[_control_index] = _last_pressed.control_pressed;
-			player_controller.set_binding(_control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed);
-			discovery_mode = MENU_DISCOVERY_MODE.NONE;
-			active_key_config.discovery_binding_info = -1;
-
-			if (script_exists(self.active_key_config.on_change_func)) {
-				script_execute(self.active_key_config.on_change_func, _control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed, self.active_key_config.on_change_args);
-			}
-
-			self.active_key_config = noone;
-			io_clear();
+		if (script_exists(self.active_key_config.on_change_func)) {
+			script_execute(self.active_key_config.on_change_func, _control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed, self.active_key_config.on_change_args);
 		}
-	} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
-		var _last_pressed = control_state.control_any_pressed();
-		if (_last_pressed.control_type == CONTROL_TYPE.GAMEPAD && _last_pressed != -1) {
-			var _control_index = active_key_config.discovery_binding_info.control_index;
-			active_key_config.gamepad_bindings[_control_index] = _last_pressed.control_pressed;
-			player_controller.set_binding(_control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed);
-			discovery_mode = MENU_DISCOVERY_MODE.NONE;
-			active_key_config.discovery_binding_info = -1;
 
-			if (script_exists(self.active_key_config.on_change_func)) {
-				script_execute(self.active_key_config.on_change_func, _control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed, self.active_key_config.on_change_args);
-			}
-
-			self.active_key_config = noone;
-			io_clear();
-		}
+		self.active_key_config = noone;
+		io_clear();
 	}
 }
 
@@ -154,6 +146,7 @@ function menu_base_draw_item(_item, _x, _y) {
 		var _cur_x = _x + label_width;
 		var _cur_binding_index = 0;
 		
+		// Draw keyboard bindings
 		for (var i=0; i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; i++) {
 			var _item_value = _item.get_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
 			draw_text(_cur_x, _y, _item_value);
@@ -169,6 +162,7 @@ function menu_base_draw_item(_item, _x, _y) {
 		
 		_cur_x += binding_type_spacing;
 		
+		// Draw gamepad bindings
 		for (var i=0; i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; i++) {
 			var _item_value = _item.get_value(CONTROL_TYPE.GAMEPAD, i);
 			draw_text(_cur_x, _y, _item_value);
