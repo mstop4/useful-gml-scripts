@@ -1,11 +1,9 @@
-if (active_key_config != noone) {
-	var _check_kbm = discovery_mode == CONTROL_TYPE.KEYBOARD_AND_MOUSE && keyboard_check_pressed(vk_anykey);
-	var _check_gamepad = discovery_mode == CONTROL_TYPE.GAMEPAD && keyboard_check_pressed(vk_anykey);
-	self.handle_key_config_confirm(active_key_config);
+if (!enabled) exit;
+
+if (active_key_config != noone && discovery_mode == MENU_DISCOVERY_MODE.DISCOVERING) {
+	self.handle_key_config_discovery();
 	exit;
 }
-
-if (!enabled) exit;
 
 control_state.poll_input();
 
@@ -40,40 +38,52 @@ if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
 if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {
 	var _cur_pos = pos.x;
 	var _item = items[# pos.x, pos.y];
-	
+
 	if (is_struct(_item)) {
 		if (ds_list_find_index(_item.types, "spinner") != -1) {
 			self.handle_spinner_change(_item, -1);
 			return;
 		}
+			
+		else if (ds_list_find_index(_item.types, "keyconfig") != -1
+			&& active_key_config == _item) {
+			self.handle_key_config_select(_item, -1);
+			return;
+		}
 	}
-	
+
 	do {
 		pos.x = wrap(pos.x-1, 0, ds_grid_width(items));
 		_item = items[# pos.x, pos.y];
 	} until (is_struct(_item) || _cur_pos == pos.x)
 	
 	self.grid_menu_update_view();
-
 	audio_play_sound(cursor_move_sfx, 1, false);
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.RIGHT]) {
 	var _cur_pos = pos.x;
 	var _item = items[# pos.x, pos.y];
-	
+
 	if (is_struct(_item)) {
 		if (ds_list_find_index(_item.types, "spinner") != -1) {
 			self.handle_spinner_change(_item, 1);
 			return;
 		}
+			
+		else if (ds_list_find_index(_item.types, "keyconfig") != -1
+			&& active_key_config == _item) {
+			self.handle_key_config_select(_item, -1);
+			return;
+		}
 	}
-	
+
 	do {
 		pos.x = wrap(pos.x+1, 0, ds_grid_width(items));
 		_item = items[# pos.x, pos.y];
 	} until (is_struct(_item) || _cur_pos == pos.x)
 	
+	self.grid_menu_update_view();
 	audio_play_sound(cursor_move_sfx, 1, false);
 }
 
@@ -84,9 +94,18 @@ if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
 	if (ds_list_find_index(_item.types, "spinner") != -1)
 		self.handle_spinner_confirm(_item);
 	
-	if (ds_list_find_index(_item.types, "selectable") != -1)
+	else if (ds_list_find_index(_item.types, "selectable") != -1)
 		self.handle_selectable_confirm(_item);
 		
 	else if (ds_list_find_index(_item.types, "keyconfig") != -1)
 		self.handle_key_config_confirm(_item);
+}
+
+if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
+	var _item = items[# pos.x, pos.y];
+	if (!is_struct(_item)) return;
+		
+	if (ds_list_find_index(_item.types, "keyconfig") != -1
+		&& active_key_config == _item)
+		self.handle_key_config_cancel();
 }

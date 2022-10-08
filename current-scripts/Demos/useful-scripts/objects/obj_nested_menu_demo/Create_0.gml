@@ -101,6 +101,6 @@ main_menu.nested_menu_add_submenu({
 	submenu: submenu[1],
 	label: "Vegetables",
 	on_confirm_func: "menu_demo_on_confirm",
-	on_confirm_args: ["Foo"],
+	on_confirm_args: ["Bar"],
 	silent_on_confirm: false
 });
