@@ -157,7 +157,9 @@ function menu_base_draw_item(_item, _x, _y) {
 		for (var i=0; i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; i++) {
 			var _item_value = _item.get_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
 			draw_text(_cur_x, _y, _item_value);
-			if (discovery_mode != MENU_DISCOVERY_MODE.NONE && _cur_binding_index == _item.current_binding_index) {
+			if (discovery_mode != MENU_DISCOVERY_MODE.NONE
+				&& active_key_config == _item
+				&& _cur_binding_index == _item.current_binding_index) {
 				draw_sprite(sub_cursor_spr, 0, _cur_x - cursor_padding, _y + item_height / 2);
 			}
 			
@@ -170,7 +172,9 @@ function menu_base_draw_item(_item, _x, _y) {
 		for (var i=0; i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; i++) {
 			var _item_value = _item.get_value(CONTROL_TYPE.GAMEPAD, i);
 			draw_text(_cur_x, _y, _item_value);
-			if (discovery_mode != MENU_DISCOVERY_MODE.NONE && _cur_binding_index == _item.current_binding_index) {
+			if (discovery_mode != MENU_DISCOVERY_MODE.NONE
+				&& active_key_config == _item
+				&& _cur_binding_index == _item.current_binding_index) {
 				draw_sprite(sub_cursor_spr, 0, _cur_x - cursor_padding, _y + item_height / 2);
 			}			
 	

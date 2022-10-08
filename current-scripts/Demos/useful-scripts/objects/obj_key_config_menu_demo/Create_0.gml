@@ -24,57 +24,19 @@ menu.column_menu_init({
 	cursor_confirm_sfx: -1,
 });
 
-menu.column_menu_add_key_config({ 
-	label: control_labels[CONTROLS.UP],
-	control: CONTROLS.UP,
-	initial_kbm_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.KEYBOARD_AND_MOUSE, CONTROLS.UP).values),
-	initial_gamepad_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.GAMEPAD, CONTROLS.UP).values),
-	on_change_func: -1,
-	on_change_args: [-1],
-	on_confirm_func: -1,
-	on_confirm_args: [-1],
-	silent_on_confirm: false,
-	silent_on_change: false
-});
-
-/*
-menu.column_menu_add_key_config({ 
-	label: control_labels[CONTROLS.DOWN],
-	control: CONTROLS.DOWN,
-	initial_kbm_bindings: [control_binding[CONTROLS.DOWN]],
-	initial_gamepad_bindings: [gp_padd],
-	on_change_func: -1,
-	on_change_args: -1,
-	on_confirm_func: -1,
-	on_confirm_args: [-1],
-	silent_on_confirm: false,
-	silent_on_change: false
-});
-
-menu.column_menu_add_key_config({ 
-	label: control_labels[CONTROLS.LEFT],
-	control: CONTROLS.LEFT,
-	initial_kbm_bindings: [control_binding[CONTROLS.LEFT]],
-	initial_gamepad_bindings: [gp_padl],
-	on_change_func: -1,
-	on_change_args: -1,
-	on_confirm_func: -1,
-	on_confirm_args: [-1],
-	silent_on_confirm: false,
+for (var i=CONTROLS.UP; i<=CONTROLS.RIGHT; i++) {
+	menu.column_menu_add_key_config({ 
+		label: control_labels[i],
+		control: i,
+		initial_kbm_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i).values),
+		initial_gamepad_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.GAMEPAD, i).values),
+		on_change_func: -1,
+		on_change_args: [-1],
+		on_confirm_func: -1,
+		on_confirm_args: [-1],
+		silent_on_confirm: false,
 		silent_on_change: false
-});
+	});
+}
 
-menu.column_menu_add_key_config({ 
-	label: control_labels[CONTROLS.RIGHT],
-	control: CONTROLS.RIGHT,
-	initial_kbm_bindings: [control_binding[CONTROLS.RIGHT]],
-	initial_gamepad_bindings: [gp_padr],
-	on_change_func: -1,
-	on_change_args: -1,
-	on_confirm_func: -1,
-	on_confirm_args: [-1],
-	silent_on_confirm: false,
-		silent_on_change: false
-});
-*/
 menu.label_width = 96;
