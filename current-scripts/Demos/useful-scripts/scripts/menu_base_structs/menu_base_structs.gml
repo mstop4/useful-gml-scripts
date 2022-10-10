@@ -160,7 +160,7 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 	
 	function get_value(_control_type, _index) {
 		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
-			if (_index >= array_length(kbm_bindings)) {
+			if (_index >= array_length(kbm_bindings) - 1) {
 				return "-";
 			} else if (discovery_binding_info
 				&& discovery_binding_info.control_type == _control_type
@@ -170,7 +170,7 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 				return keycode_to_string(kbm_bindings[_index]);
 			}
 		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
-			if (_index >= array_length(gamepad_bindings)) {
+			if (_index >= array_length(gamepad_bindings) - 1) {
 				return "-";
 			} else if (discovery_binding_info
 				&& discovery_binding_info.control_type == _control_type

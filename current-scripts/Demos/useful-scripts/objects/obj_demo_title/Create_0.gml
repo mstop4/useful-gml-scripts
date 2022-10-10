@@ -29,7 +29,7 @@ room_names = [
 	"Column Menu",
 	"Grid Menu",
 	"Nested Menu",
-	"Key Config Menu",
+	"Control Config Menu",
 	"Strings",
 	"Web",
 	"System Info"

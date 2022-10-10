@@ -46,15 +46,16 @@ if (control_state.pressed_state[MENU_CONTROLS.RIGHT]) {
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
-	if (active_item == noone) {
-		nested_menu_toggle_submenu_by_index(self, pos);
-		player_controller.clear_all_input();
-		exit;
-	}
-
 	var _item = items[| pos];
 	
-	if (ds_list_find_index(_item.types, "spinner") != -1)
+	if (ds_list_find_index(_item.types, "menu") != -1) {
+		if (active_item == noone) {
+			self.nested_menu_toggle_submenu_by_index(self, pos);
+			player_controller.clear_all_input();
+		}
+	}
+	
+	else if (ds_list_find_index(_item.types, "spinner") != -1)
 		self.handle_spinner_confirm(_item);
 	
 	else if (ds_list_find_index(_item.types, "selectable") != -1)

@@ -47,15 +47,9 @@ menu.column_menu_add_selectable({
 	silent_on_confirm: false
 });
 
-menu.column_menu_add_key_config({ 
+menu.column_menu_add_selectable({ 
 	label: "Qux",
-	control: CONTROLS.TEST,
-	initial_kbm_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.KEYBOARD_AND_MOUSE, CONTROLS.TEST).values),
-	initial_gamepad_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.GAMEPAD, CONTROLS.TEST).values),
-	on_change_func: -1,
-	on_change_args: [-1],
-	on_confirm_func: -1,
-	on_confirm_args: [-1],
-	silent_on_confirm: false,
-	silent_on_change: false
+	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_args: ["Qux"],
+	silent_on_confirm: false
 });

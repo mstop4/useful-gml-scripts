@@ -13,7 +13,7 @@ current_gamepad_index = inst_control_manager.is_on_steam_deck()
 my_player.set_gamepad_slot(current_gamepad_index);
 
 // Set key config menu
-menu = instance_create_layer(32, 64, layer, obj_column_menu);
+menu = instance_create_layer(32, 96, layer, obj_column_menu);
 menu.column_menu_init({
 	player_controller: my_player,
 	font: fnt_demo,
@@ -40,3 +40,4 @@ for (var i=CONTROLS.UP; i<=CONTROLS.RIGHT; i++) {
 }
 
 menu.label_width = 96;
+menu.binding_spacing = 96;
