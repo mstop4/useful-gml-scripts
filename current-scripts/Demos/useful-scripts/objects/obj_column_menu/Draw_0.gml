@@ -3,27 +3,9 @@ var _x = x + cursor_padding;
 
 for (var i=view_area.x; i<=view_area.y; i++) {
 	var _item = items[| i];
-	var _type = _item.types[| ds_list_size(_item.types)-1];
-
 	var _y = y + (item_height + line_spacing) * (i - view_area.x);
 
-	switch (_type) {
-		case "item":
-		case "selectable":
-			draw_text(_x, _y, _item.label);
-			break;
-			
-		case "spinner":
-			draw_text(_x, _y, _item.get_full_label());
-			break;
-			
-		case "keyconfig":
-			draw_text(_x, _y, _item.get_full_label());
-			break;
-		
-		default:
-			draw_text(_x, _y, _item.label);
-	}
+	self.menu_base_draw_item(_item, _x, _y);
 }
 
 if (enabled) {

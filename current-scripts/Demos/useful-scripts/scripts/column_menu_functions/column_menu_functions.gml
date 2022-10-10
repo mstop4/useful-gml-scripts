@@ -1,13 +1,14 @@
 /// @func  column_menu_init(config)
 /// @param config
 //         - {real} view_height
+//				 - {}       player_controller
 //         - {font}   font
 //         - {sprite} cursor_spr
 //         - {sound}  cursor_move_sfx
 //         - {sound}  cursor_change_sfx
 //         - {sound}  cursor_confirm_sfx
 function column_menu_init(_config) {
-	self.menu_base_init(_config.font, _config.cursor_spr);
+	self.menu_base_init(_config.player_controller, _config.font, _config.cursor_spr);
 	
   view_height = _config.view_height;
 	menu_font = _config.font;
@@ -87,20 +88,25 @@ function column_menu_add_spinner(_config) {
 	ds_list_add(items, _new);
 	num_items++;
 	_new.parent_menu = self;
+	column_menu_update_view_area();
 	return _new;
 }
 
 /// @param column_menu_add_key_config(config)
 /// @param config 
 //         - {string}   label
-//         - {array}    inital_keycode
-//         - {function} on_confirm_func
-//         - {array}    on_confirm_args
+//				 - {CONTROLS} control
+//         - {array}    initial_kbm_bindings
+//         - {array}    initial_gamepad_bindings
+//         - {function} on_change_func
+//         - {array}    on_change_args
 //         - {boolean}  silent_on_confirm
+//         - {boolean}  silent_on_change
 function column_menu_add_key_config(_config) {
 	var _new = new MenuKeyConfig(_config);
 	ds_list_add(items, _new);
 	num_items++;
 	_new.parent_menu = self;
+	column_menu_update_view_area();
 	return _new;
 }

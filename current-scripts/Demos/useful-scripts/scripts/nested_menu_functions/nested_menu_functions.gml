@@ -1,5 +1,6 @@
 /// @func  nested_menu_init(config)
 /// @param config
+//         - {}       player_controller
 //         - {font}   font
 //				 - {number} column_width
 //         - {sprite} cursor_spr

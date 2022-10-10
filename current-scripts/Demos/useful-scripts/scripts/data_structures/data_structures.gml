@@ -40,6 +40,15 @@ function array_is_subset(_a, _b) {
 	return true;
 }
 
+/// @func duplicate_array(array)
+/// @desc Creates a new copy of a given array
+/// @param {Array} array
+function duplicate_array(_array) {
+	var _new_array = array_create(array_length(_array));
+	array_copy(_new_array, 0, _array, 0, array_length(_array));
+	return _new_array;
+}
+
 function shuffle_array(_array) {
   var _current_index = array_length(_array);
 	var _random_index;

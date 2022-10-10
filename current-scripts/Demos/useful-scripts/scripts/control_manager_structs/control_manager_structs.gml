@@ -1,10 +1,12 @@
 enum CONTROL_TYPE {
-	KEYBOARD,
+	NONE,
+	KEYBOARD_AND_MOUSE,
 	GAMEPAD,
 	MAX
 }
 
 enum CONTROL_SOURCE {
+	NONE,
 	KEYBOARD,
 	MOUSE,
 	GAMEPAD,
@@ -60,7 +62,11 @@ function ControlManagerPlayer() constructor {
 		ctrl_released[i] = false;
 	}
 
-	ctrl_any_pressed = false;
+	ctrl_any_pressed = {
+		control_type: CONTROL_TYPE.NONE,
+		control_source: CONTROL_SOURCE.NONE,
+		control_pressed: -1
+	};
 	
 	// Always tracked controls
 	// Gamepad
@@ -79,13 +85,13 @@ function ControlManagerPlayer() constructor {
 	
 	function set_binding(
 		_control_type,
-		_control_source = CONTROL_TYPE.KEYBOARD,
+		_control_source,
 		_control,
 		_index,
 		_value,
 		_axis_direction = AXIS_DIRECTION.POSITIVE
 	) {
-		if (_control_type == CONTROL_TYPE.KEYBOARD) {
+		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
 			if (_index < 0 || _index >= array_length(keyboard_map[_control].values)) {
 				print("ControlManagerPlayer.set_binding - index ", _index, " out of bounds");
 				return;
@@ -103,7 +109,7 @@ function ControlManagerPlayer() constructor {
 	}
 	
 	function get_bindings(_control_type, _control) {
-		if (_control_type == CONTROL_TYPE.KEYBOARD) {
+		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
 			return keyboard_map[_control];
 		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
 			return gamepad_map[_control];
@@ -139,7 +145,9 @@ function ControlManagerPlayer() constructor {
 			ctrl_released[i] = false;
 		}
 
-		ctrl_any_pressed = false;
+		ctrl_any_pressed.control_type = CONTROL_TYPE.NONE;
+		ctrl_any_pressed.control_source = CONTROL_SOURCE.NONE;
+		ctrl_any_pressed.control_pressed = -1;
 
 		for (var i=0; i<DPAD_DIRECTION.MAX; i++) {
 			stick_dpad_held[i] = false;
@@ -168,7 +176,12 @@ function ControlManagerPlayer() constructor {
 				}
 			}
 	
-			ctrl_any_pressed = keyboard_check_pressed(vk_anykey);
+			// Any pressed
+			if (keyboard_check_pressed(vk_anykey)) {
+				ctrl_any_pressed.control_type = CONTROL_TYPE.KEYBOARD_AND_MOUSE;
+				ctrl_any_pressed.control_source = CONTROL_SOURCE.KEYBOARD;
+				ctrl_any_pressed.control_pressed = keyboard_key;
+			}
 		}
 
 		if (gamepad_enabled) {		
@@ -264,10 +277,13 @@ function ControlManagerPlayer() constructor {
 				}
 			}
 	
+			// Any pressed
 			// TODO: Cache button checks so they can be used with the above ctrl_* checks
 			for (var i=gp_face1; i<gp_axisrv; i++) {
 		    if (gamepad_button_check_pressed(gamepad_slot, i)) {
-		      ctrl_any_pressed = true;
+					ctrl_any_pressed.control_type = CONTROL_TYPE.GAMEPAD;
+					ctrl_any_pressed.control_source = CONTROL_SOURCE.GAMEPAD;
+					ctrl_any_pressed.control_pressed = i;
 		      break;
 		    }
 		  }
@@ -286,7 +302,9 @@ function ControlManagerPlayer() constructor {
 			ctrl_released[i] = false;
 		}
 	
-		ctrl_any_pressed = false;
+		ctrl_any_pressed.control_type = CONTROL_TYPE.NONE;
+		ctrl_any_pressed.control_source = CONTROL_SOURCE.NONE;
+		ctrl_any_pressed.control_pressed = -1;
 		
 		for (var i=0; i<DPAD_DIRECTION.MAX; i++) {
 			stick_dpad_held[i] = false;
