@@ -107,10 +107,10 @@ function handle_key_config_discovery() {
 		var _binding_key = "";		
 		
 		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
-			if (array_find(global.locked_keyboard_controls, _last_pressed.control_pressed) != -1) return;
+			if (array_find(global.disallowed_keyboard_controls, _last_pressed.control_pressed) != -1) return;
 			_binding_key = "kbm_bindings";
 		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
-			if (array_find(global.locked_gamepad_controls, _last_pressed.control_pressed) != -1) return;
+			if (array_find(global.disallowed_gamepad_controls, _last_pressed.control_pressed) != -1) return;
 			_binding_key = "gamepad_bindings";
 		} else {
 			return;
