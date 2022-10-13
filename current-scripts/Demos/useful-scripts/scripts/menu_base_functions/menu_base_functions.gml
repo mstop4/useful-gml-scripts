@@ -101,7 +101,7 @@ function handle_key_config_cancel() {
 function handle_key_config_discovery() {
 	if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
 		discovery_mode = MENU_DISCOVERY_MODE.SELECTING;
-		discovery_binding_info = -1;
+		active_key_config.discovery_binding_info = -1;
 		return;
 	}
 
