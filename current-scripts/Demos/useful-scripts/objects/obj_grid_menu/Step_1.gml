@@ -1,11 +1,11 @@
 if (!enabled) exit;
 
+control_state.poll_input();
+
 if (active_key_config != noone && discovery_mode == MENU_DISCOVERY_MODE.DISCOVERING) {
 	self.handle_key_config_discovery();
 	exit;
 }
-
-control_state.poll_input();
 
 if (control_state.pressed_state[MENU_CONTROLS.UP]) {
 	if (active_key_config == noone) {

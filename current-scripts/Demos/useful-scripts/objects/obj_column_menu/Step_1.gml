@@ -1,11 +1,11 @@
 if (!enabled) exit;
 
+control_state.poll_input();
+
 if (active_key_config != noone && discovery_mode == MENU_DISCOVERY_MODE.DISCOVERING) {
 	self.handle_key_config_discovery();
 	exit;
 }
-
-control_state.poll_input();
 
 if (control_state.pressed_state[MENU_CONTROLS.UP]) {
 	if (active_key_config == noone) {
@@ -62,6 +62,6 @@ if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
 	var _item = items[| pos];	
 		
 	if (ds_list_find_index(_item.types, "keyconfig") != -1
-			&& active_key_config == _item)
+		&& active_key_config == _item)
 		self.handle_key_config_cancel();
 }

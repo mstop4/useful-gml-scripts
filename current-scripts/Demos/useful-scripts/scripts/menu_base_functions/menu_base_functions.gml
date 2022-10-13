@@ -99,8 +99,14 @@ function handle_key_config_cancel() {
 
 /// @func handle_key_config_discovery()
 function handle_key_config_discovery() {
+	if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
+		discovery_mode = MENU_DISCOVERY_MODE.SELECTING;
+		discovery_binding_info = -1;
+		return;
+	}
+
 	var _control_type = active_key_config.discovery_binding_info.control_type;
-	var _last_pressed = control_state.control_any_pressed();
+	var _last_pressed = control_state.control_any_pressed();		
 	
 	if (_last_pressed != -1 && _last_pressed.control_type == _control_type) {
 		var _control_index = active_key_config.discovery_binding_info.control_index;
