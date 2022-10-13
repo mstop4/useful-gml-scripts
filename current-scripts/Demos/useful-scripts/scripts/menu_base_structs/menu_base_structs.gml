@@ -135,6 +135,8 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 	kbm_bindings = _config.initial_kbm_bindings;
 	gamepad_bindings = _config.initial_gamepad_bindings;
 	current_binding_index = 0;
+	locked_kbm_bindings = array_create(array_length(_config.initial_kbm_bindings), false);
+	locked_gamepad_bindings = array_create(array_length(_config.initial_gamepad_bindings), false);
 	discovery_binding_info = false;
 	
 	function get_binding_info() {
@@ -145,17 +147,16 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 			return {
 				control_type: CONTROL_TYPE.KEYBOARD_AND_MOUSE,
 				control_index: current_binding_index,
+				binding_locked: locked_kbm_bindings[current_binding_index]
 			}
 		} else {
+			var _true_index = current_binding_index - KEYBOARD_MAX_BINDINGS_PER_CONTROL;
 			return {
 				control_type: CONTROL_TYPE.GAMEPAD,
-				control_index: current_binding_index - KEYBOARD_MAX_BINDINGS_PER_CONTROL,
+				control_index: _true_index,
+				binding_locked: locked_gamepad_bindings[_true_index]
 			}
 		}
-	}
-	
-	function get_full_label(_control_type, _index) {
-		return concat(label, ":", get_value(_control_type, _index));
 	}
 	
 	function get_value(_control_type, _index) {
@@ -183,4 +184,35 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 			return "???";
 		}
 	}
+	
+	function verify_locked_bindings() {
+		var _len = array_length(kbm_bindings);
+		for (var i=0; i<_len; i++) {
+			locked_kbm_bindings[i] = array_find(global.locked_keyboard_controls, kbm_bindings[i]) != -1;
+		}
+		
+		_len = array_length(gamepad_bindings);
+		for (var i=0; i<_len; i++) {
+			locked_gamepad_bindings[i] = array_find(global.locked_gamepad_controls, gamepad_bindings[i]) != -1;
+		}
+	}
+	
+	function set_binding_locked(_control_type, _index, _locked) {
+		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
+			locked_kbm_bindings[_index] = _locked;
+		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
+			locked_gamepad_bindings[_index] = _locked;
+		}
+	}
+	
+	function get_binding_locked(_control_type, _index) {
+		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
+			return locked_kbm_bindings[_index];
+		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
+			return locked_gamepad_bindings[_index];
+		}
+		return -1;
+	}
+	
+	verify_locked_bindings();
 }

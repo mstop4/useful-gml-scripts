@@ -40,6 +40,15 @@ function array_is_subset(_a, _b) {
 	return true;
 }
 
+function array_find(_array, _value) {
+	var _len = array_length(_array);
+	for (var i=0; i<_len; i++) {
+		if (_array[i] == _value) return i;
+	}
+	
+	return -1;
+}
+
 /// @func duplicate_array(array)
 /// @desc Creates a new copy of a given array
 /// @param {Array} array

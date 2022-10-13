@@ -81,16 +81,17 @@ function handle_key_config_confirm(_item) {
 		self.active_key_config = _item;
 	} else if (discovery_mode == MENU_DISCOVERY_MODE.SELECTING) {
 		// Selecting
+		var _binding_info = _item.get_binding_info();
+		if (_binding_info.binding_locked) return;
 		discovery_mode = MENU_DISCOVERY_MODE.DISCOVERING;
-		_item.discovery_binding_info = _item.get_binding_info();
+		_item.discovery_binding_info = _binding_info;
 		io_clear();
 	}
 }
 
-/// @func handle_key_config_cancel(item)
+/// @func handle_key_config_cancel()
 function handle_key_config_cancel() {
 	if (discovery_mode == MENU_DISCOVERY_MODE.SELECTING) {
-		// Selecting
 		discovery_mode = MENU_DISCOVERY_MODE.NONE;
 		self.active_key_config = noone;		
 	}
@@ -101,14 +102,16 @@ function handle_key_config_discovery() {
 	var _control_type = active_key_config.discovery_binding_info.control_type;
 	var _last_pressed = control_state.control_any_pressed();
 	
-	if (_last_pressed.control_type == _control_type && _last_pressed != -1) {
+	if (_last_pressed != -1 && _last_pressed.control_type == _control_type) {
 		var _control_index = active_key_config.discovery_binding_info.control_index;
 		var _binding_key = "";		
 		
 		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
+			if (array_find(global.locked_keyboard_controls, _last_pressed.control_pressed) != -1) return;
 			_binding_key = "kbm_bindings";
 		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
-		_binding_key = "gamepad_bindings";
+			if (array_find(global.locked_gamepad_controls, _last_pressed.control_pressed) != -1) return;
+			_binding_key = "gamepad_bindings";
 		} else {
 			return;
 		}		
@@ -149,6 +152,11 @@ function menu_base_draw_item(_item, _x, _y) {
 		// Draw keyboard bindings
 		for (var i=0; i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; i++) {
 			var _item_value = _item.get_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
+			if (_item.locked_kbm_bindings[i]) {
+				draw_set_colour(c_gray);
+			} else {
+				draw_set_colour(c_white);
+			}
 			draw_text(_cur_x, _y, _item_value);
 			if (discovery_mode != MENU_DISCOVERY_MODE.NONE
 				&& active_key_config == _item
@@ -165,6 +173,12 @@ function menu_base_draw_item(_item, _x, _y) {
 		// Draw gamepad bindings
 		for (var i=0; i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; i++) {
 			var _item_value = _item.get_value(CONTROL_TYPE.GAMEPAD, i);
+			if (_item.locked_gamepad_bindings[i]) {
+				draw_set_colour(c_gray);
+			} else {
+				draw_set_colour(c_white);
+			}			
+			
 			draw_text(_cur_x, _y, _item_value);
 			if (discovery_mode != MENU_DISCOVERY_MODE.NONE
 				&& active_key_config == _item

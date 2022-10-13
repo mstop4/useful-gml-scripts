@@ -39,5 +39,18 @@ for (var i=CONTROLS.UP; i<=CONTROLS.RIGHT; i++) {
 	});
 }
 
+menu.column_menu_add_key_config({ 
+	label: "Cancel",
+	control: CONTROLS.MENU_CANCEL,
+	initial_kbm_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.KEYBOARD_AND_MOUSE, CONTROLS.MENU_CANCEL).values),
+	initial_gamepad_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.GAMEPAD, CONTROLS.MENU_CANCEL).values),
+	on_change_func: -1,
+	on_change_args: [-1],
+	on_confirm_func: -1,
+	on_confirm_args: [-1],
+	silent_on_confirm: false,
+	silent_on_change: false
+});
+
 menu.label_width = 96;
-menu.binding_spacing = 96;
+menu.binding_spacing = 160;
