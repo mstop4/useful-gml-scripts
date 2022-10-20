@@ -126,6 +126,14 @@ function ControlManagerPlayer() constructor {
 		}
 	}
 	
+	function reset_all_bindings() {
+		for (var i=0; i<CONTROLS.MAX; i++) {
+			keyboard_map[i] = new Binding(KEYBOARD_MAX_BINDINGS_PER_CONTROL, CONTROL_SOURCE.KEYBOARD);
+			gamepad_map[i] = new Binding(GAMEPAD_MAX_BINDINGS_PER_CONTROL, CONTROL_SOURCE.GAMEPAD);
+			touch_map[i] = new Binding(1, CONTROL_SOURCE.KEYBOARD);
+		}
+	}
+	
 	function get_bindings(_control_type, _control) {
 		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
 			return keyboard_map[_control];
