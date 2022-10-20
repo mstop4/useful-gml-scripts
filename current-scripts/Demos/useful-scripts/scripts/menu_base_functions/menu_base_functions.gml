@@ -97,6 +97,29 @@ function handle_key_config_cancel() {
 	}
 }
 
+/// @func handle_key_config_delete()
+function handle_key_config_delete(_item) {
+	var _binding_info = _item.get_binding_info();
+	if (_binding_info.binding_locked) return;
+	
+	var _control_index = _binding_info.control_index;
+	var _control_type = _binding_info.control_type;
+	var _binding_key = "";
+
+	if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
+		_binding_key = "kbm_bindings";
+	} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
+		_binding_key = "gamepad_bindings";
+	} else {
+		return;
+	}
+	
+	_item[$ _binding_key][_control_index] = -1;
+	player_controller.remove_binding(_control_type, _item.control, _control_index);
+	
+	discovery_mode = MENU_DISCOVERY_MODE.NONE;
+}
+
 /// @func handle_key_config_discovery()
 function handle_key_config_discovery() {
 	if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {

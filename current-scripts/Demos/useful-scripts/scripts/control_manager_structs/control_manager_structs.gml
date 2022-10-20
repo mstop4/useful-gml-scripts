@@ -108,6 +108,24 @@ function ControlManagerPlayer() constructor {
 		}
 	}
 	
+	function remove_binding(_control_type, _control, _index) {
+		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
+			if (_index < 0 || _index >= array_length(keyboard_map[_control].values)) {
+				print("ControlManagerPlayer.remove_binding - index ", _index, " out of bounds");
+				return;
+			}
+			keyboard_map[_control].values[_index] = -1;
+			keyboard_map[_control].control_source = -1;
+		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
+			if (_index < 0 || _index >= array_length(gamepad_map[_control].values)) {
+				print("ControlManagerPlayer.remove_binding - index ", _index, " out of bounds");
+				return;
+			}
+			gamepad_map[_control].values[_index] = -1;
+			gamepad_map[_control].axis_drection = 0;
+		}
+	}
+	
 	function get_bindings(_control_type, _control) {
 		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
 			return keyboard_map[_control];
