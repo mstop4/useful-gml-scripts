@@ -150,3 +150,19 @@ function grid_menu_add_key_config(_x, _y, _config) {
 	items[# _x, _y] = _new;
 	return _new;
 }
+
+/// @param grid_menu_add_divider(x, y, config)
+/// @param x
+/// @param y
+/// @param config 
+//         - {string}   label
+function grid_menu_add_divider(_x, _y, _config) {
+	if (_x < 0 || _x >= ds_grid_width(items)
+		|| _y < 0 || _x >= ds_grid_height(items))
+			return;
+			
+	var _new = new MenuDivider(_config);
+	_new.parent_menu = self;
+	items[# _x, _y] = _new;
+	return _new;
+}

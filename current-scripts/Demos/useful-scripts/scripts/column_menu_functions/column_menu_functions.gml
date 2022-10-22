@@ -110,3 +110,15 @@ function column_menu_add_key_config(_config) {
 	column_menu_update_view_area();
 	return _new;
 }
+
+/// @param column_menu_add_divider(config)
+/// @param config 
+//         - {string}   label
+function column_menu_add_divider(_config) {
+	var _new = new MenuDivider(_config);
+	ds_list_add(items, _new);
+	num_items++;
+	_new.parent_menu = self;
+	column_menu_update_view_area();
+	return _new;
+}

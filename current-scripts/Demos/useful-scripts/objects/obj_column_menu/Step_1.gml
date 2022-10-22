@@ -9,7 +9,16 @@ if (active_key_config != noone && discovery_mode == MENU_DISCOVERY_MODE.DISCOVER
 
 if (control_state.pressed_state[MENU_CONTROLS.UP]) {
 	if (active_key_config == noone) {
-		pos = wrap(pos-1, 0, num_items);
+		var _cur_pos = pos;
+		var _item = -1;
+	
+		do {
+			pos = wrap(pos-1, 0, num_items);
+			_item = items[| pos];
+		} until ((is_struct(_item)
+			&& ds_list_find_index(_item.types, "divider") == -1)
+			|| _cur_pos == pos)
+		
 		self.column_menu_update_view();	
 		audio_play_sound(cursor_move_sfx, 1, false);
 	}
@@ -17,7 +26,16 @@ if (control_state.pressed_state[MENU_CONTROLS.UP]) {
 
 if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
 	if (active_key_config == noone) {
-		pos = wrap(pos+1, 0, num_items);
+		var _cur_pos = pos;
+		var _item = -1;
+	
+		do {
+			pos = wrap(pos+1, 0, num_items);
+			_item = items[| pos];
+		} until ((is_struct(_item)
+			&& ds_list_find_index(_item.types, "divider") == -1)
+			|| _cur_pos == pos)		
+		
 		self.column_menu_update_view();	
 		audio_play_sound(cursor_move_sfx, 1, false);
 	}
@@ -61,8 +79,7 @@ if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
 if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
 	var _item = items[| pos];	
 		
-	if (ds_list_find_index(_item.types, "keyconfig") != -1
-		&& active_key_config == _item)
+	if (ds_list_find_index(_item.types, "keyconfig") != -1)
 		self.handle_key_config_cancel();
 }
 
