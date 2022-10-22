@@ -81,8 +81,12 @@ function handle_key_config_confirm(_item) {
 		self.active_key_config = _item;
 	} else if (discovery_mode == MENU_DISCOVERY_MODE.SELECTING) {
 		// Selecting
+		var _last_pressed = control_state.control_any_pressed();
 		var _binding_info = _item.get_binding_info();
+		
+		if (_last_pressed.control_type != _binding_info.control_type) return;		
 		if (_binding_info.binding_locked) return;
+
 		discovery_mode = MENU_DISCOVERY_MODE.DISCOVERING;
 		_item.discovery_binding_info = _binding_info;
 		io_clear();
@@ -124,7 +128,7 @@ function handle_key_config_delete(_item) {
 function handle_key_config_discovery() {
 	if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
 		discovery_mode = MENU_DISCOVERY_MODE.SELECTING;
-		active_key_config.discovery_binding_info = -1;
+		active_key_config.discovery_binding_info = false;
 		return;
 	}
 
@@ -148,7 +152,7 @@ function handle_key_config_discovery() {
 		active_key_config[$ _binding_key][_control_index] = _last_pressed.control_pressed;
 		player_controller.set_binding(_control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed);
 		discovery_mode = MENU_DISCOVERY_MODE.NONE;
-		active_key_config.discovery_binding_info = -1;
+		active_key_config.discovery_binding_info = false;
 
 		if (script_exists(self.active_key_config.on_change_func)) {
 			script_execute(self.active_key_config.on_change_func, _control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed, self.active_key_config.on_change_args);
