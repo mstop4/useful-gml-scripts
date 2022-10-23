@@ -1,22 +1,3 @@
-#macro vk_clear 12
-#macro vk_caps_lock 20
-#macro vk_left_command 91
-#macro vk_right_command 92
-#macro vk_menu 93
-#macro vk_num_lock 144
-#macro vk_scroll_lock 145
-#macro vk_semicolon 186
-#macro vk_equals 187
-#macro vk_comma 188
-#macro vk_hyphen 189
-#macro vk_period 190
-#macro vk_slash 191
-#macro vk_backtick 192
-#macro vk_left_bracket 219
-#macro vk_backslash 220
-#macro vk_right_bracket 221
-#macro vk_single_quote 222
-
 /// @func            keycode_to_string(keycode)
 /// @desc            converts keycode to name of key as a string
 /// @param {integer} keycode 
@@ -178,6 +159,15 @@ function keycode_to_string(_keycode) {
 				return "???";
     }
   }
+}
+
+/// @func            keycode_to_prompt_index(keycode)
+/// @desc            converts keycode to name of key as a string
+/// @param {integer} keycode 
+function keycode_to_prompt_index(_keycode) { 
+	return global.keycode_to_prompt_map[_keycode] == -1
+		? sprite_get_number(spr_keyboard_icons) - 1
+		: global.keycode_to_prompt_map[_keycode];
 }
 
 /// @func            gamepad_constant_to_string(keycode)
