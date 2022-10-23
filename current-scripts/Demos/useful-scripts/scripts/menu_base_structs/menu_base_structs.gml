@@ -168,7 +168,7 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 		}
 	}
 	
-	function get_value(_control_type, _index) {
+	function get_text_value(_control_type, _index) {
 		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
 			if (_index >= array_length(kbm_bindings)) {
 				return "-";
@@ -193,6 +193,8 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 			return "???";
 		}
 	}
+	
+	function get_graphic_index(_control_type, _index) {}
 	
 	function verify_locked_bindings() {
 		var _len = array_length(kbm_bindings);

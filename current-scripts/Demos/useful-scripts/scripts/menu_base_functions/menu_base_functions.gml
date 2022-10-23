@@ -184,7 +184,7 @@ function menu_base_draw_item(_item, _x, _y) {
 		
 		// Draw keyboard bindings
 		for (var i=0; i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; i++) {
-			var _item_value = _item.get_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
+			var _item_value = _item.get_text_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
 			if (_item.locked_kbm_bindings[i]) {
 				draw_set_colour(c_gray);
 			} else {
@@ -205,7 +205,7 @@ function menu_base_draw_item(_item, _x, _y) {
 		
 		// Draw gamepad bindings
 		for (var i=0; i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; i++) {
-			var _item_value = _item.get_value(CONTROL_TYPE.GAMEPAD, i);
+			var _item_value = _item.get_text_value(CONTROL_TYPE.GAMEPAD, i);
 			if (_item.locked_gamepad_bindings[i]) {
 				draw_set_colour(c_gray);
 			} else {

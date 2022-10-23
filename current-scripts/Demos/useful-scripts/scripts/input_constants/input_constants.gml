@@ -17,7 +17,7 @@
 #macro vk_right_bracket 221
 #macro vk_single_quote 222
 
-global.keycode_to_prompt_map = [
+global.keyboard_icon_map = [
 	-1,
 	-1,
 	-1,
@@ -241,4 +241,25 @@ global.keycode_to_prompt_map = [
 	72,
 	20,
 	67
+];
+
+// Codes are offset by 32768
+global.gamepad_icon_map = [
+	-1,
+	6,
+	7,
+	8,
+	9,
+	10,
+	11,
+	12,
+	13,
+	16,
+	17,
+	14,
+	15,
+	0,
+	1,
+	2,
+	3
 ]

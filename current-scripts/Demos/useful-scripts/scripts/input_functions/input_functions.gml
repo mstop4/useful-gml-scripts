@@ -161,13 +161,25 @@ function keycode_to_string(_keycode) {
   }
 }
 
-/// @func            keycode_to_prompt_index(keycode)
-/// @desc            converts keycode to name of key as a string
+/// @func            get_keyboard_icon_index(keycode)
+/// @desc            converts keycode to image_index of keyboard icon
 /// @param {integer} keycode 
-function keycode_to_prompt_index(_keycode) { 
-	return global.keycode_to_prompt_map[_keycode] == -1
+function get_keyboard_icon_index(_keycode) { 
+	return global.keyboard_icon_map[_keycode] == -1
 		? sprite_get_number(spr_keyboard_icons) - 1
-		: global.keycode_to_prompt_map[_keycode];
+		: global.keyboard_icon_map[_keycode];
+}
+
+/// @func            get_keyboard_icon_index(keycode)
+/// @desc            converts keycode to image_index of keyboard icon
+/// @param {integer} button_code
+/// @param {Sprite}  icons
+function get_gamepad_icon_index(_button_code, _icons) {
+	var _offset_code = _button_code - 32768;
+	if (_offset_code < 0) return sprite_get_number(_icons) - 1;
+	return global.gamepad_icon_map[_offset_code] == -1
+		? sprite_get_number(_icons) - 1
+		: global.gamepad_icon_map[_offset_code];
 }
 
 /// @func            gamepad_constant_to_string(keycode)
