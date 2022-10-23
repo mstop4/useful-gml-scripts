@@ -161,16 +161,18 @@ function keycode_to_string(_keycode) {
   }
 }
 
-/// @func            get_keyboard_icon_index(keycode)
+/// @func            get_keyboard_icon_index(keycode, icons)
 /// @desc            converts keycode to image_index of keyboard icon
-/// @param {integer} keycode 
-function get_keyboard_icon_index(_keycode) { 
+/// @param {integer} keycode
+/// @param {Sprite}  icons
+function get_keyboard_icon_index(_keycode, _icons) {
+	if (_keycode < 0) return sprite_get_number(_icons) - 1;
 	return global.keyboard_icon_map[_keycode] == -1
 		? sprite_get_number(spr_keyboard_icons) - 1
 		: global.keyboard_icon_map[_keycode];
 }
 
-/// @func            get_keyboard_icon_index(keycode)
+/// @func            get_gamepad_icon_index(button_code, icons)
 /// @desc            converts keycode to image_index of keyboard icon
 /// @param {integer} button_code
 /// @param {Sprite}  icons

@@ -11,8 +11,11 @@
 //         - {sound}  cursor_move_sfx
 //         - {sound}  cursor_change_sfx
 //         - {sound}  cursor_confirm_sfx
+//				 - {boolean} use_control_icons
+//				 - {Array.<Sprite>} keyboard_icons
+//				 - {Array.<Sprite>} gamepad_icons
 function grid_menu_init(_config) {
-	self.menu_base_init(_config.player_controller, _config.font, _config.cursor_spr);
+	self.menu_base_init(_config);
 	
 	column_width = _config.column_width;
 	view_width = _config.view_width;

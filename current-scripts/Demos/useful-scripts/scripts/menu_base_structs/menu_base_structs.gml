@@ -194,7 +194,33 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 		}
 	}
 	
-	function get_graphic_index(_control_type, _index) {}
+	function get_icon_index(_control_type, _index) {
+		if (_control_type == CONTROL_TYPE.KEYBOARD_AND_MOUSE) {
+			var _icons = parent_menu.keyboard_icons[parent_menu.keyboard_icons_index];
+			if (_index >= array_length(kbm_bindings)) {
+				return sprite_get_number(_icons) - 1;
+			} else if (discovery_binding_info
+				&& discovery_binding_info.control_type == _control_type
+				&& discovery_binding_info.control_index == _index) {
+				return sprite_get_number(_icons) - 2;
+			} else {
+				return get_keyboard_icon_index(kbm_bindings[_index], _icons);
+			}
+		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
+			var _icons = parent_menu.gamepad_icons[parent_menu.gamepad_icons_index];
+			if (_index >= array_length(gamepad_bindings)) {
+				return sprite_get_number(_icons) - 1;
+			} else if (discovery_binding_info
+				&& discovery_binding_info.control_type == _control_type
+				&& discovery_binding_info.control_index == _index) {
+				return sprite_get_number(_icons) - 2;
+			} else {
+				return get_gamepad_icon_index(gamepad_bindings[_index], _icons);
+			}
+		} else {
+			return 0;
+		}
+	}
 	
 	function verify_locked_bindings() {
 		var _len = array_length(kbm_bindings);

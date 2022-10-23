@@ -3,12 +3,15 @@
 //         - {real} view_height
 //				 - {}       player_controller
 //         - {font}   font
+//				 - {boolean} use_control_icons
+//				 - {Array.<Sprite>} keyboard_icons
+//				 - {Array.<Sprite>} gamepad_icons
 //         - {sprite} cursor_spr
 //         - {sound}  cursor_move_sfx
 //         - {sound}  cursor_change_sfx
 //         - {sound}  cursor_confirm_sfx
 function column_menu_init(_config) {
-	self.menu_base_init(_config.player_controller, _config.font, _config.cursor_spr);
+	self.menu_base_init(_config);
 	
   view_height = _config.view_height;
 	menu_font = _config.font;

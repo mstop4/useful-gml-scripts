@@ -22,6 +22,10 @@ menu.column_menu_init({
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: snd_menu_move,
 	cursor_confirm_sfx: -1,
+	use_control_icons: true,
+	keyboard_icons: [spr_keyboard_icons],
+	gamepad_icons: [spr_xbox_series_gamepad_icons],
+	control_icons_scale: 0.3
 });
 
 for (var i=CONTROLS.UP; i<=CONTROLS.RIGHT; i++) {

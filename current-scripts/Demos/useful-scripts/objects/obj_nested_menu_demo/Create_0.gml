@@ -9,6 +9,10 @@ submenu[0].column_menu_init({
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: snd_menu_move,
 	cursor_confirm_sfx: -1,
+	use_control_icons: false,
+	keyboard_icons: [],
+	gamepad_icons: [],
+	control_icons_scale: 1,
 });
 
 submenu[0].column_menu_add_selectable({ 
@@ -47,6 +51,10 @@ submenu[1].column_menu_init({
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: snd_menu_move,
 	cursor_confirm_sfx: -1,
+	use_control_icons: false,
+	keyboard_icons: [],
+	gamepad_icons: [],
+	control_icons_scale: 1,
 });
 
 submenu[1].column_menu_add_selectable({ 
@@ -89,6 +97,10 @@ main_menu.nested_menu_init({
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: snd_menu_move,
 	cursor_confirm_sfx: -1,
+	use_control_icons: false,
+	keyboard_icons: [],
+	gamepad_icons: [],
+	control_icons_scale: 1,
 });
 
 main_menu.nested_menu_add_submenu({

@@ -7,6 +7,9 @@
 //         - {sound}  cursor_move_sfx
 //         - {sound}  cursor_change_sfx
 //         - {sound}  cursor_confirm_sfx
+//				 - {boolean} use_control_icons
+//				 - {Array.<Sprite>} keyboard_icons
+//				 - {Array.<Sprite>} gamepad_icons
 function nested_menu_init(_config) {
 	self.column_menu_init(_config);
 	column_width = _config.column_width;

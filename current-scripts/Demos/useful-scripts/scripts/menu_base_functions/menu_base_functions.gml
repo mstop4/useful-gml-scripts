@@ -1,16 +1,27 @@
-/// @func  menu_base_init(player_controller, menu_font, cursor_spr)
-/// @param {} player_controller
-/// @param {Font} menu_font
-/// @param {Sprite} cursor_spr
-function menu_base_init(_player_controller, _menu_font, _cursor_spr) {
-	player_controller = _player_controller;
-	control_state = new MenuControlState(_player_controller);
+/// @func  menu_base_init(config)
+/// @param {Struct} config
+///								 - {} player_controller
+///								 - {Font} font
+///								 - {Sprite} cursor_spr
+///								 - {boolean} use_control_icons
+///								 - {Array.<Sprite>} keyboard_icons
+///								 - {Array.<Sprite>} gamepad_icons
+///								 - {number} control_icons_scale
+function menu_base_init(_config) {
+	player_controller = _config.player_controller;
+	control_state = new MenuControlState(_config.player_controller);
 	var _old_font = draw_get_font();
-	draw_set_font(_menu_font);
+	draw_set_font(_config.font);
 	item_height = string_height("Ij");
-	cursor_width = sprite_get_width(_cursor_spr);
-	cursor_height = sprite_get_height(_cursor_spr);
+	cursor_width = sprite_get_width(_config.cursor_spr);
+	cursor_height = sprite_get_height(_config.cursor_spr);
 	draw_set_font(_old_font);
+	use_control_icons = _config.use_control_icons;
+	keyboard_icons = _config.keyboard_icons;
+	gamepad_icons = _config.gamepad_icons;
+	keyboard_icons_index = 0;
+	gamepad_icons_index = 0;
+	control_icons_scale = _config.control_icons_scale;
 }
 
 /// @func  handle_selectable_confirm(item)
@@ -184,13 +195,20 @@ function menu_base_draw_item(_item, _x, _y) {
 		
 		// Draw keyboard bindings
 		for (var i=0; i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; i++) {
-			var _item_value = _item.get_text_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
-			if (_item.locked_kbm_bindings[i]) {
-				draw_set_colour(c_gray);
+			if (use_control_icons) {
+				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
+				var _blend = _item.locked_kbm_bindings[i] ? c_grey : c_white;
+				draw_sprite_ext(keyboard_icons[keyboard_icons_index], _item_icon_index, _cur_x, _y, control_icons_scale, control_icons_scale, 0, _blend, 1);
 			} else {
-				draw_set_colour(c_white);
+				var _item_value = _item.get_text_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
+				if (_item.locked_kbm_bindings[i]) {
+					draw_set_colour(c_gray);
+				} else {
+					draw_set_colour(c_white);
+				}
+				draw_text(_cur_x, _y, _item_value);
 			}
-			draw_text(_cur_x, _y, _item_value);
+
 			if (discovery_mode != MENU_DISCOVERY_MODE.NONE
 				&& active_key_config == _item
 				&& _cur_binding_index == _item.current_binding_index) {
@@ -205,14 +223,21 @@ function menu_base_draw_item(_item, _x, _y) {
 		
 		// Draw gamepad bindings
 		for (var i=0; i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; i++) {
-			var _item_value = _item.get_text_value(CONTROL_TYPE.GAMEPAD, i);
-			if (_item.locked_gamepad_bindings[i]) {
-				draw_set_colour(c_gray);
+			if (use_control_icons) {
+				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.GAMEPAD, i);
+				var _blend = _item.locked_gamepad_bindings[i] ? c_grey : c_white;
+				draw_sprite_ext(gamepad_icons[gamepad_icons_index], _item_icon_index, _cur_x, _y, control_icons_scale, control_icons_scale, 0, _blend, 1);
 			} else {
-				draw_set_colour(c_white);
-			}			
+				var _item_value = _item.get_text_value(CONTROL_TYPE.GAMEPAD, i);
+				if (_item.locked_gamepad_bindings[i]) {
+					draw_set_colour(c_gray);
+				} else {
+					draw_set_colour(c_white);
+				}			
 			
-			draw_text(_cur_x, _y, _item_value);
+				draw_text(_cur_x, _y, _item_value);
+			}
+			
 			if (discovery_mode != MENU_DISCOVERY_MODE.NONE
 				&& active_key_config == _item
 				&& _cur_binding_index == _item.current_binding_index) {

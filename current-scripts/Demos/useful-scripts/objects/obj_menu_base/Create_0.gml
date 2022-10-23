@@ -3,6 +3,10 @@ enabled = true;
 item_height = 1;
 cursor_width = 1;
 cursor_height = 1;
+use_control_icons = false;
+keyboard_icons = [];
+gamepad_icons = [];
+control_icons_scale = 1;
 
 discovery_mode = MENU_DISCOVERY_MODE.NONE;
 active_key_config = noone;

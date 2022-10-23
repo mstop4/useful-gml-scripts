@@ -44,6 +44,10 @@ menu.column_menu_init({
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: -1,
 	cursor_confirm_sfx: -1,
+	use_control_icons: false,
+	keyboard_icons: [],
+	gamepad_icons: [],
+	control_icons_scale: 1,
 });
 menu.line_spacing = 8;
 
