@@ -1,23 +1,44 @@
-if (keyboard_check_pressed(vk_anykey)) {
-	if (active_key_config != noone) {
-		self.handle_key_config_change(active_key_config);
-	}
-}
-
 if (!enabled) exit;
 
 control_state.poll_input();
 
+if (active_key_config != noone && discovery_mode == MENU_DISCOVERY_MODE.DISCOVERING) {
+	self.handle_key_config_discovery();
+	exit;
+}
+
 if (control_state.pressed_state[MENU_CONTROLS.UP]) {
-	pos = wrap(pos-1, 0, num_items);
-	self.column_menu_update_view();	
-	audio_play_sound(cursor_move_sfx, 1, false);
+	if (active_key_config == noone) {
+		var _cur_pos = pos;
+		var _item = -1;
+	
+		do {
+			pos = wrap(pos-1, 0, num_items);
+			_item = items[| pos];
+		} until ((is_struct(_item)
+			&& ds_list_find_index(_item.types, "divider") == -1)
+			|| _cur_pos == pos)
+		
+		self.column_menu_update_view();	
+		audio_play_sound(cursor_move_sfx, 1, false);
+	}
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
-	pos = wrap(pos+1, 0, num_items);
-	self.column_menu_update_view();	
-	audio_play_sound(cursor_move_sfx, 1, false);
+	if (active_key_config == noone) {
+		var _cur_pos = pos;
+		var _item = -1;
+	
+		do {
+			pos = wrap(pos+1, 0, num_items);
+			_item = items[| pos];
+		} until ((is_struct(_item)
+			&& ds_list_find_index(_item.types, "divider") == -1)
+			|| _cur_pos == pos)		
+		
+		self.column_menu_update_view();	
+		audio_play_sound(cursor_move_sfx, 1, false);
+	}
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {
@@ -25,6 +46,10 @@ if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {
 
 	if (ds_list_find_index(_item.types, "spinner") != -1)
 		self.handle_spinner_change(_item, -1);
+		
+	else if (ds_list_find_index(_item.types, "keyconfig") != -1
+		&& active_key_config == _item)
+		self.handle_key_config_select(_item, -1);
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.RIGHT]) {
@@ -32,6 +57,10 @@ if (control_state.pressed_state[MENU_CONTROLS.RIGHT]) {
 
 	if (ds_list_find_index(_item.types, "spinner") != -1)
 		self.handle_spinner_change(_item, 1);
+		
+	else if (ds_list_find_index(_item.types, "keyconfig") != -1
+		&& active_key_config == _item)
+		self.handle_key_config_select(_item, 1);
 }
 
 if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
@@ -44,5 +73,19 @@ if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
 		self.handle_selectable_confirm(_item);
 		
 	else if (ds_list_find_index(_item.types, "keyconfig") != -1)
-		self.handle_key_config_change(_item);
+		self.handle_key_config_confirm(_item);
+}
+
+if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
+	var _item = items[| pos];	
+		
+	if (ds_list_find_index(_item.types, "keyconfig") != -1)
+		self.handle_key_config_cancel();
+}
+
+if (control_state.pressed_state[MENU_CONTROLS.DELETE_BINDING]) {
+	var _item = items[| pos];	
+		
+	if (ds_list_find_index(_item.types, "keyconfig") != -1)
+		self.handle_key_config_delete(_item);
 }

@@ -1,11 +1,18 @@
+my_player = inst_control_manager.get_player(0);
+
 menu = instance_create_layer(32, 64, layer, obj_column_menu);
 menu.column_menu_init({
+	player_controller: my_player,
 	font: fnt_demo,
 	view_height: 0,
 	cursor_spr: spr_arrow, 
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: snd_menu_move,
 	cursor_confirm_sfx: -1,
+	use_control_icons: false,
+	keyboard_icons: [],
+	gamepad_icons: [],
+	control_icons_scale: 1,
 });
 
 menu.column_menu_add_selectable({ 

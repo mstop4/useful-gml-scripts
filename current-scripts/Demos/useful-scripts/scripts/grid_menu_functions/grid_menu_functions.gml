@@ -5,13 +5,17 @@
 //		     - {real}   view_width
 //         - {real}   view_height
 //				 - {number} column_width
+//				 - {}       player_controller
 //         - {font}   font
 //         - {sprite} cursor_spr
 //         - {sound}  cursor_move_sfx
 //         - {sound}  cursor_change_sfx
 //         - {sound}  cursor_confirm_sfx
+//				 - {boolean} use_control_icons
+//				 - {Array.<Sprite>} keyboard_icons
+//				 - {Array.<Sprite>} gamepad_icons
 function grid_menu_init(_config) {
-	self.menu_base_init(_config.font, _config.cursor_spr);
+	self.menu_base_init(_config);
 	
 	column_width = _config.column_width;
 	view_width = _config.view_width;
@@ -132,16 +136,35 @@ function grid_menu_add_spinner(_x, _y, _config) {
 /// @param y
 /// @param config 
 //         - {string}   label
-//         - {array}    inital_keycode
-//         - {function} on_confirm_func
-//         - {array}    on_confirm_args
+//				 - {CONTROLS} control
+//         - {array}    initial_kbm_bindings
+//         - {array}    initial_gamepad_bindings
+//         - {function} on_change_func
+//         - {array}    on_change_args
 //         - {boolean}  silent_on_confirm
+//         - {boolean}  silent_on_change
 function grid_menu_add_key_config(_x, _y, _config) {
 	if (_x < 0 || _x >= ds_grid_width(items)
 		|| _y < 0 || _x >= ds_grid_height(items))
 			return;
 			
 	var _new = new MenuKeyConfig(_config);
+	_new.parent_menu = self;
+	items[# _x, _y] = _new;
+	return _new;
+}
+
+/// @param grid_menu_add_divider(x, y, config)
+/// @param x
+/// @param y
+/// @param config 
+//         - {string}   label
+function grid_menu_add_divider(_x, _y, _config) {
+	if (_x < 0 || _x >= ds_grid_width(items)
+		|| _y < 0 || _x >= ds_grid_height(items))
+			return;
+			
+	var _new = new MenuDivider(_config);
 	_new.parent_menu = self;
 	items[# _x, _y] = _new;
 	return _new;

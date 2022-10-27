@@ -1,11 +1,15 @@
 /// @func  nested_menu_init(config)
 /// @param config
+//         - {}       player_controller
 //         - {font}   font
 //				 - {number} column_width
 //         - {sprite} cursor_spr
 //         - {sound}  cursor_move_sfx
 //         - {sound}  cursor_change_sfx
 //         - {sound}  cursor_confirm_sfx
+//				 - {boolean} use_control_icons
+//				 - {Array.<Sprite>} keyboard_icons
+//				 - {Array.<Sprite>} gamepad_icons
 function nested_menu_init(_config) {
 	self.column_menu_init(_config);
 	column_width = _config.column_width;

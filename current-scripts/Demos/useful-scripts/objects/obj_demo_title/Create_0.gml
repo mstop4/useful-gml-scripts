@@ -10,6 +10,7 @@ rooms = [
 	room_column_menu_demo,
 	room_grid_menu_demo,
 	room_nested_menu_demo,
+	room_key_config_menu_demo,
 	room_strings_demo,
 	room_web_demo,
 	room_system_info
@@ -28,6 +29,7 @@ room_names = [
 	"Column Menu",
 	"Grid Menu",
 	"Nested Menu",
+	"Control Config Menu",
 	"Strings",
 	"Web",
 	"System Info"
@@ -35,12 +37,17 @@ room_names = [
 
 menu = instance_create_layer(32, 64, layer, obj_column_menu);
 menu.column_menu_init({
+	player_controller: inst_control_manager.get_player(0),
 	font: fnt_demo,
 	view_height: 0,
 	cursor_spr: spr_arrow, 
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: -1,
 	cursor_confirm_sfx: -1,
+	use_control_icons: false,
+	keyboard_icons: [],
+	gamepad_icons: [],
+	control_icons_scale: 1,
 });
 menu.line_spacing = 8;
 
