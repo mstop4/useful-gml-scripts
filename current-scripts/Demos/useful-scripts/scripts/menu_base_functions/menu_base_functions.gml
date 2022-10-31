@@ -255,11 +255,11 @@ function menu_base_draw_item(_item, _x, _y) {
 }
 
 function menu_switch(_next_menu, _on_switch_cb, _on_switch_cb_args) {
-	enabled = false;
 	self.menu_fade_out(_next_menu, _on_switch_cb, _on_switch_cb_args);
 }
 
 function menu_fade_out(_next_menu, _on_end_cb, _on_end_cb_args) {
+	enabled = false;
 	next_menu = _next_menu;
 	on_fade_out_end = asset_get_index(_on_end_cb);
 	on_fade_out_end_args = _on_end_cb_args;
@@ -269,6 +269,7 @@ function menu_fade_out(_next_menu, _on_end_cb, _on_end_cb_args) {
 }
 
 function menu_fade_in() {
+	enabled = false;
 	visible = true;
 	menu_alpha.v = 0;
 	menu_alpha.d = 1/menu_fade_time;
