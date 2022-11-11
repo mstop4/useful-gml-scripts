@@ -10,3 +10,4 @@ for (var i=0; i<num_items; i++) {
 if (enabled) {
 	draw_sprite(cursor_spr, 0, x, y + (item_height + line_spacing) * pos + item_height / 2);
 }
+draw_set_alpha(1);

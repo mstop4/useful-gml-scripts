@@ -11,3 +11,4 @@ for (var i=view_area.x; i<=view_area.y; i++) {
 if (enabled) {
 	draw_sprite(cursor_spr, 0, x, y + (item_height + line_spacing) * (pos - view_area.x) + item_height / 2);
 }
+draw_set_alpha(1);

@@ -18,3 +18,4 @@ if (enabled) {
 		y + (item_height + line_spacing) * (pos.y - view_area.top) + item_height / 2
 	);
 }
+draw_set_alpha(1);
