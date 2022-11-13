@@ -98,7 +98,7 @@ function grid_menu_get_item_by_label(_menu, _label) {
 //         - {boolean}  silent_on_confirm
 function grid_menu_add_selectable(_x, _y, _config) {
 	if (_x < 0 || _x >= ds_grid_width(items)
-		|| _y < 0 || _x >= ds_grid_height(items))
+		|| _y < 0 || _y >= ds_grid_height(items))
 			return;
 	
 	var _new = new MenuSelectable(_config);
@@ -122,7 +122,7 @@ function grid_menu_add_selectable(_x, _y, _config) {
 //         - {boolean}  silent_on_change
 function grid_menu_add_spinner(_x, _y, _config) {
 	if (_x < 0 || _x >= ds_grid_width(items)
-		|| _y < 0 || _x >= ds_grid_height(items))
+		|| _y < 0 || _y >= ds_grid_height(items))
 			return;
 	
 	var _new = new MenuSpinner(_config);
@@ -145,7 +145,7 @@ function grid_menu_add_spinner(_x, _y, _config) {
 //         - {boolean}  silent_on_change
 function grid_menu_add_key_config(_x, _y, _config) {
 	if (_x < 0 || _x >= ds_grid_width(items)
-		|| _y < 0 || _x >= ds_grid_height(items))
+		|| _y < 0 || _y >= ds_grid_height(items))
 			return;
 			
 	var _new = new MenuKeyConfig(_config);
@@ -161,7 +161,7 @@ function grid_menu_add_key_config(_x, _y, _config) {
 //         - {string}   label
 function grid_menu_add_divider(_x, _y, _config) {
 	if (_x < 0 || _x >= ds_grid_width(items)
-		|| _y < 0 || _x >= ds_grid_height(items))
+		|| _y < 0 || _y >= ds_grid_height(items))
 			return;
 			
 	var _new = new MenuDivider(_config);
