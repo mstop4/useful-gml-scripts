@@ -6,9 +6,9 @@ for (var i=view_area.left; i<=view_area.right; i++) {
 
 	for (var j=view_area.top; j<=view_area.bottom; j++) {
 		var _item = items[# i, j];
-		if (!is_struct(_item)) continue;
-
-		self.menu_base_draw_item(_item, _x, _y);
+		if (is_struct(_item)) {
+			self.menu_base_draw_item(_item, _x, _y);
+		}
 		_y += item_height + line_spacing;
 	}
 }
