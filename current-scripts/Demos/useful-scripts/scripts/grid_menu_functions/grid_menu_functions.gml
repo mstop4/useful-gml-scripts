@@ -28,6 +28,8 @@ function grid_menu_init(_config) {
 	cursor_confirm_sfx = _config.cursor_confirm_sfx;
 	
 	ds_grid_resize(items, _config.width, _config.height);
+	items_width = _config.width;
+	items_height = _config.height;
 	
 	view_area.left = 0;
 	view_area.right = view_width < 1

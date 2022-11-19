@@ -92,4 +92,4 @@ menu.column_menu_add_selectable({
 });
 
 menu.view_scroll_arrows_margin = 24;
-menu.view_scroll_arrows_x = 100;
+menu.view_scroll_arrows_x = 68;
