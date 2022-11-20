@@ -24,6 +24,16 @@ function menu_base_init(_config) {
 	control_icons_scale = _config.control_icons_scale;
 }
 
+function menu_base_start_scroll_up() {
+	view_scroll_progress_y.v = 1;
+	view_scroll_progress_y.d = -1/view_scroll_duration;
+}
+
+function menu_base_start_scroll_down() {
+	view_scroll_progress_y.v = -1;
+	view_scroll_progress_y.d = 1/view_scroll_duration;
+}
+
 /// @func  handle_selectable_confirm(item)
 /// @param {MenuSelectable} item
 function handle_selectable_confirm(_item) {

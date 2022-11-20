@@ -24,15 +24,20 @@ function column_menu_init(_config) {
 
 /// @func column_menu_update_view()
 function column_menu_update_view() {
+	var _changed = false;
+
 	if (view_height > 0) {
 		if (pos < view_area.x) {
 			view_area.x = pos;
 			view_area.y = pos + view_height - 1;
+			_changed = true;
 		} else if (pos > view_area.y) {
 			view_area.y = pos;
 			view_area.x = pos - (view_height - 1);
+			_changed = true;
 		}
 	}
+	return _changed;
 }
 
 /// @func column_menu_update_view_area()
