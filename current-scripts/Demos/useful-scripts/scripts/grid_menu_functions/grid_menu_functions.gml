@@ -43,15 +43,50 @@ function grid_menu_init(_config) {
 		: _config.view_height - 1;
 }
 
+function grid_menu_start_scroll_up() {
+	view_scroll_progress_x.v = 0;
+	view_scroll_progress_x.d = 0;
+	view_scroll_progress_y.v = 1;
+	view_scroll_progress_y.d = -1/view_scroll_duration;
+}
+
+function grid_menu_start_scroll_down() {
+	view_scroll_progress_x.v = 0;
+	view_scroll_progress_x.d = 0;
+	view_scroll_progress_y.v = -1;
+	view_scroll_progress_y.d = 1/view_scroll_duration;
+}
+
+function grid_menu_start_scroll_left() {
+	view_scroll_progress_x.v = 1;
+	view_scroll_progress_x.d = -1/view_scroll_duration;
+	view_scroll_progress_y.v = 0;
+	view_scroll_progress_y.d = 0;
+}
+
+function grid_menu_start_scroll_right() {
+	view_scroll_progress_x.v = -1;
+	view_scroll_progress_x.d = 1/view_scroll_duration;
+	view_scroll_progress_y.v = 0;
+	view_scroll_progress_y.d = 0;
+}
+
 /// @func grid_menu_update_view()
 function grid_menu_update_view() {
+	var _changed = {
+		x: false,
+		y: false,
+	};	
+	
 	if (view_height > 0) {
 		if (pos.y < view_area.top) {
 			view_area.top = pos.y;
 			view_area.bottom = pos.y + view_height - 1;
+			_changed.y = true;
 		} else if (pos.y > view_area.bottom) {
 			view_area.bottom = pos.y;
 			view_area.top = pos.y - (view_height - 1);
+			_changed.y = true;
 		}
 	}
 
@@ -59,11 +94,15 @@ function grid_menu_update_view() {
 		if (pos.x < view_area.left) {
 			view_area.left = pos.x;
 			view_area.right = pos.x + view_height - 1;
+			_changed.x = true;
 		} else if (pos.x > view_area.right) {
 			view_area.right = pos.x;
 			view_area.left = pos.x - (view_height - 1);
+			_changed.x = true;
 		}
 	}
+	
+	return _changed;
 }
 
 /// @func grid_menu_get_item_by_index(menu, x, y)

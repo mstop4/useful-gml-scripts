@@ -33,7 +33,9 @@
   "properties": [
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"view_height","varType":1,"value":"0","rangeEnabled":false,"rangeMin":0.0,"rangeMax":10.0,"listItems":[],"multiselect":false,"filters":[],},
   ],
-  "overriddenProperties": [],
+  "overriddenProperties": [
+    {"resourceType":"GMOverriddenProperty","resourceVersion":"1.0","name":"","propertyId":{"name":"view_scroll_duration","path":"objects/obj_menu_base/obj_menu_base.yy",},"objectId":{"name":"obj_menu_base","path":"objects/obj_menu_base/obj_menu_base.yy",},"value":"5",},
+  ],
   "parent": {
     "name": "Column Menu",
     "path": "folders/Useful Script Library/Components/Menu System/Column Menu.yy",

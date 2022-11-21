@@ -19,8 +19,8 @@ if (control_state.pressed_state[MENU_CONTROLS.UP]) {
 			&& ds_list_find_index(_item.types, "divider") == -1)
 			|| _cur_pos == pos.y)		
 
-		self.grid_menu_update_view();
-
+		var _should_scroll = self.grid_menu_update_view().y && (pos.y < _cur_pos);
+		if (_should_scroll) self.grid_menu_start_scroll_up();
 		audio_play_sound(cursor_move_sfx, 1, false);
 	}
 }
@@ -37,8 +37,8 @@ if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
 			&& ds_list_find_index(_item.types, "divider") == -1)
 			|| _cur_pos == pos.y)		
 	
-		self.grid_menu_update_view();
-
+		var _should_scroll = self.grid_menu_update_view().y && (pos.y > _cur_pos);
+		if (_should_scroll) self.grid_menu_start_scroll_down();
 		audio_play_sound(cursor_move_sfx, 1, false);
 	}
 }
@@ -67,7 +67,8 @@ if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {
 			&& ds_list_find_index(_item.types, "divider") == -1)
 			|| _cur_pos == pos.x)		
 	
-	self.grid_menu_update_view();
+	var _should_scroll = self.grid_menu_update_view().x && (pos.x < _cur_pos);
+	if (_should_scroll) self.grid_menu_start_scroll_left();
 	audio_play_sound(cursor_move_sfx, 1, false);
 }
 
@@ -95,7 +96,8 @@ if (control_state.pressed_state[MENU_CONTROLS.RIGHT]) {
 			&& ds_list_find_index(_item.types, "divider") == -1)
 			|| _cur_pos == pos.x)		
 	
-	self.grid_menu_update_view();
+	var _should_scroll = self.grid_menu_update_view().x && (pos.x > _cur_pos);
+	if (_should_scroll) self.grid_menu_start_scroll_right();
 	audio_play_sound(cursor_move_sfx, 1, false);
 }
 
