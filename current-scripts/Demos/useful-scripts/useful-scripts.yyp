@@ -167,6 +167,7 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Column Menu","folderPath":"folders/Useful Script Library/Components/Menu System/Column Menu.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Grid Menu","folderPath":"folders/Useful Script Library/Components/Menu System/Grid Menu.yy","order":2,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Nested Menu","folderPath":"folders/Useful Script Library/Components/Menu System/Nested Menu.yy","order":3,},
+    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Nudger","folderPath":"folders/Useful Script Library/Components/Nudger.yy","order":5,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Text Object","folderPath":"folders/Useful Script Library/Components/Text Object.yy","order":4,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Standalone","folderPath":"folders/Useful Script Library/Standalone.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Input","folderPath":"folders/Useful Script Library/Standalone/Input.yy","order":4,},
@@ -174,7 +175,6 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Easings","folderPath":"folders/Useful Script Library/Standalone/Math/Easings.yy","order":1,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Geometry","folderPath":"folders/Useful Script Library/Standalone/Math/Geometry.yy","order":0,},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Tweens","folderPath":"folders/Useful Script Library/Standalone/Math/Tweens.yy","order":4,},
-    {"resourceType":"GMFolder","resourceVersion":"1.0","name":"Nudger","folderPath":"folders/Useful Script Library/Components/Nudger.yy","order":5,},
   ],
   "AudioGroups": [
     {"resourceType":"GMAudioGroup","resourceVersion":"1.3","name":"audiogroup_default","targets":-1,},
