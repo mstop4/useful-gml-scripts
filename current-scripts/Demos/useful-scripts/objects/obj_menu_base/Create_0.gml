@@ -7,6 +7,7 @@ use_control_icons = false;
 keyboard_icons = [];
 gamepad_icons = [];
 control_icons_scale = 1;
+binding_icons_y_offset = -12;
 
 discovery_mode = MENU_DISCOVERY_MODE.NONE;
 active_key_config = noone;
