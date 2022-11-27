@@ -91,7 +91,7 @@ main_menu = instance_create_layer(32, 64, layer, obj_nested_menu);
 main_menu.nested_menu_init({
 	player_controller: inst_control_manager.get_player(0),
 	font: fnt_demo,
-	view_height: 0,
+	view_height: 1,
 	column_width: 192,
 	cursor_spr: spr_arrow, 
 	cursor_move_sfx: snd_menu_move,
@@ -118,3 +118,6 @@ main_menu.nested_menu_add_submenu({
 	on_confirm_args: ["Bar"],
 	silent_on_confirm: false
 });
+
+main_menu.view_scroll_arrows_margin = 24;
+main_menu.view_scroll_arrows_x = 68;

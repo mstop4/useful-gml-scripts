@@ -73,5 +73,6 @@ function nested_menu_add_submenu(_config) {
 	_new.submenu.visible = false;
 	_new.submenu.x = self.x + self.column_width;
 	_new.submenu.y = self.y;
+	column_menu_update_view_area();
 	return _new;
 }

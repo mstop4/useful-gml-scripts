@@ -19,7 +19,8 @@ if (control_state.pressed_state[MENU_CONTROLS.UP]) {
 			&& ds_list_find_index(_item.types, "divider") == -1)
 			|| _cur_pos == pos)
 		
-		self.column_menu_update_view();	
+		var _should_scroll = self.column_menu_update_view() && (pos < _cur_pos);
+		if (_should_scroll) self.menu_base_start_scroll_up();
 		audio_play_sound(cursor_move_sfx, 1, false);
 	}
 }
@@ -36,7 +37,8 @@ if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
 			&& ds_list_find_index(_item.types, "divider") == -1)
 			|| _cur_pos == pos)		
 		
-		self.column_menu_update_view();	
+		var _should_scroll = self.column_menu_update_view() && (pos > _cur_pos);
+		if (_should_scroll) self.menu_base_start_scroll_down();
 		audio_play_sound(cursor_move_sfx, 1, false);
 	}
 }

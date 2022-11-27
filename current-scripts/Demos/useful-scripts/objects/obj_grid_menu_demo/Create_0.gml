@@ -3,10 +3,10 @@ my_player = inst_control_manager.get_player(0);
 menu = instance_create_layer(32, 64, layer, obj_grid_menu);
 menu.grid_menu_init({
 	player_controller: my_player,
-	width: 2,
+	width: 3,
 	height: 3,
-	view_width: 0,
-	view_height: 0,
+	view_width: 2,
+	view_height: 2,
 	column_width: 80,
 	font: fnt_demo,
 	use_control_icons: false,
@@ -56,3 +56,42 @@ menu.grid_menu_add_selectable(1, 1, {
 	on_confirm_args: ["Qux"],
 	silent_on_confirm: false
 });
+
+menu.grid_menu_add_selectable(2, 0, { 
+	label: "Boo",
+	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_args: ["Boo"],
+	silent_on_confirm: false
+});
+
+menu.grid_menu_add_selectable(2, 1, { 
+	label: "Far",
+	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_args: ["Far"],
+	silent_on_confirm: false
+});
+
+menu.grid_menu_add_selectable(2, 2, { 
+	label: "Qaz",
+	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_args: ["Qaz"],
+	silent_on_confirm: false
+});
+
+menu.grid_menu_add_selectable(0, 2, { 
+	label: "Bux",
+	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_args: ["Bux"],
+	silent_on_confirm: false
+});
+
+menu.grid_menu_add_selectable(1, 2, { 
+	label: "Huh",
+	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_args: ["Huh"],
+	silent_on_confirm: false
+});
+
+menu.view_scroll_arrows_margin = 24;
+menu.view_scroll_arrows_x = 100;
+menu.view_scroll_arrows_y = 25;

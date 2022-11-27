@@ -4,7 +4,7 @@ menu = instance_create_layer(32, 64, layer, obj_column_menu);
 menu.column_menu_init({
 	player_controller: my_player,
 	font: fnt_demo,
-	view_height: 0,
+	view_height: 4,
 	cursor_spr: spr_arrow, 
 	cursor_move_sfx: snd_menu_move,
 	cursor_change_sfx: snd_menu_move,
@@ -16,7 +16,7 @@ menu.column_menu_init({
 });
 
 menu.column_menu_add_selectable({ 
-	label: "Foo",
+	label: "Item 1",
 	on_confirm_func: "menu_demo_on_confirm",
 	on_confirm_args: ["Foo"],
 	silent_on_confirm: false
@@ -33,7 +33,7 @@ menu.column_menu_add_selectable({
 //         - {boolean}  silent_on_change
 
 menu.column_menu_add_spinner({ 
-	label: "Bar",
+	label: "Item 2",
 	values: ["A", 1, "B", 2, "C", 3],
 	init_index: 0,
 	on_confirm_func: -1,
@@ -45,15 +45,51 @@ menu.column_menu_add_spinner({
 });
 
 menu.column_menu_add_selectable({ 
-	label: "Baz",
+	label: "Item 3",
 	on_confirm_func: "menu_demo_on_confirm",
 	on_confirm_args: ["Baz"],
 	silent_on_confirm: false
 });
 
 menu.column_menu_add_selectable({ 
-	label: "Qux",
+	label: "Item 4",
 	on_confirm_func: "menu_demo_on_confirm",
 	on_confirm_args: ["Qux"],
 	silent_on_confirm: false
 });
+
+menu.column_menu_add_selectable({ 
+	label: "Item 5",
+	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_args: ["Foo"],
+	silent_on_confirm: false
+});
+
+menu.column_menu_add_spinner({ 
+	label: "Item 6",
+	values: ["A", 1, "B", 2, "C", 3],
+	init_index: 0,
+	on_confirm_func: -1,
+	on_confirm_args: [],
+	on_change_func: -1,
+	on_change_args: [],
+	silent_on_confirm: false,
+	silent_on_change: false
+});
+
+menu.column_menu_add_selectable({ 
+	label: "Item 7",
+	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_args: ["Baz"],
+	silent_on_confirm: false
+});
+
+menu.column_menu_add_selectable({ 
+	label: "Item 8",
+	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_args: ["Qux"],
+	silent_on_confirm: false
+});
+
+menu.view_scroll_arrows_margin = 24;
+menu.view_scroll_arrows_x = 68;
