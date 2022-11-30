@@ -46,10 +46,11 @@ function array_is_subset(_a, _b) {
 /// @param {Array} array
 /// @param {any} value
 function array_find(_array, _value) {
-	array_foreach(_array, function(_element, _i) {
-		if (_element == _value) return _i;
-	});
-
+	var _len = array_length(_array);
+	for (var i=0; i<_len; i++) {
+		if (_array[i] == _value) return i;
+	}
+	
 	return -1;
 }
 
