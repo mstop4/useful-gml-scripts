@@ -23,7 +23,6 @@ for (var i=view_area.x; i<=view_area.y; i++) {
 		}
 
 		self.menu_base_draw_item(_item, _x, _y + _y_offset);
-		draw_set_alpha(menu_alpha.v);
 	}
 	_y += item_height + line_spacing;
 }
@@ -35,7 +34,6 @@ if (view_height > 0) {
 		if (is_struct(_item)) {
 			draw_set_alpha(abs(view_scroll_progress_y.v));
 			self.menu_base_draw_item(_item, _x, y - (item_height + line_spacing) + _y_offset);
-			draw_set_alpha(menu_alpha.v);
 		}
 	} else if (view_scroll_progress_y.v > 0 && view_area.y + 1 < num_items) {
 		// Scroll down last element
@@ -43,10 +41,11 @@ if (view_height > 0) {
 		if (is_struct(_item)) {
 			draw_set_alpha(abs(view_scroll_progress_y.v));
 			self.menu_base_draw_item(_item, _x, _y + _y_offset);
-			draw_set_alpha(menu_alpha.v);
 		}
 	}
 }
+
+draw_set_alpha(menu_alpha.v);
 
 if (enabled) {
 	draw_sprite(cursor_spr, 0, x, y + (item_height + line_spacing) * (pos - view_area.x) + item_height / 2 + _y_offset);
@@ -61,4 +60,3 @@ if (enabled) {
 		}
 	}
 }
-draw_set_alpha(menu_alpha.v);
