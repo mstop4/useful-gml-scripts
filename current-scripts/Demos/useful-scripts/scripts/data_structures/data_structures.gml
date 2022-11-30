@@ -40,12 +40,16 @@ function array_is_subset(_a, _b) {
 	return true;
 }
 
+/// @func array_find(array, value)
+/// @desc Finds a given value in an array and returns its index, if the value doesn't exists, returns -1
+///       Deprecated in favour of array_find_index
+/// @param {Array} array
+/// @param {any} value
 function array_find(_array, _value) {
-	var _len = array_length(_array);
-	for (var i=0; i<_len; i++) {
-		if (_array[i] == _value) return i;
-	}
-	
+	array_foreach(_array, function(_element, _i) {
+		if (_element == _value) return _i;
+	});
+
 	return -1;
 }
 
