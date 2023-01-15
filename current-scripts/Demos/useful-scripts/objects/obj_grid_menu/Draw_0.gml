@@ -25,6 +25,8 @@ for (var i=view_area.left; i<=view_area.right; i++) {
 				} else if (view_scroll_progress_x.v > 0 && i == view_area.left) {
 					// Scroll right first element
 					draw_set_alpha(1-abs(view_scroll_progress_x.v));
+				} else {
+					draw_set_alpha(1);
 				}
 			}
 		
@@ -35,6 +37,8 @@ for (var i=view_area.left; i<=view_area.right; i++) {
 				} else if (view_scroll_progress_y.v > 0 && j == view_area.top) {
 					// Scroll down first element
 					draw_set_alpha(1-abs(view_scroll_progress_y.v));
+				} else {
+					draw_set_alpha(1);
 				}
 			}
 		

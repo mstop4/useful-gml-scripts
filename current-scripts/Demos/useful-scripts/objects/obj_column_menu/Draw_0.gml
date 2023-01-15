@@ -19,6 +19,8 @@ for (var i=view_area.x; i<=view_area.y; i++) {
 			} else if (view_scroll_progress_y.v > 0 && i == view_area.x) {
 				// Scroll down first element
 				draw_set_alpha(1-abs(view_scroll_progress_y.v));
+			} else {
+				draw_set_alpha(1);
 			}
 		}
 
