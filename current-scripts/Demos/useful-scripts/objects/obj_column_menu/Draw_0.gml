@@ -20,7 +20,7 @@ for (var i=view_area.x; i<=view_area.y; i++) {
 				// Scroll down first element
 				draw_set_alpha(1-abs(view_scroll_progress_y.v));
 			} else {
-				draw_set_alpha(1);
+				draw_set_alpha(menu_alpha.v);
 			}
 		}
 
