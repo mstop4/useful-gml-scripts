@@ -85,9 +85,16 @@ function handle_spinner_change(_item, _delta) {
 /// @param {number} delta
 function handle_key_config_select(_item, _delta) {
 	var _num_values = KEYBOARD_MAX_BINDINGS_PER_CONTROL + GAMEPAD_MAX_BINDINGS_PER_CONTROL;
-	_item.current_binding_index = wrap(_item.current_binding_index+_delta, 0, _num_values);
-	
-	if (!_item.silent_on_change && audio_exists(cursor_change_sfx)) {
+	var _last_pressed = control_state.control_any_pressed();
+	var _binding_info;
+	var _original_value = _item.current_binding_index;
+
+	do {
+		_item.current_binding_index = wrap(_item.current_binding_index+_delta, 0, _num_values);
+		_binding_info = _item.get_binding_info();
+	} until (_item.current_binding_index == _original_value || _last_pressed.control_type == _binding_info.control_type)
+
+	if (_item.current_binding_index != _original_value && !_item.silent_on_change && audio_exists(cursor_change_sfx)) {
 		audio_play_sound(cursor_change_sfx, 1, false);
 	}
 }
@@ -95,14 +102,19 @@ function handle_key_config_select(_item, _delta) {
 /// @func  handle_key_config_confirm(item)
 /// @param {MenuKeyConfig} item
 function handle_key_config_confirm(_item) {
+	var _last_pressed = control_state.control_any_pressed();	
+	
 	if (discovery_mode == MENU_DISCOVERY_MODE.NONE) {
 		// Not selected
-		_item.current_binding_index = 0;
+		if (_last_pressed.control_type == CONTROL_TYPE.GAMEPAD) {
+			_item.current_binding_index = KEYBOARD_MAX_BINDINGS_PER_CONTROL;
+		} else {
+			_item.current_binding_index = 0;
+		}
 		discovery_mode = MENU_DISCOVERY_MODE.SELECTING;
 		self.active_key_config = _item;
 	} else if (discovery_mode == MENU_DISCOVERY_MODE.SELECTING) {
 		// Selecting
-		var _last_pressed = control_state.control_any_pressed();
 		var _binding_info = _item.get_binding_info();
 		
 		if (_last_pressed.control_type != _binding_info.control_type) return;		
