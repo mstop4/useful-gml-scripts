@@ -26,7 +26,7 @@ for (var i=view_area.left; i<=view_area.right; i++) {
 					// Scroll right first element
 					draw_set_alpha(1-abs(view_scroll_progress_x.v));
 				} else {
-					draw_set_alpha(menu_alpha.v);
+				draw_set_alpha(menu_alpha.v);
 				}
 			}
 		

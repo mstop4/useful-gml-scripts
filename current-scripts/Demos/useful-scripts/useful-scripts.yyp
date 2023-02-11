@@ -131,6 +131,7 @@
     {"id":{"name":"obj_key_config_menu_demo","path":"objects/obj_key_config_menu_demo/obj_key_config_menu_demo.yy",},"order":0,},
     {"id":{"name":"menu_base_functions","path":"scripts/menu_base_functions/menu_base_functions.yy",},"order":2,},
     {"id":{"name":"fnt_url","path":"fonts/fnt_url/fnt_url.yy",},"order":3,},
+    {"id":{"name":"fnt_menu_value","path":"fonts/fnt_menu_value/fnt_menu_value.yy",},"order":0,},
     {"id":{"name":"nested_menu_functions","path":"scripts/nested_menu_functions/nested_menu_functions.yy",},"order":1,},
     {"id":{"name":"tween_structs","path":"scripts/tween_structs/tween_structs.yy",},"order":0,},
     {"id":{"name":"spr_arrow","path":"sprites/spr_arrow/spr_arrow.yy",},"order":1,},

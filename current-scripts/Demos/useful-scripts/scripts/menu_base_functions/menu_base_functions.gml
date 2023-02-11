@@ -11,7 +11,7 @@ function menu_base_init(_config) {
 	player_controller = _config.player_controller;
 	control_state = new MenuControlState(_config.player_controller);
 	var _old_font = draw_get_font();
-	draw_set_font(_config.font);
+	draw_set_font(_config.label_font);
 	item_height = string_height("Ij");
 	cursor_width = sprite_get_width(_config.cursor_spr);
 	cursor_height = sprite_get_height(_config.cursor_spr);
@@ -202,18 +202,23 @@ function menu_base_draw_item(_item, _x, _y) {
 	switch (_type) {
 		case "item":
 		case "selectable":
+			draw_set_font(self.menu_label_font);
 			draw_text(_x, _y, _item.label);
 			break;
 			
 	case "spinner":
+		draw_set_font(self.menu_label_font);
 		draw_text(_x, _y, _item.label);
+		draw_set_font(self.menu_value_font);
 		draw_text(_x + label_width, _y, _item.get_value());
 		break;
 			
 	case "keyconfig":
+		draw_set_font(self.menu_label_font);
 		draw_text(_x, _y, _item.label);
 		var _cur_x = _x + label_width;
 		var _cur_binding_index = 0;
+		draw_set_font(self.menu_value_font);
 		
 		// Draw keyboard bindings
 		for (var i=0; i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; i++) {
