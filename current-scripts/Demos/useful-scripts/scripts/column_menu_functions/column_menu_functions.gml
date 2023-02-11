@@ -2,7 +2,8 @@
 /// @param config
 //         - {real} view_height
 //				 - {}       player_controller
-//         - {font}   font
+//         - {font}   label_font
+//         - {font}   value_font
 //				 - {boolean} use_control_icons
 //				 - {Array.<Sprite>} keyboard_icons
 //				 - {Array.<Sprite>} gamepad_icons
@@ -14,7 +15,8 @@ function column_menu_init(_config) {
 	self.menu_base_init(_config);
 	
   view_height = _config.view_height;
-	menu_font = _config.font;
+	menu_label_font = _config.label_font;
+	menu_value_font = _config.value_font;
 	cursor_spr = _config.cursor_spr;
 	cursor_padding = sprite_get_width(cursor_spr) + 16;
 	cursor_move_sfx = _config.cursor_move_sfx;

@@ -16,7 +16,8 @@ my_player.set_gamepad_slot(current_gamepad_index);
 menu = instance_create_layer(32, 96, layer, obj_column_menu);
 menu.column_menu_init({
 	player_controller: my_player,
-	font: fnt_demo,
+	label_font: fnt_demo,
+	value_font: fnt_menu_value,
 	view_height: 0,
 	cursor_spr: spr_arrow, 
 	cursor_move_sfx: snd_menu_move,
