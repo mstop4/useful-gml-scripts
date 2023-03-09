@@ -22,6 +22,18 @@ function menu_base_init(_config) {
 	keyboard_icons_index = 0;
 	gamepad_icons_index = 0;
 	control_icons_scale = _config.control_icons_scale;
+	keyboard_icons_width = array_map(keyboard_icons, function(_sprite) {
+		return sprite_get_width(_sprite);
+	});
+	gamepad_icons_width = array_map(gamepad_icons, function(_sprite) {
+		return sprite_get_width(_sprite);
+	});
+	keyboard_icons_half_height = array_map(keyboard_icons, function(_sprite) {
+		return sprite_get_height(_sprite) / 2;
+	});
+	gamepad_icons_half_height = array_map(gamepad_icons, function(_sprite) {
+		return sprite_get_height(_sprite) / 2;
+	});
 }
 
 function menu_base_start_scroll_up() {
@@ -37,6 +49,7 @@ function menu_base_start_scroll_down() {
 /// @func  handle_selectable_confirm(item)
 /// @param {MenuSelectable} item
 function handle_selectable_confirm(_item) {
+	if (!_item.enabled) return;
 	if (script_exists(_item.on_confirm_func)) {
 		script_execute(_item.on_confirm_func, _item.on_confirm_args);
 	}
@@ -49,6 +62,7 @@ function handle_selectable_confirm(_item) {
 /// @func  handle_spinner_confirm(item)
 /// @param {MenuSpinner} item
 function handle_spinner_confirm(_item) {
+	if (!_item.enabled) return;
 	if (script_exists(_item.on_confirm_func)) {
 		script_execute(_item.on_confirm_func, _item.cur_index, _item.values[_item.cur_index], _item.on_confirm_args);
 	}
@@ -62,6 +76,7 @@ function handle_spinner_confirm(_item) {
 /// @param {MenuSpinner} item
 /// @param {number} delta -1 or 1
 function handle_spinner_change(_item, _delta) {
+	if (!_item.enabled) return;
 	var _num_values = array_length(_item.values);
 	_item.cur_index = wrap(_item.cur_index+_delta, 0, _num_values);
 		
@@ -84,6 +99,7 @@ function handle_spinner_change(_item, _delta) {
 /// @param {MenuKeyConfig} item
 /// @param {number} delta
 function handle_key_config_select(_item, _delta) {
+	if (!_item.enabled) return;
 	var _num_values = KEYBOARD_MAX_BINDINGS_PER_CONTROL + GAMEPAD_MAX_BINDINGS_PER_CONTROL;
 	var _last_pressed = control_state.control_any_pressed();
 	var _binding_info;
@@ -102,6 +118,7 @@ function handle_key_config_select(_item, _delta) {
 /// @func  handle_key_config_confirm(item)
 /// @param {MenuKeyConfig} item
 function handle_key_config_confirm(_item) {
+	if (!_item.enabled) return;
 	var _last_pressed = control_state.control_any_pressed();	
 	
 	if (discovery_mode == MENU_DISCOVERY_MODE.NONE) {
@@ -127,7 +144,8 @@ function handle_key_config_confirm(_item) {
 }
 
 /// @func handle_key_config_cancel()
-function handle_key_config_cancel() {
+function handle_key_config_cancel(_item) {
+	if (!_item.enabled) return;
 	if (discovery_mode == MENU_DISCOVERY_MODE.SELECTING) {
 		discovery_mode = MENU_DISCOVERY_MODE.NONE;
 		self.active_key_config = noone;		
@@ -136,6 +154,7 @@ function handle_key_config_cancel() {
 
 /// @func handle_key_config_delete()
 function handle_key_config_delete(_item) {
+	if (!_item.enabled) return;
 	var _binding_info = _item.get_binding_info();
 	if (_binding_info.binding_locked) return;
 	
@@ -153,12 +172,16 @@ function handle_key_config_delete(_item) {
 	
 	_item[$ _binding_key][_control_index] = -1;
 	player_controller.remove_binding(_control_type, _item.control, _control_index);
-	
 	discovery_mode = MENU_DISCOVERY_MODE.NONE;
+	if (active_key_config) {
+		active_key_config.discovery_binding_info = false;
+	}
+	self.active_key_config = noone;
 }
 
 /// @func handle_key_config_discovery()
-function handle_key_config_discovery() {
+function handle_key_config_discovery(_item) {
+	if (!_item.enabled) return;
 	if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
 		discovery_mode = MENU_DISCOVERY_MODE.SELECTING;
 		active_key_config.discovery_binding_info = false;
@@ -198,6 +221,8 @@ function handle_key_config_discovery() {
 
 function menu_base_draw_item(_item, _x, _y) {
 	var _type = _item.types[| ds_list_size(_item.types)-1];
+	if (_item.enabled) draw_set_colour(c_white);
+	else draw_set_colour(c_gray);
 
 	switch (_type) {
 		case "item":
@@ -224,14 +249,21 @@ function menu_base_draw_item(_item, _x, _y) {
 		for (var i=0; i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; i++) {
 			if (use_control_icons) {
 				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
-				var _blend = _item.locked_kbm_bindings[i] ? c_grey : c_white;
-				draw_sprite_ext(keyboard_icons[keyboard_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, _blend, menu_alpha.v);
+				draw_sprite_ext(keyboard_icons[keyboard_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v);
+				if (_item.locked_kbm_bindings[i]) {
+					draw_sprite_ext(lock_sprite, 0,
+						_cur_x + keyboard_icons_width[keyboard_icons_index] * control_icons_scale + 24,
+						_y + (control_icons_y_offset + keyboard_icons_half_height[keyboard_icons_index]) * control_icons_scale,
+						control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v
+					);
+				}
 			} else {
 				var _item_value = _item.get_text_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
 				if (_item.locked_kbm_bindings[i]) {
 					draw_set_colour(c_gray);
 				} else {
-					draw_set_colour(c_white);
+					if (_item.enabled) draw_set_colour(c_white);
+					else draw_set_colour(c_gray);
 				}
 				draw_text(_cur_x, _y, _item_value);
 			}
@@ -252,14 +284,21 @@ function menu_base_draw_item(_item, _x, _y) {
 		for (var i=0; i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; i++) {
 			if (use_control_icons) {
 				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.GAMEPAD, i);
-				var _blend = _item.locked_gamepad_bindings[i] ? c_grey : c_white;
-				draw_sprite_ext(gamepad_icons[gamepad_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, _blend, menu_alpha.v);
+				draw_sprite_ext(gamepad_icons[gamepad_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v);
+				if (_item.locked_gamepad_bindings[i]) {
+						draw_sprite_ext(lock_sprite, 0,
+						_cur_x + gamepad_icons_width[gamepad_icons_index] * control_icons_scale + 24,
+						_y + (control_icons_y_offset + gamepad_icons_half_height[gamepad_icons_index]) * control_icons_scale,
+						control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v
+					);
+				}
 			} else {
 				var _item_value = _item.get_text_value(CONTROL_TYPE.GAMEPAD, i);
 				if (_item.locked_gamepad_bindings[i]) {
 					draw_set_colour(c_gray);
 				} else {
-					draw_set_colour(c_white);
+					if (_item.enabled) draw_set_colour(c_white);
+					else draw_set_colour(c_gray);
 				}			
 			
 				draw_text(_cur_x, _y, _item_value);
