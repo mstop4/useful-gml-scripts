@@ -50,6 +50,9 @@
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"cursor_confirm_sfx","filters":[
         "GMSound",
       ],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"0","varType":5,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"lock_sprite","filters":[
+        "GMSprite",
+      ],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"spr_lock","varType":5,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"menu_fade_time","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"60","varType":1,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"label_width","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"64","varType":0,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"binding_spacing","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"64","varType":0,},

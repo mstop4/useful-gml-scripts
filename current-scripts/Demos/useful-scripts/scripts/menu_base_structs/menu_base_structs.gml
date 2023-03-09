@@ -56,6 +56,11 @@ function MenuItem(_config) constructor {
 	ds_list_add(types, "item");
 	label = _config.label;
 	parent_menu = noone;
+	enabled = true;
+	
+	function set_enabled(_enabled) {
+		enabled = _enabled;
+	}
 	
 	function destroy() {
 		ds_list_destroy(types);

@@ -26,7 +26,7 @@ global.keyboard_icon_map = [
 	-1,
 	-1,
 	-1,
-	19,
+	18,
 	75,
 	-1,
 	-1,
