@@ -87,7 +87,6 @@
     {"name":"control_manager_structs","order":1,"path":"scripts/control_manager_structs/control_manager_structs.yy",},
     {"name":"menu_base_functions","order":2,"path":"scripts/menu_base_functions/menu_base_functions.yy",},
     {"name":"fnt_url","order":3,"path":"fonts/fnt_url/fnt_url.yy",},
-    {"name":"fnt_menu_value","order":4,"path":"fonts/fnt_menu_value/fnt_menu_value.yy",},
     {"name":"nested_menu_functions","order":1,"path":"scripts/nested_menu_functions/nested_menu_functions.yy",},
     {"name":"spr_arrow","order":1,"path":"sprites/spr_arrow/spr_arrow.yy",},
     {"name":"room_column_menu_demo","order":5,"path":"rooms/room_column_menu_demo/room_column_menu_demo.yy",},

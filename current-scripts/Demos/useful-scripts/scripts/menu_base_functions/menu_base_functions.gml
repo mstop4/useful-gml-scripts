@@ -55,7 +55,7 @@ function handle_selectable_confirm(_item) {
 	}
 
 	if (!_item.silent_on_confirm && audio_exists(cursor_confirm_sfx)) {
-		audio_play_sound(cursor_confirm_sfx, 1, false);
+		inst_audio_controller.play_sfx(cursor_confirm_sfx, 1, false);
 	}
 }
 
@@ -68,7 +68,7 @@ function handle_spinner_confirm(_item) {
 	}
 
 	if (!_item.silent_on_confirm && audio_exists(cursor_confirm_sfx)) {
-		audio_play_sound(cursor_confirm_sfx, 1, false);
+		inst_audio_controller.play_sfx(cursor_confirm_sfx, 1, false);
 	}
 }
 
@@ -91,7 +91,7 @@ function handle_spinner_change(_item, _delta) {
 	}
 		
 	if (!_item.silent_on_change && audio_exists(cursor_change_sfx)) {
-		audio_play_sound(cursor_change_sfx, 1, false);
+		inst_audio_controller.play_sfx(cursor_change_sfx, 1, false);
 	}
 }
 
@@ -111,7 +111,7 @@ function handle_key_config_select(_item, _delta) {
 	} until (_item.current_binding_index == _original_value || _last_pressed.control_type == _binding_info.control_type)
 
 	if (_item.current_binding_index != _original_value && !_item.silent_on_change && audio_exists(cursor_change_sfx)) {
-		audio_play_sound(cursor_change_sfx, 1, false);
+		inst_audio_controller.play_sfx(cursor_change_sfx, 1, false);
 	}
 }
 
@@ -235,7 +235,7 @@ function menu_base_draw_item(_item, _x, _y) {
 		draw_set_font(self.menu_label_font);
 		draw_text(_x, _y, _item.label);
 		draw_set_font(self.menu_value_font);
-		draw_text(_x + label_width, _y, _item.get_value());
+		draw_text(_x + label_width, _y + spinner_value_text_y_offset, _item.get_value());
 		break;
 			
 	case "keyconfig":
@@ -251,7 +251,7 @@ function menu_base_draw_item(_item, _x, _y) {
 				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
 				draw_sprite_ext(keyboard_icons[keyboard_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v);
 				if (_item.locked_kbm_bindings[i]) {
-					draw_sprite_ext(lock_sprite, 0,
+					draw_sprite_ext(spr_lock, 0,
 						_cur_x + keyboard_icons_width[keyboard_icons_index] * control_icons_scale + 24,
 						_y + (control_icons_y_offset + keyboard_icons_half_height[keyboard_icons_index]) * control_icons_scale,
 						control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v
@@ -286,7 +286,7 @@ function menu_base_draw_item(_item, _x, _y) {
 				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.GAMEPAD, i);
 				draw_sprite_ext(gamepad_icons[gamepad_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v);
 				if (_item.locked_gamepad_bindings[i]) {
-						draw_sprite_ext(lock_sprite, 0,
+						draw_sprite_ext(spr_lock, 0,
 						_cur_x + gamepad_icons_width[gamepad_icons_index] * control_icons_scale + 24,
 						_y + (control_icons_y_offset + gamepad_icons_half_height[gamepad_icons_index]) * control_icons_scale,
 						control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v
