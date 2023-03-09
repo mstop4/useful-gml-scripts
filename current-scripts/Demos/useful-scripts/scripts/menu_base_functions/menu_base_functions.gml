@@ -235,7 +235,7 @@ function menu_base_draw_item(_item, _x, _y) {
 		draw_set_font(self.menu_label_font);
 		draw_text(_x, _y, _item.label);
 		draw_set_font(self.menu_value_font);
-		draw_text(_x + label_width, _y, _item.get_value());
+		draw_text(_x + label_width, _y + spinner_value_text_y_offset, _item.get_value());
 		break;
 			
 	case "keyconfig":
