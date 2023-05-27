@@ -16,6 +16,6 @@ A library of more complex prefabs, such as a control input manager and menu syst
 
 ## Download
 
-For 2022.11 or newer runtime users: [v5.0.0](https://github.com/mstop4/useful-gml-scripts/releases/tag/5.0.0)
+For 2022.11 or newer runtime users: [v5.1.0](https://github.com/mstop4/useful-gml-scripts/releases/tag/5.1.0)
 
-For LTS runtime users: [v4.4.0](https://github.com/mstop4/useful-gml-scripts/releases/tag/4.4.0)
+For LTS runtime users: [v4.5.0](https://github.com/mstop4/useful-gml-scripts/releases/tag/4.5.0)
