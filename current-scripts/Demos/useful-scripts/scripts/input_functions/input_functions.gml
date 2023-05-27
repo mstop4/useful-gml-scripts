@@ -1,3 +1,23 @@
+function translate_native_to_js_keycode(_keycode) {
+	switch (os_type) {
+		case os_macosx:
+			if (_keycode == 222) return vk_single_quote;
+			else if (_keycode == 50) return vk_backtick;
+			else return _keycode;
+			break;
+			
+		case os_linux:
+			if (_keycode == 192) return vk_single_quote;
+			else if (_keycode == 223) return vk_backtick;
+			else return _keycode;
+			break;
+			
+		default:
+			// Windows, Web, etc.
+			return _keycode;
+	}
+}
+
 /// @func            keycode_to_string(keycode)
 /// @desc            converts keycode to name of key as a string
 /// @param {integer} keycode 
@@ -167,9 +187,10 @@ function keycode_to_string(_keycode) {
 /// @param {Sprite}  icons
 function get_keyboard_icon_index(_keycode, _icons) {
 	if (_keycode < 0) return sprite_get_number(_icons) - 1;
-	return global.keyboard_icon_map[_keycode] == -1
+	var _js_keycode = translate_native_to_js_keycode(_keycode);
+	return global.keyboard_icon_map[_js_keycode] == -1
 		? sprite_get_number(spr_keyboard_icons) - 1
-		: global.keyboard_icon_map[_keycode];
+		: global.keyboard_icon_map[_js_keycode];
 }
 
 /// @func            get_gamepad_icon_index(button_code, icons)
