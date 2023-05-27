@@ -87,15 +87,15 @@ function get_os_browser_string(_os_browser) {
 function get_steam_deck_info() {
 	var _result = {
 		is_on_steam_deck: false,
-		gamepad_index: -1,
+		gamepad_index: 0,
 	}
 	
-	// Check all gamepad slots for "Valve Streaming Controller"
+	// Check all gamepad slots for "Steam Virtual Gamepad"
 	var _num_devices = gamepad_get_device_count();
   for (var i = 0; i < _num_devices; i++;) {
     if (gamepad_is_connected(i)) {
       var _description = gamepad_get_description(i);
-      if (string_pos("Valve Streaming Gamepad", _description) != 0) {
+      if (string_pos("Steam Virtual Gamepad", _description) != 0) {
         _result.gamepad_index = i;
       }
     }
@@ -113,8 +113,7 @@ function get_steam_deck_info() {
   // Vendor should be "AMD"
   // Version should contain "Mesa"
 	// Renderer should be "AMD Custom GPU 0405"
-  if ( _result.gamepad_index >= 0
-		&& string_pos("AMD", _vendor) != 0
+  if (string_pos("AMD", _vendor) != 0
 		&& string_pos("Mesa", _version) != 0
     && string_pos("AMD Custom GPU 0405", _renderer) != 0) {
     _result.is_on_steam_deck = true;

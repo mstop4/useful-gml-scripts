@@ -1,1 +1,0 @@
-time_source_destroy(start_timer);

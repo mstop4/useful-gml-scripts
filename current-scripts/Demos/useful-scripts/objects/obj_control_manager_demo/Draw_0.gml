@@ -4,10 +4,16 @@ draw_text(16, 16, "Control Manager Demo");
 
 draw_text(640, 96, "Gamepads Supported: " + (gamepad_is_supported() ? "Yes" : "No"));
 draw_text(640, 128, "Gamepads Detected: " + string(num_controllers_connected));
-draw_text(640, 192, "Current Slot: " + string(current_gamepad_index + 1) + "/" + string(device_count));
+draw_text(640, 192, "Current Slot: " + string(current_gamepad_index) + "/" + string(device_count - 1));
 draw_text(640, 224, "Gamepad Connected: " + (gamepad_connected[current_gamepad_index] ? "Yes" : "No"));
 draw_text(640, 256, "GUID: " + gamepad_get_guid(current_gamepad_index));
 draw_text(640, 286, "Description: " + gamepad_get_description(current_gamepad_index));
+
+if (os_type == os_linux) {
+	draw_text(640, 320, "Is On Steam Deck: " + (inst_control_manager.is_on_steam_deck() ? "Yes" : "No"));
+	draw_text(640, 352, "Steam Deck Gamepad Index: " + string(inst_control_manager.get_steam_deck_gamepad_index()));
+}
+
 
 for (var i=0; i<num_controls; i++) {
 	var _pressed = my_player.get_control_state(i, CONTROL_STATE.HELD);
