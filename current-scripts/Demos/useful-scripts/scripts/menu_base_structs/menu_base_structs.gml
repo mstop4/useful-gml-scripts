@@ -82,7 +82,7 @@ function MenuDivider(_config) : MenuItem(_config) constructor {
 //         - {boolean}  silent_on_confirm
 function MenuSelectable(_config) : MenuItem(_config) constructor {
 	ds_list_add(types, "selectable");
-	on_confirm_func = asset_get_index(_config.on_confirm_func);
+	on_confirm_func = _config.on_confirm_func;
 	on_confirm_args = _config.on_confirm_args;
 	silent_on_confirm = _config.silent_on_confirm;
 }
@@ -98,10 +98,10 @@ function MenuSelectable(_config) : MenuItem(_config) constructor {
 //         - {boolean}  silent_on_change
 function MenuSpinnerBase(_config) : MenuItem(_config) constructor {
 	ds_list_add(types, "spinner");
-	on_confirm_func = asset_get_index(_config.on_confirm_func);
+	on_confirm_func = _config.on_confirm_func;
 	on_confirm_args = _config.on_confirm_args;
 	silent_on_confirm = _config.silent_on_confirm;
-	on_change_func = asset_get_index(_config.on_change_func);
+	on_change_func = _config.on_change_func;
 	on_change_args = _config.on_change_args;
 	silent_on_change = _config.silent_on_change;
 }
@@ -141,7 +141,7 @@ function MenuSpinner(_config) : MenuSpinnerBase(_config) constructor {
 //         - {boolean}  silent_on_change
 function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 	ds_list_add(types, "keyconfig");
-	on_change_func = asset_get_index(_config.on_change_func);
+	on_change_func = _config.on_change_func;
 	on_change_args = _config.on_change_args;
 	silent_on_confirm = _config.silent_on_confirm;
 	silent_on_change = _config.silent_on_change;

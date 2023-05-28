@@ -50,12 +50,12 @@ function menu_base_start_scroll_down() {
 /// @param {MenuSelectable} item
 function handle_selectable_confirm(_item) {
 	if (!_item.enabled) return;
-	if (script_exists(_item.on_confirm_func)) {
-		script_execute(_item.on_confirm_func, _item.on_confirm_args);
+	if (is_callable(_item.on_confirm_func)) {
+		_item.on_confirm_func(_item.on_confirm_args);
 	}
 
 	if (!_item.silent_on_confirm && audio_exists(cursor_confirm_sfx)) {
-		audio_play_sound(cursor_confirm_sfx, 1, false);
+		inst_audio_controller.play_sfx(cursor_confirm_sfx, 1, false);
 	}
 }
 
@@ -63,12 +63,12 @@ function handle_selectable_confirm(_item) {
 /// @param {MenuSpinner} item
 function handle_spinner_confirm(_item) {
 	if (!_item.enabled) return;
-	if (script_exists(_item.on_confirm_func)) {
-		script_execute(_item.on_confirm_func, _item.cur_index, _item.values[_item.cur_index], _item.on_confirm_args);
+	if (is_callable(_item.on_confirm_func)) {
+		_item.on_confirm_func(_item.cur_index, _item.values[_item.cur_index], _item.on_confirm_args);
 	}
 
 	if (!_item.silent_on_confirm && audio_exists(cursor_confirm_sfx)) {
-		audio_play_sound(cursor_confirm_sfx, 1, false);
+		inst_audio_controller.play_sfx(cursor_confirm_sfx, 1, false);
 	}
 }
 
@@ -80,9 +80,8 @@ function handle_spinner_change(_item, _delta) {
 	var _num_values = array_length(_item.values);
 	_item.cur_index = wrap(_item.cur_index+_delta, 0, _num_values);
 		
-	if (script_exists(_item.on_change_func)) {
-		script_execute(
-			_item.on_change_func,
+	if (is_callable(_item.on_change_func)) {
+		_item.on_change_func(
 			_item.cur_index,
 			_item.values[_item.cur_index],
 			_delta,
@@ -91,7 +90,7 @@ function handle_spinner_change(_item, _delta) {
 	}
 		
 	if (!_item.silent_on_change && audio_exists(cursor_change_sfx)) {
-		audio_play_sound(cursor_change_sfx, 1, false);
+		inst_audio_controller.play_sfx(cursor_change_sfx, 1, false);
 	}
 }
 
@@ -111,7 +110,7 @@ function handle_key_config_select(_item, _delta) {
 	} until (_item.current_binding_index == _original_value || _last_pressed.control_type == _binding_info.control_type)
 
 	if (_item.current_binding_index != _original_value && !_item.silent_on_change && audio_exists(cursor_change_sfx)) {
-		audio_play_sound(cursor_change_sfx, 1, false);
+		inst_audio_controller.play_sfx(cursor_change_sfx, 1, false);
 	}
 }
 
@@ -210,8 +209,8 @@ function handle_key_config_discovery(_item) {
 		discovery_mode = MENU_DISCOVERY_MODE.NONE;
 		active_key_config.discovery_binding_info = false;
 
-		if (script_exists(self.active_key_config.on_change_func)) {
-			script_execute(self.active_key_config.on_change_func, _control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed, self.active_key_config.on_change_args);
+		if (is_callable(self.active_key_config.on_change_func)) {
+			self.active_key_config.on_change_func(_control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed, self.active_key_config.on_change_args);
 		}
 
 		self.active_key_config = noone;
@@ -327,7 +326,7 @@ function menu_switch(_next_menu, _on_switch_cb, _on_switch_cb_args) {
 function menu_fade_out(_next_menu, _on_end_cb, _on_end_cb_args) {
 	enabled = false;
 	next_menu = _next_menu;
-	on_fade_out_end = asset_get_index(_on_end_cb);
+	on_fade_out_end = _on_end_cb;
 	on_fade_out_end_args = _on_end_cb_args;
 	menu_alpha.v = 1;
 	menu_alpha.d = -1/menu_fade_time;
