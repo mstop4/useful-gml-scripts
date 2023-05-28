@@ -55,7 +55,7 @@ menu.line_spacing = 8;
 for (var i=0; i<num_rooms; i++) {
 	menu.column_menu_add_selectable({
 		label: room_names[i],
-		on_confirm_func: "go_to_demo",
+		on_confirm_func: go_to_demo,
 		on_confirm_args: [ rooms[i] ],
 		silent_on_confirm: false
 	});

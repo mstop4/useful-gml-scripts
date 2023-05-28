@@ -22,7 +22,7 @@ menu.grid_menu_init({
 
 menu.grid_menu_add_selectable(0, 0, { 
 	label: "Foo",
-	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_func: menu_demo_on_confirm,
 	on_confirm_args: ["Foo"],
 	silent_on_confirm: false
 });

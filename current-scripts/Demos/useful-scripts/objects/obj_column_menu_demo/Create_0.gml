@@ -20,7 +20,7 @@ menu.label_width = 96;
 
 menu.column_menu_add_selectable({ 
 	label: "Item 1",
-	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_func: menu_demo_on_confirm,
 	on_confirm_args: ["Foo"],
 	silent_on_confirm: false
 });
@@ -49,21 +49,21 @@ menu.column_menu_add_spinner({
 
 menu.column_menu_add_selectable({ 
 	label: "Item 3",
-	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_func: menu_demo_on_confirm,
 	on_confirm_args: ["Baz"],
 	silent_on_confirm: false
 });
 
 menu.column_menu_add_selectable({ 
 	label: "Item 4",
-	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_func: menu_demo_on_confirm,
 	on_confirm_args: ["Qux"],
 	silent_on_confirm: false
 });
 
 menu.column_menu_add_selectable({ 
 	label: "Item 5",
-	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_func: menu_demo_on_confirm,
 	on_confirm_args: ["Foo"],
 	silent_on_confirm: false
 });
@@ -82,14 +82,14 @@ menu.column_menu_add_spinner({
 
 menu.column_menu_add_selectable({ 
 	label: "Item 7",
-	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_func: menu_demo_on_confirm,
 	on_confirm_args: ["Baz"],
 	silent_on_confirm: false
 });
 
 menu.column_menu_add_selectable({ 
 	label: "Item 8",
-	on_confirm_func: "menu_demo_on_confirm",
+	on_confirm_func: menu_demo_on_confirm,
 	on_confirm_args: ["Qux"],
 	silent_on_confirm: false
 });

@@ -55,7 +55,7 @@ function handle_selectable_confirm(_item) {
 	}
 
 	if (!_item.silent_on_confirm && audio_exists(cursor_confirm_sfx)) {
-		inst_audio_controller.play_sfx(cursor_confirm_sfx, 1, false);
+		audio_play_sound(cursor_confirm_sfx, 1, false);
 	}
 }
 
@@ -68,7 +68,7 @@ function handle_spinner_confirm(_item) {
 	}
 
 	if (!_item.silent_on_confirm && audio_exists(cursor_confirm_sfx)) {
-		inst_audio_controller.play_sfx(cursor_confirm_sfx, 1, false);
+		audio_play_sound(cursor_confirm_sfx, 1, false);
 	}
 }
 
@@ -90,7 +90,7 @@ function handle_spinner_change(_item, _delta) {
 	}
 		
 	if (!_item.silent_on_change && audio_exists(cursor_change_sfx)) {
-		inst_audio_controller.play_sfx(cursor_change_sfx, 1, false);
+		audio_play_sound(cursor_change_sfx, 1, false);
 	}
 }
 
@@ -110,7 +110,7 @@ function handle_key_config_select(_item, _delta) {
 	} until (_item.current_binding_index == _original_value || _last_pressed.control_type == _binding_info.control_type)
 
 	if (_item.current_binding_index != _original_value && !_item.silent_on_change && audio_exists(cursor_change_sfx)) {
-		inst_audio_controller.play_sfx(cursor_change_sfx, 1, false);
+		audio_play_sound(cursor_change_sfx, 1, false);
 	}
 }
 
