@@ -1,4 +1,4 @@
-reflector_angle = new Tween(0, 0.1, 0, 360, TweenLimitMode.WRAP, false);
+reflector_angle = new Tween(0, 0.1, 0, 360, TWEEN_LIMIT_MODE.WRAP, false);
 reflector = new LineSegment(0, 0, 0, 0);
 reflector.a.x = x + dcos(reflector_angle.v) * reflector_half_length;
 reflector.a.y = y - dsin(reflector_angle.v) * reflector_half_length;

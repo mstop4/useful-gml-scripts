@@ -1,4 +1,4 @@
-enum TweenLimitMode {
+enum TWEEN_LIMIT_MODE {
 	NONE,
 	CEILING,
 	FLOOR,
@@ -26,46 +26,46 @@ function Tween(_value, _delta, _min_v, _max_v, _limit_mode, _stop_outside_range)
 			var _new_v = v + d;
 
 			switch (limit_mode) {
-				case TweenLimitMode.NONE:
+				case TWEEN_LIMIT_MODE.NONE:
 					v = _new_v;
 					break;
 					
-				case TweenLimitMode.CEILING:
+				case TWEEN_LIMIT_MODE.CEILING:
 					v = min(_new_v, max_v);
 					break;
 					
-				case TweenLimitMode.FLOOR:
+				case TWEEN_LIMIT_MODE.FLOOR:
 					v = max(_new_v, min_v);
 					break;			
 					
-				case TweenLimitMode.CLAMP:
+				case TWEEN_LIMIT_MODE.CLAMP:
 					v = clamp(_new_v, min_v, max_v);
 					break;
 					
-				case TweenLimitMode.SOFT_CEILING:
+				case TWEEN_LIMIT_MODE.SOFT_CEILING:
 					v = soft_ceiling(v, d, max_v);
 					break;
 					
-				case TweenLimitMode.SOFT_FLOOR:
+				case TWEEN_LIMIT_MODE.SOFT_FLOOR:
 					v = soft_floor(v, d, min_v);
 					break;			
 					
-				case TweenLimitMode.SOFT_CLAMP:
+				case TWEEN_LIMIT_MODE.SOFT_CLAMP:
 					v = soft_clamp(v, d, min_v, max_v);
 					break;
 					
-				case TweenLimitMode.WRAP:
+				case TWEEN_LIMIT_MODE.WRAP:
 					v = wrap(_new_v, min_v, max_v);
 					break;
 					
-				case TweenLimitMode.YOYO:
+				case TWEEN_LIMIT_MODE.YOYO:
 					v = clamp(_new_v, min_v, max_v);
 					if ((v == min_v) || (v == max_v)) {
 						d *= -1;
 					}
 					break;
 					
-				case TweenLimitMode.BOUNCE:
+				case TWEEN_LIMIT_MODE.BOUNCE:
 					v = clamp(_new_v, min_v, max_v);
 					if (v == max_v) {
 						d *= -1;

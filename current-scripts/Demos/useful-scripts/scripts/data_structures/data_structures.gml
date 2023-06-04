@@ -25,10 +25,10 @@ function array_is_subset(_a, _b) {
 
 	var _match = false;
 	
-	for (var i=0; i<_a_len; i++) {
+	for (var _i=0; _i<_a_len; _i++) {
 		_match = false;
-		for (var j=0; j<_b_len; j++) {
-			if (_a[i] == _b[i]) {
+		for (var _j=0; _j<_b_len; _j++) {
+			if (_a[_i] == _b[_j]) {
 				_match = true;
 				break;
 			}
@@ -43,12 +43,12 @@ function array_is_subset(_a, _b) {
 /// @func array_find(array, value)
 /// @desc Finds a given value in an array and returns its index, if the value doesn't exists, returns -1
 ///       Deprecated in favour of array_find_index
-/// @param {Array} array
-/// @param {any} value
+/// @param {Array} _array
+/// @param {any} _value
 function array_find(_array, _value) {
 	var _len = array_length(_array);
-	for (var i=0; i<_len; i++) {
-		if (_array[i] == _value) return i;
+	for (var _i=0; _i<_len; _i++) {
+		if (_array[_i] == _value) return _i;
 	}
 	
 	return -1;
@@ -56,7 +56,7 @@ function array_find(_array, _value) {
 
 /// @func duplicate_array(array)
 /// @desc Creates a new copy of a given array
-/// @param {Array} array
+/// @param {Array} _array
 function duplicate_array(_array) {
 	var _new_array = array_create(array_length(_array));
 	array_copy(_new_array, 0, _array, 0, array_length(_array));

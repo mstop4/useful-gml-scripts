@@ -46,6 +46,7 @@ function MenuControlState(_player_inst) constructor {
 	}
 	
 	function control_any_pressed() {
+		// Feather disable once GM1013
 		return player_inst.ctrl_any_pressed;
 	}
 }
@@ -232,13 +233,13 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 	
 	function verify_locked_bindings() {
 		var _len = array_length(kbm_bindings);
-		for (var i=0; i<_len; i++) {
-			locked_kbm_bindings[i] = array_find(global.disallowed_keyboard_controls, kbm_bindings[i]) != -1;
+		for (var _i=0; _i<_len; _i++) {
+			locked_kbm_bindings[_i] = array_find(global.disallowed_keyboard_controls, kbm_bindings[_i]) != -1;
 		}
 		
 		_len = array_length(gamepad_bindings);
-		for (var i=0; i<_len; i++) {
-			locked_gamepad_bindings[i] = array_find(global.disallowed_gamepad_controls, gamepad_bindings[i]) != -1;
+		for (var _i=0; _i<_len; _i++) {
+			locked_gamepad_bindings[_i] = array_find(global.disallowed_gamepad_controls, gamepad_bindings[_i]) != -1;
 		}
 	}
 	

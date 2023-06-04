@@ -22,16 +22,16 @@ function url_encode(_url) {
 		"C", "D", "E", "F"
 	];
 	
-	for (var i=1; i<=_url_len; i++) {
-		var _char = ord(string_char_at(_url, i));
+	for (var _i=1; _i<=_url_len; _i++) {
+		var _char = ord(string_char_at(_url, _i));
 		var _is_special = false;
 		
 		if (_char < ord(" ") || _char > ord("~")) {
 			_is_special = true;
 		}
 		else {
-			for (var j=0; j<_num_special_chars; j++) {
-				if (_char == ord(_special_chars[j])) {
+			for (var _j=0; _j<_num_special_chars; _j++) {
+				if (_char == ord(_special_chars[_j])) {
 					_is_special = true;
 					break;
 				}

@@ -1,12 +1,12 @@
-vec_A = new Vector2(3, 3);
-vec_B = new Vector2(-1, 2);
-vec_C = new Vector3(-2, 3, 4);
-vec_D = new Vector3(10, -5, 7);
+vec_a = new Vector2(3, 3);
+vec_b = new Vector2(-1, 2);
+vec_c = new Vector3(-2, 3, 4);
+vec_d = new Vector3(10, -5, 7);
 
-pulse_counter = new Tween(0, 0.01, 0, 1, TweenLimitMode.WRAP, false);
+pulse_counter = new Tween(0, 0.01, 0, 1, TWEEN_LIMIT_MODE.WRAP, false);
 pulse_t = 0;
 
-wrap_counter = new Tween(-10, 0.01, -10, 10, TweenLimitMode.WRAP, false);
+wrap_counter = new Tween(-10, 0.01, -10, 10, TWEEN_LIMIT_MODE.WRAP, false);
 wrapped_value = 0;
 
 blin_values = ds_grid_create(5, 5);

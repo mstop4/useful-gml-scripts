@@ -6,8 +6,8 @@
 function print(_value1) {
 	var _str = "";
 
-	for (var i=0; i<argument_count; i++) {
-		_str += string(argument[i]);
+	for (var _i=0; _i<argument_count; _i++) {
+		_str += string(argument[_i]);
 	}
 
 	show_debug_message(_str);

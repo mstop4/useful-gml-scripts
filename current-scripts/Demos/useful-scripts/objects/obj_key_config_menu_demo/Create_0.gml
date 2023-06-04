@@ -29,12 +29,12 @@ menu.column_menu_init({
 	control_icons_scale: 0.3
 });
 
-for (var i=CONTROLS.UP; i<=CONTROLS.RIGHT; i++) {
+for (var _i=CONTROLS.UP; _i<=CONTROLS.RIGHT; _i++) {
 	menu.column_menu_add_key_config({ 
-		label: control_labels[i],
-		control: i,
-		initial_kbm_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i).values),
-		initial_gamepad_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.GAMEPAD, i).values),
+		label: control_labels[_i],
+		control: _i,
+		initial_kbm_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.KEYBOARD_AND_MOUSE, _i).values),
+		initial_gamepad_bindings: duplicate_array(my_player.get_bindings(CONTROL_TYPE.GAMEPAD, _i).values),
 		on_change_func: -1,
 		on_change_args: [-1],
 		on_confirm_func: -1,

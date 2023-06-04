@@ -1,3 +1,4 @@
+// Feather disable GM2017
 #macro vk_clear 12
 #macro vk_caps_lock 20
 #macro vk_left_command 91

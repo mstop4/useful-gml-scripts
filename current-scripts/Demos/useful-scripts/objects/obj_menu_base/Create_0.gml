@@ -13,8 +13,8 @@ control_icons_y_offset = -18;
 
 discovery_mode = MENU_DISCOVERY_MODE.NONE;
 active_key_config = noone;
-menu_alpha = new Tween(1, 0, 0, 1, TweenLimitMode.CLAMP, true);
-view_scroll_progress_y = new Tween(0, 0, -1, 1, TweenLimitMode.CLAMP, true);
+menu_alpha = new Tween(1, 0, 0, 1, TWEEN_LIMIT_MODE.CLAMP, true);
+view_scroll_progress_y = new Tween(0, 0, -1, 1, TWEEN_LIMIT_MODE.CLAMP, true);
 view_scroll_arrow_height = sprite_get_height(view_scroll_arrows_spr);
 
 next_menu = noone;

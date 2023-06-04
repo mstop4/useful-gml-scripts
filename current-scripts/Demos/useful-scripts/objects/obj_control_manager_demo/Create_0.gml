@@ -26,12 +26,12 @@ current_gamepad_index = inst_control_manager.is_on_steam_deck()
 	: 0;
 device_count = gamepad_get_device_count();
 
-for (var i=0; i<device_count; i++) {
-	var _is_connected = gamepad_is_connected(i);
+for (var _i=0; _i<device_count; _i++) {
+	var _is_connected = gamepad_is_connected(_i);
 	if (_is_connected) {
 		num_controllers_connected++;
 	}
-	gamepad_connected[i] = _is_connected;
+	gamepad_connected[_i] = _is_connected;
 }
 
 my_player.set_gamepad_slot(current_gamepad_index);

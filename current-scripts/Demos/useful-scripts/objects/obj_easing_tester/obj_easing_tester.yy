@@ -33,7 +33,7 @@
   "properties": [
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"surf_width","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"200","varType":1,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"surf_height","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"100","varType":1,},
-    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"easing_func","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"\"easing_linear\"","varType":2,},
+    {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"easing_func","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"easing_linear","varType":4,},
     {"resourceType":"GMObjectProperty","resourceVersion":"1.0","name":"label","filters":[],"listItems":[],"multiselect":false,"rangeEnabled":false,"rangeMax":10.0,"rangeMin":0.0,"value":"Linear","varType":2,},
   ],
   "solid": false,

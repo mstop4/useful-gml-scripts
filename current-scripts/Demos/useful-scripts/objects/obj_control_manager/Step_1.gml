@@ -1,3 +1,3 @@
-for (var i=0; i<num_players; i++) {
-	players[| i].process_input();
+for (var _i=0; _i<num_players; _i++) {
+	players[| _i].process_input();
 }

@@ -133,9 +133,9 @@ function grid_menu_get_item_by_label(_menu, _label) {
 }
 
 /// @func  grid_menu_add_selectable(x, y, config)
-/// @param x
-/// @param y
-/// @param config
+/// @param _x
+/// @param _y
+/// @param _config
 //         - {string}   label
 //         - {function} on_confirm_func
 //         - {array}    on_confirm_args
@@ -152,9 +152,9 @@ function grid_menu_add_selectable(_x, _y, _config) {
 }
 
 /// @func  grid_menu_add_spinner(x, y, config)
-/// @param x
-/// @param y
-/// @param config 
+/// @param _x
+/// @param _y
+/// @param _config 
 //         - {string}   label
 //         - {array}    values
 //         - {integer}  init_index
@@ -175,10 +175,10 @@ function grid_menu_add_spinner(_x, _y, _config) {
 	return _new;
 }
 
-/// @param grid_menu_add_key_config(x, y, config)
-/// @param x
-/// @param y
-/// @param config 
+/// @func grid_menu_add_key_config(x, y, config)
+/// @param _x
+/// @param _y
+/// @param _config 
 //         - {string}   label
 //				 - {CONTROLS} control
 //         - {array}    initial_kbm_bindings
@@ -198,10 +198,10 @@ function grid_menu_add_key_config(_x, _y, _config) {
 	return _new;
 }
 
-/// @param grid_menu_add_divider(x, y, config)
-/// @param x
-/// @param y
-/// @param config 
+/// @func grid_menu_add_divider(x, y, config)
+/// @param _x
+/// @param _y
+/// @param _config 
 //         - {string}   label
 function grid_menu_add_divider(_x, _y, _config) {
 	if (_x < 0 || _x >= ds_grid_width(items)

@@ -1,3 +1,6 @@
+// Feather disable GM1041
+// Feather disable GM1028
+
 /// @func            DeltaTimeAlarm()
 /// @desc            Initializes delta time alarm
 function DeltaTimeAlarm() constructor {
@@ -17,7 +20,7 @@ function DeltaTimeAlarmManager(_number) constructor {
 	dt_alarm = ds_list_create();
 	num_alarms = _number;
 
-	for (var i=0; i<_number; i++) {
+	for (var _i=0; _i<_number; _i++) {
 		var _timer = new DeltaTimeAlarm();
 		ds_list_add(dt_alarm, _timer);
 	}
@@ -27,7 +30,7 @@ function DeltaTimeAlarmManager(_number) constructor {
 	/// @param   {real} _number Number of alarms
 	/// @returns {real} New number of alarms
 	function add_alarm(_number) {
-		for (var i=0; i<_number; i++) {
+		for (var _i=0; _i<_number; _i++) {
 			var _timer = new DeltaTimeAlarm();
 			ds_list_add(dt_alarm, _timer);
 		}

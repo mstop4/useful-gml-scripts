@@ -68,7 +68,7 @@ function column_menu_get_item_by_label(_menu, _label) {
 }
 
 /// @func  column_menu_add_selectable(config)
-/// @param config 
+/// @param _config 
 //         - {string}   label
 //         - {function} on_confirm_func
 //         - {array}    on_confirm_args
@@ -83,7 +83,7 @@ function column_menu_add_selectable(_config) {
 }
 
 /// @func  column_menu_add_spinner(config)
-/// @param config 
+/// @param _config 
 //         - {string}   label
 //         - {array}    values
 //         - {integer}  init_index
@@ -102,8 +102,8 @@ function column_menu_add_spinner(_config) {
 	return _new;
 }
 
-/// @param column_menu_add_key_config(config)
-/// @param config 
+/// @func column_menu_add_key_config(config)
+/// @param _config 
 //         - {string}   label
 //				 - {CONTROLS} control
 //         - {array}    initial_kbm_bindings
@@ -121,8 +121,8 @@ function column_menu_add_key_config(_config) {
 	return _new;
 }
 
-/// @param column_menu_add_divider(config)
-/// @param config 
+/// @func column_menu_add_divider(config)
+/// @param _config 
 //         - {string}   label
 function column_menu_add_divider(_config) {
 	var _new = new MenuDivider(_config);

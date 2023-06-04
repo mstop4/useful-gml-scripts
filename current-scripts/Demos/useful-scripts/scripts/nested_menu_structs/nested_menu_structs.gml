@@ -1,5 +1,5 @@
 /// @func  NestedMenuSubmenu(config)
-/// @param config
+/// @param _config
 //				 - {obj_menu_base} submenu
 //         - {string}        label
 //         - {function}      on_confirm_func

@@ -139,8 +139,8 @@ function ray_line_intersect(_line1, _line2) {
 
 /// @func         ray_reflect(incident_dir, normal_dir)
 /// @desc         Rr = Ri - 2 * N * (Ri . N)
-/// @param {real} incident_dir
-/// @param {real} normal_dir
+/// @param {real} _incident_dir
+/// @param {real} _normal_dir
 function ray_reflect(_incident_dir, _normal_dir) {
 	var _ri = new Vector2(lengthdir_x(1, _incident_dir), lengthdir_y(1, _incident_dir));
 	var _n = new Vector2(lengthdir_x(1, _normal_dir), lengthdir_y(1, _normal_dir));

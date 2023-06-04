@@ -12,19 +12,19 @@ if (view_height > 0 && view_scroll_progress_y.v != 0) {
 
 var _x, _y, _item;
 
-for (var i=view_area.left; i<=view_area.right; i++) {
-	_x = x + cursor_padding * (i-view_area.left+1) + column_width * (i-view_area.left);
+for (var _i=view_area.left; _i<=view_area.right; _i++) {
+	_x = x + cursor_padding * (_i-view_area.left+1) + column_width * (_i-view_area.left);
 	_y = y;
 
-	for (var j=view_area.top; j<=view_area.bottom; j++) {
-		_item = items[# i, j];
+	for (var _j=view_area.top; _j<=view_area.bottom; _j++) {
+		_item = items[# _i, _j];
 		
 		if (is_struct(_item)) {
 			if (view_width > 0) {
-				if (view_scroll_progress_x.v < 0 && i == view_area.right) {
+				if (view_scroll_progress_x.v < 0 && _i == view_area.right) {
 					// Scroll left last element
 					draw_set_alpha(1-abs(view_scroll_progress_x.v));
-				} else if (view_scroll_progress_x.v > 0 && i == view_area.left) {
+				} else if (view_scroll_progress_x.v > 0 && _i == view_area.left) {
 					// Scroll right first element
 					draw_set_alpha(1-abs(view_scroll_progress_x.v));
 				} else {
@@ -33,10 +33,10 @@ for (var i=view_area.left; i<=view_area.right; i++) {
 			}
 		
 			if (view_height > 0) {
-				if (view_scroll_progress_y.v < 0 && j == view_area.bottom) {
+				if (view_scroll_progress_y.v < 0 && _j == view_area.bottom) {
 					// Scroll up last element
 					draw_set_alpha(1-abs(view_scroll_progress_y.v));
-				} else if (view_scroll_progress_y.v > 0 && j == view_area.top) {
+				} else if (view_scroll_progress_y.v > 0 && _j == view_area.top) {
 					// Scroll down first element
 					draw_set_alpha(1-abs(view_scroll_progress_y.v));
 				} else {
@@ -47,17 +47,17 @@ for (var i=view_area.left; i<=view_area.right; i++) {
 			self.menu_base_draw_item(_item, _x + _x_offset, _y + _y_offset);
 		}
 		
-		if (view_width > 0 && i == view_area.left) {
+		if (view_width > 0 && _i == view_area.left) {
 			if (view_scroll_progress_x.v < 0 && view_area.left > 0) {
 				// Scroll left first element
-				_item = items[# view_area.left - 1, j];
+				_item = items[# view_area.left - 1, _j];
 				if (is_struct(_item)) {
 					draw_set_alpha(abs(view_scroll_progress_x.v));
 					self.menu_base_draw_item(_item, x - column_width + _x_offset, _y + _y_offset);
 				}
 			} else if (view_scroll_progress_x.v > 0 && view_area.right + 1 < items_width) {
 				// Scroll right last element
-				_item = items[# view_area.right + 1, j];
+				_item = items[# view_area.right + 1, _j];
 				if (is_struct(_item)) {
 					draw_set_alpha(abs(view_scroll_progress_x.v));
 					self.menu_base_draw_item(_item, _x + (column_width + cursor_padding)*2  + _x_offset, _y + _y_offset);
@@ -71,14 +71,14 @@ for (var i=view_area.left; i<=view_area.right; i++) {
 	if (view_height > 0) {
 		if (view_scroll_progress_y.v < 0 && view_area.top > 0) {
 			// Scroll up first element
-			_item = items[# i, view_area.top - 1];
+			_item = items[# _i, view_area.top - 1];
 			if (is_struct(_item)) {
 				draw_set_alpha(abs(view_scroll_progress_y.v));
 				self.menu_base_draw_item(_item, _x + _x_offset, y - (item_height + line_spacing) + _y_offset);
 			}
 		} else if (view_scroll_progress_y.v > 0 && view_area.bottom + 1 < items_height) {
 			// Scroll down last element
-			_item = items[# i, view_area.bottom + 1];
+			_item = items[# _i, view_area.bottom + 1];
 			if (is_struct(_item)) {
 				draw_set_alpha(abs(view_scroll_progress_y.v));
 				self.menu_base_draw_item(_item, _x + _x_offset, _y + _y_offset);

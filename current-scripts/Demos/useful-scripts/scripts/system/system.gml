@@ -93,11 +93,11 @@ function get_steam_deck_info() {
 	
 	// Check all gamepad slots for "Steam Virtual Gamepad"
 	var _num_devices = gamepad_get_device_count();
-  for (var i = 0; i < _num_devices; i++;) {
-    if (gamepad_is_connected(i)) {
-      var _description = gamepad_get_description(i);
+  for (var _i = 0; _i < _num_devices; _i++;) {
+    if (gamepad_is_connected(_i)) {
+      var _description = gamepad_get_description(_i);
       if (string_pos("Steam Virtual Gamepad", _description) != 0) {
-        _result.gamepad_index = i;
+        _result.gamepad_index = _i;
       }
     }
   }

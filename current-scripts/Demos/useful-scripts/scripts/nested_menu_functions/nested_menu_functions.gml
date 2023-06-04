@@ -41,10 +41,10 @@ function nested_menu_toggle_submenu_by_index(_menu, _index) {
 	if (_index < -1 || _index >= _menu.num_items) return;
 		_menu.active_item = noone;
 	
-	for (var i=0; i<_menu.num_items; i++) {
-		var _item = _menu.nested_menu_get_item_by_index(_menu, i)
+	for (var _i=0; _i<_menu.num_items; _i++) {
+		var _item = _menu.nested_menu_get_item_by_index(_menu, _i)
 		var _submenu = _item.submenu;
-		if (_index == i) {
+		if (_index == _i) {
 			_submenu.enabled = true;
 			_submenu.visible = true;
 			_menu.active_item = _item;
@@ -59,7 +59,7 @@ function nested_menu_toggle_submenu_by_index(_menu, _index) {
 }
 
 /// @func  nested_menu_add_submenu(config)
-/// @param config 
+/// @param _config 
 //				 - {obj_menu_base} submenu
 //         - {string}				 label
 //         - {function}			 on_confirm_func

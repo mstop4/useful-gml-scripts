@@ -171,6 +171,7 @@ function handle_key_config_delete(_item) {
 	}
 	
 	_item[$ _binding_key][_control_index] = -1;
+	// Feather disable once GM2017
 	player_controller.remove_binding(_control_type, _item.control, _control_index);
 	discovery_mode = MENU_DISCOVERY_MODE.NONE;
 	if (active_key_config) {
@@ -206,6 +207,7 @@ function handle_key_config_discovery(_item) {
 		}		
 		
 		active_key_config[$ _binding_key][_control_index] = _last_pressed.control_pressed;
+		// Feather disable once GM2017
 		player_controller.set_binding(_control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed);
 		discovery_mode = MENU_DISCOVERY_MODE.NONE;
 		active_key_config.discovery_binding_info = false;
@@ -213,6 +215,7 @@ function handle_key_config_discovery(_item) {
 		// Feather disable once GM2017
 		if (is_callable(self.active_key_config.on_change_func)) {
 			// Feather disable once GM1050
+			// Feather disable once GM2017
 			self.active_key_config.on_change_func(_control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed, self.active_key_config.on_change_args);
 		}
 
@@ -249,11 +252,11 @@ function menu_base_draw_item(_item, _x, _y) {
 		draw_set_font(self.menu_value_font);
 		
 		// Draw keyboard bindings
-		for (var i=0; i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; i++) {
+		for (var _i=0; _i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; _i++) {
 			if (use_control_icons) {
-				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
+				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.KEYBOARD_AND_MOUSE, _i);
 				draw_sprite_ext(keyboard_icons[keyboard_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v);
-				if (_item.locked_kbm_bindings[i]) {
+				if (_item.locked_kbm_bindings[_i]) {
 					draw_sprite_ext(lock_sprite, 0,
 						_cur_x + keyboard_icons_width[keyboard_icons_index] * control_icons_scale + 24,
 						_y + (control_icons_y_offset + keyboard_icons_half_height[keyboard_icons_index]) * control_icons_scale,
@@ -261,8 +264,8 @@ function menu_base_draw_item(_item, _x, _y) {
 					);
 				}
 			} else {
-				var _item_value = _item.get_text_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, i);
-				if (_item.locked_kbm_bindings[i]) {
+				var _item_value = _item.get_text_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, _i);
+				if (_item.locked_kbm_bindings[_i]) {
 					draw_set_colour(c_gray);
 				} else {
 					if (_item.enabled) draw_set_colour(c_white);
@@ -284,11 +287,11 @@ function menu_base_draw_item(_item, _x, _y) {
 		_cur_x += binding_type_spacing;
 		
 		// Draw gamepad bindings
-		for (var i=0; i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; i++) {
+		for (var _i=0; _i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; _i++) {
 			if (use_control_icons) {
-				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.GAMEPAD, i);
+				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.GAMEPAD, _i);
 				draw_sprite_ext(gamepad_icons[gamepad_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v);
-				if (_item.locked_gamepad_bindings[i]) {
+				if (_item.locked_gamepad_bindings[_i]) {
 						draw_sprite_ext(lock_sprite, 0,
 						_cur_x + gamepad_icons_width[gamepad_icons_index] * control_icons_scale + 24,
 						_y + (control_icons_y_offset + gamepad_icons_half_height[gamepad_icons_index]) * control_icons_scale,
@@ -296,8 +299,8 @@ function menu_base_draw_item(_item, _x, _y) {
 					);
 				}
 			} else {
-				var _item_value = _item.get_text_value(CONTROL_TYPE.GAMEPAD, i);
-				if (_item.locked_gamepad_bindings[i]) {
+				var _item_value = _item.get_text_value(CONTROL_TYPE.GAMEPAD, _i);
+				if (_item.locked_gamepad_bindings[_i]) {
 					draw_set_colour(c_gray);
 				} else {
 					if (_item.enabled) draw_set_colour(c_white);

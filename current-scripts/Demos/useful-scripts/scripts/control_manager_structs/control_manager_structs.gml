@@ -1,5 +1,7 @@
 // Feather disable GM1029
 // Feather disable GM1009
+// Feather disable GM1041
+// Feather disable GM1028
 enum CONTROL_TYPE {
 	NONE,
 	KEYBOARD_AND_MOUSE,
@@ -84,10 +86,10 @@ function ControlManagerPlayer() constructor {
 	stick_input = new Vector2(0, 0);
 	prev_stick_input = new Vector2(0, 0);
 	
-	for (var i=0; i<DPAD_DIRECTION.MAX; i++) {
-		stick_dpad_held[i] = false;
-		stick_dpad_pressed[i] = false;
-		stick_dpad_released[i] = false;
+	for (var _i=0; _i<DPAD_DIRECTION.MAX; _i++) {
+		stick_dpad_held[_i] = false;
+		stick_dpad_pressed[_i] = false;
+		stick_dpad_released[_i] = false;
 	}
 	
 	// Touch
@@ -143,10 +145,10 @@ function ControlManagerPlayer() constructor {
 	}
 	
 	function reset_all_bindings() {
-		for (var i=0; i<CONTROLS.MAX; i++) {
-			keyboard_map[i] = new Binding(KEYBOARD_MAX_BINDINGS_PER_CONTROL, CONTROL_SOURCE.KEYBOARD);
-			gamepad_map[i] = new Binding(GAMEPAD_MAX_BINDINGS_PER_CONTROL, CONTROL_SOURCE.GAMEPAD);
-			touch_map[i] = new Binding(1, CONTROL_SOURCE.KEYBOARD);
+		for (var _i=0; _i<CONTROLS.MAX; _i++) {
+			keyboard_map[_i] = new Binding(KEYBOARD_MAX_BINDINGS_PER_CONTROL, CONTROL_SOURCE.KEYBOARD);
+			gamepad_map[_i] = new Binding(GAMEPAD_MAX_BINDINGS_PER_CONTROL, CONTROL_SOURCE.GAMEPAD);
+			touch_map[_i] = new Binding(1, CONTROL_SOURCE.KEYBOARD);
 		}
 	}
 	
@@ -204,8 +206,8 @@ function ControlManagerPlayer() constructor {
 				var _cur_values = keyboard_map[_i].values;
 				var _num_values = array_length(_cur_values);
 				
-				for (var j=0; j<_num_values; j++) {
-					var _map_value = _cur_values[j];
+				for (var _j=0; _j<_num_values; _j++) {
+					var _map_value = _cur_values[_j];
 					if (_map_value == -1) continue;
 
 					if (keyboard_map[_i].control_source == CONTROL_SOURCE.MOUSE) {
@@ -289,8 +291,8 @@ function ControlManagerPlayer() constructor {
 				var _cur_values = gamepad_map[_i].values;
 				var _num_values = array_length(_cur_values);
 				
-				for (var j=0; j<_num_values; j++) {
-					var _map_value = _cur_values[j];
+				for (var _j=0; _j<_num_values; _j++) {
+					var _map_value = _cur_values[_j];
 					if (_map_value == -1) continue;
 				
 					ctrl_held[_i] = ctrl_held[_i] || gamepad_button_check(gamepad_slot, _map_value);
@@ -340,20 +342,20 @@ function ControlManagerPlayer() constructor {
 	}
 
 	function clear_all_input() {
-		for (var i=0; i<CONTROLS.MAX; i++) {
-			ctrl_held[i] = false;
-			ctrl_pressed[i] = false;
-			ctrl_released[i] = false;
+		for (var _i=0; _i<CONTROLS.MAX; _i++) {
+			ctrl_held[_i] = false;
+			ctrl_pressed[_i] = false;
+			ctrl_released[_i] = false;
 		}
 	
 		ctrl_any_pressed.control_type = CONTROL_TYPE.NONE;
 		ctrl_any_pressed.control_source = CONTROL_SOURCE.NONE;
 		ctrl_any_pressed.control_pressed = -1;
 		
-		for (var i=0; i<DPAD_DIRECTION.MAX; i++) {
-			stick_dpad_held[i] = false;
-			stick_dpad_pressed[i] = false;
-			stick_dpad_released[i] = false;
+		for (var _i=0; _i<DPAD_DIRECTION.MAX; _i++) {
+			stick_dpad_held[_i] = false;
+			stick_dpad_pressed[_i] = false;
+			stick_dpad_released[_i] = false;
 		}
 		
 		axis_held.x = 0;

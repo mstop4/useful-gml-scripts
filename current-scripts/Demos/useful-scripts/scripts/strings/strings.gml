@@ -6,8 +6,8 @@
 function concat() {
 	var _str = "";
 
-	for (var i=0; i<argument_count; i++) {
-		_str += string(argument[i]);
+	for (var _i=0; _i<argument_count; _i++) {
+		_str += string(argument[_i]);
 	}
 
 	return _str;
@@ -34,8 +34,8 @@ function dialogue_line_breaker(_str, _max_width, _font) {
 	var _cur_char = "";
     
 	// break up string into lines
-	for (var i=1; i<=_in_str_len; i++) {
-	  _cur_char = string_char_at(_str,i);
+	for (var _i=1; _i<=_in_str_len; _i++) {
+	  _cur_char = string_char_at(_str,_i);
         
 	  // manual line break
 	  if (_cur_char == "\n") {
@@ -68,7 +68,7 @@ function dialogue_line_breaker(_str, _max_width, _font) {
 	  }
         
 	  // end of line
-	  if (i == _in_str_len) {
+	  if (_i == _in_str_len) {
 	    _out_str += _line_buffer + _word_buffer;
 	  }
 	}
@@ -80,15 +80,15 @@ function dialogue_line_breaker(_str, _max_width, _font) {
 
 /// @func          split_string(str, delimiter)
 /// @desc          Splits string into substrings
-/// @arg {string}  str
-/// @arg {string}  delimiter
+/// @arg {string}  _str
+/// @arg {string}  _delimiter
 function split_string(_str, _delimiter) {
 	var _substrings = [];
 	var _str_len = string_length(_str);
 	var _buffer = "";
 	
-	for (var i=1; i<=_str_len; i++) {
-		var _char = string_char_at(_str, i);
+	for (var _i=1; _i<=_str_len; _i++) {
+		var _char = string_char_at(_str, _i);
 		if (_char == _delimiter) {
 			array_push(_substrings, _buffer);
 			_buffer = "";
