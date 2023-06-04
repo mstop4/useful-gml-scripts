@@ -27,7 +27,7 @@ global._os_browser_strings[browser_windows_store] = "Windows App";
 
 /// @func get_os_type_string(os_type)
 /// @desc Converts os_type enum value into a human-readable string
-/// @param {number} os_type
+/// @param {real} _os_type
 /// @returns {string}
 function get_os_type_string(_os_type){
 	if (_os_type >= 0 && _os_type < array_length(global._os_type_strings)) {
@@ -39,7 +39,7 @@ function get_os_type_string(_os_type){
 
 /// @func get_os_version_string(os_version)
 /// @desc Converts os_version into a human-readable string
-/// @param {number} os_version
+/// @param {real} _os_version
 /// @returns {string}
 function get_os_version_string(_os_version) {
 	// Browser
@@ -68,12 +68,13 @@ function get_os_version_string(_os_version) {
 
 /// @func get_os_browser_string(os_version)
 /// @desc Converts os_browser enum value into a human-readable string
-/// @param {number} os_browser
+/// @param {Constant.BrowserType} _os_browser
 /// @returns {string}
 function get_os_browser_string(_os_browser) {
 	if (_os_browser == browser_not_a_browser) {
 		return "Not a browser";
-	} else if (_os_browser >= 0 && _os_browser < array_length(global._os_browser_strings)) {
+	} else // Feather disable once GM1044
+if (_os_browser >= 0 && _os_browser < array_length(global._os_browser_strings)) {
 		return global._os_browser_strings[_os_browser];
 	} else {
 		return global._os_browser_strings[browser_unknown];
@@ -83,7 +84,7 @@ function get_os_browser_string(_os_browser) {
 /// @func get_steam_deck_info()
 /// @desc Checks if game is running on Steam Deck and which gamepad slot the controls are connected to
 /// Note: Doesn't work if called at the very start of the game. Wait a few steps before calling it.
-/// @returns {boolean}
+/// @returns {Struct}
 function get_steam_deck_info() {
 	var _result = {
 		is_on_steam_deck: false,
@@ -92,11 +93,11 @@ function get_steam_deck_info() {
 	
 	// Check all gamepad slots for "Steam Virtual Gamepad"
 	var _num_devices = gamepad_get_device_count();
-  for (var i = 0; i < _num_devices; i++;) {
-    if (gamepad_is_connected(i)) {
-      var _description = gamepad_get_description(i);
+  for (var _i = 0; _i < _num_devices; _i++;) {
+    if (gamepad_is_connected(_i)) {
+      var _description = gamepad_get_description(_i);
       if (string_pos("Steam Virtual Gamepad", _description) != 0) {
-        _result.gamepad_index = i;
+        _result.gamepad_index = _i;
       }
     }
   }

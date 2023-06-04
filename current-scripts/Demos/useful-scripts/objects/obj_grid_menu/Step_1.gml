@@ -1,9 +1,10 @@
+// Feather disable GM1009
 if (!enabled) exit;
 
 control_state.poll_input();
 
 if (active_key_config != noone && discovery_mode == MENU_DISCOVERY_MODE.DISCOVERING) {
-	var _item = items[| pos];	
+	var _item = items[# pos.x, pos.y];	
 	self.handle_key_config_discovery(_item);
 	exit;
 }

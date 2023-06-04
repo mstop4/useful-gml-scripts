@@ -1,11 +1,11 @@
 /// @func  grid_menu_init(config)
-/// @param config 
+/// @param {Struct} _config 
 //         - {real}   width
 //         - {real}   height
 //		     - {real}   view_width
 //         - {real}   view_height
-//				 - {number} column_width
-//				 - {}       player_controller
+//				 - {real} column_width
+//				 - {Id.Instance} player_controller obj_player_controller
 //         - {font}   label_font
 //         - {font}   value_font
 //         - {sprite} cursor_spr
@@ -13,8 +13,8 @@
 //         - {sound}  cursor_change_sfx
 //         - {sound}  cursor_confirm_sfx
 //				 - {boolean} use_control_icons
-//				 - {Array.<Sprite>} keyboard_icons
-//				 - {Array.<Sprite>} gamepad_icons
+//				 - {Array<Asset.GMSprite>} keyboard_icons
+//				 - {Array<Asset.GMSprite>} gamepad_icons
 function grid_menu_init(_config) {
 	self.menu_base_init(_config);
 	
@@ -108,23 +108,24 @@ function grid_menu_update_view() {
 }
 
 /// @func grid_menu_get_item_by_index(menu, x, y)
-/// @param {obj_grid_menu} menu
-/// @param {number} x
-/// @param {number} y
+/// @param {Id.Instance} _menu obj_grid_menu
+/// @param {real} _x
+/// @param {real} _y
 function grid_menu_get_item_by_index(_menu, _x, _y) {
 	return _menu.items[# _x, _y];
 }
 
 /// @func grid_menu_get_item_by_label(menu, label)
-/// @param {obj_grid_menu} menu
-/// @param {string} label
+/// @param {Id.Instance} _menu obj_grid_menu
+/// @param {string} _label
+/// @returns {any}
 function grid_menu_get_item_by_label(_menu, _label) {
 	var _width = ds_grid_width(items);
 	var _height = ds_grid_height(items);
 	
-	for (var i=0; i<_width; i++) {
-		for (var j=0; j<_height; j++) {		
-			if (_menu.items[# i, j].label == _label) return _menu.items[# i, j];
+	for (var _i=0; _i<_width; _i++) {
+		for (var _j=0; _j<_height; _j++) {		
+			if (_menu.items[# _i, _j].label == _label) return _menu.items[# _i, _j];
 		}
 	}
 	
@@ -132,9 +133,9 @@ function grid_menu_get_item_by_label(_menu, _label) {
 }
 
 /// @func  grid_menu_add_selectable(x, y, config)
-/// @param x
-/// @param y
-/// @param config
+/// @param _x
+/// @param _y
+/// @param _config
 //         - {string}   label
 //         - {function} on_confirm_func
 //         - {array}    on_confirm_args
@@ -151,9 +152,9 @@ function grid_menu_add_selectable(_x, _y, _config) {
 }
 
 /// @func  grid_menu_add_spinner(x, y, config)
-/// @param x
-/// @param y
-/// @param config 
+/// @param _x
+/// @param _y
+/// @param _config 
 //         - {string}   label
 //         - {array}    values
 //         - {integer}  init_index
@@ -174,10 +175,10 @@ function grid_menu_add_spinner(_x, _y, _config) {
 	return _new;
 }
 
-/// @param grid_menu_add_key_config(x, y, config)
-/// @param x
-/// @param y
-/// @param config 
+/// @func grid_menu_add_key_config(x, y, config)
+/// @param _x
+/// @param _y
+/// @param _config 
 //         - {string}   label
 //				 - {CONTROLS} control
 //         - {array}    initial_kbm_bindings
@@ -197,10 +198,10 @@ function grid_menu_add_key_config(_x, _y, _config) {
 	return _new;
 }
 
-/// @param grid_menu_add_divider(x, y, config)
-/// @param x
-/// @param y
-/// @param config 
+/// @func grid_menu_add_divider(x, y, config)
+/// @param _x
+/// @param _y
+/// @param _config 
 //         - {string}   label
 function grid_menu_add_divider(_x, _y, _config) {
 	if (_x < 0 || _x >= ds_grid_width(items)

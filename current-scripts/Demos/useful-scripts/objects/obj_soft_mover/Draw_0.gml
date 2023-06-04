@@ -8,7 +8,7 @@ draw_line(actual_max, y-16, actual_max, y+224);
 
 draw_set_color(c_white);
 draw_set_font(fnt_demo);
-draw_set_valign(fa_center);
+draw_set_valign(fa_middle);
 draw_set_halign(fa_left);
 draw_text(16, y, "Raw");
 draw_circle(actual_xpos.v, y, 16, false);

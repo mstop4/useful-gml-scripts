@@ -1,8 +1,9 @@
 /// @desc fade out end
 visible = false;
 
-if (script_exists(on_fade_out_end)) {
-	script_execute(on_fade_out_end, on_fade_out_end_args);
+if (is_callable(on_fade_out_end)) {
+	// feather ignore once GM1021
+	on_fade_out_end(on_fade_out_end_args);
 	on_fade_out_end = noone;
 }
 

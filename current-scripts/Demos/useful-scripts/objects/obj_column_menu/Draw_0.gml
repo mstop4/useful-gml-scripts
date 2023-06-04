@@ -8,15 +8,15 @@ if (view_height > 0 && view_scroll_progress_y.v != 0) {
 	_y_offset = (item_height + line_spacing) * -view_scroll_progress_y.v;
 }
 
-for (var i=view_area.x; i<=view_area.y; i++) {
-	_item = items[| i];
+for (var _i=view_area.x; _i<=view_area.y; _i++) {
+	_item = items[| _i];
 	
 	if (is_struct(_item)) {
 		if (view_height > 0) {
-			if (view_scroll_progress_y.v < 0 && i == view_area.y) {
+			if (view_scroll_progress_y.v < 0 && _i == view_area.y) {
 				// Scroll up last element
 				draw_set_alpha(1-abs(view_scroll_progress_y.v));
-			} else if (view_scroll_progress_y.v > 0 && i == view_area.x) {
+			} else if (view_scroll_progress_y.v > 0 && _i == view_area.x) {
 				// Scroll down first element
 				draw_set_alpha(1-abs(view_scroll_progress_y.v));
 			} else {

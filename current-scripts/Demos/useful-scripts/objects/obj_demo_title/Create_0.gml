@@ -52,11 +52,11 @@ menu.column_menu_init({
 });
 menu.line_spacing = 8;
 
-for (var i=0; i<num_rooms; i++) {
+for (var _i=0; _i<num_rooms; _i++) {
 	menu.column_menu_add_selectable({
-		label: room_names[i],
-		on_confirm_func: "go_to_demo",
-		on_confirm_args: [ rooms[i] ],
+		label: room_names[_i],
+		on_confirm_func: go_to_demo,
+		on_confirm_args: [ rooms[_i] ],
 		silent_on_confirm: false
 	});
 }

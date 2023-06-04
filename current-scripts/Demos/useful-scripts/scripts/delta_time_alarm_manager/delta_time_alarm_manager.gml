@@ -1,3 +1,6 @@
+// Feather disable GM1041
+// Feather disable GM1028
+
 /// @func            DeltaTimeAlarm()
 /// @desc            Initializes delta time alarm
 function DeltaTimeAlarm() constructor {
@@ -11,22 +14,23 @@ function DeltaTimeAlarm() constructor {
 
 /// @func            DeltaTimeAlarmManager(number)
 /// @desc            Initializes delta time alarm manager
-/// @param {integer} number Number of alarms
+/// @deprecated
+/// @param {real} _number Number of alarms
 function DeltaTimeAlarmManager(_number) constructor {
 	dt_alarm = ds_list_create();
 	num_alarms = _number;
 
-	for (var i=0; i<_number; i++) {
+	for (var _i=0; _i<_number; _i++) {
 		var _timer = new DeltaTimeAlarm();
 		ds_list_add(dt_alarm, _timer);
 	}
 	
 	/// @func              add_alarm(number)
 	/// @desc              Adds a new alarm
-	/// @param   {integer} number Number of alarms
-	/// @returns {integer} New number of alarms
+	/// @param   {real} _number Number of alarms
+	/// @returns {real} New number of alarms
 	function add_alarm(_number) {
-		for (var i=0; i<_number; i++) {
+		for (var _i=0; _i<_number; _i++) {
 			var _timer = new DeltaTimeAlarm();
 			ds_list_add(dt_alarm, _timer);
 		}
@@ -36,8 +40,8 @@ function DeltaTimeAlarmManager(_number) constructor {
 
 	/// @func              remove_alarm(index)
 	/// @desc              Removes an alarm
-	/// @param   {integer} index
-	/// @returns {boolean} was successful
+	/// @param   {real} _index
+	/// @returns {bool} was successful
 	function remove_alarm(_index) {
 		if (_index < num_alarms) {
 			var _timer = dt_alarm[| _index];
@@ -52,10 +56,10 @@ function DeltaTimeAlarmManager(_number) constructor {
 	
 	/// @func               set_alarm_timer(index, duration, loop)
 	/// @desc               Set an alarm timer
-	/// @param   {integer}  index
-	/// @param   {real}     duration (in seconds) Set to -1 to cancel
-	/// @param   {boolean}  loop     Should timer reset itself after triggering?
-  /// @returns {boolean}  was successful?
+	/// @param   {real}		  _index
+	/// @param   {real}     _duration (in seconds) Set to -1 to cancel
+	/// @param   {bool}  _loop     Should timer reset itself after triggering?
+  /// @returns {bool}  was successful?
 	function set_alarm_timer(_index, _duration, _loop) {
 		if (_index < num_alarms) {
 			dt_alarm[| _index].duration = _duration;
@@ -70,10 +74,10 @@ function DeltaTimeAlarmManager(_number) constructor {
 	
 	/// @func               set_alarm_callback(index, callback, context)
 	/// @desc               Set an alarm callback
-	/// @param   {integer}  index
-	/// @param   {function} callback
-	/// @param   {id}       context
-  /// @returns {boolean}  was successful?
+	/// @param   {real}					_index
+	/// @param   {function}			_callback
+	/// @param   {Id.Instance}  _context
+  /// @returns {bool}  was successful?
 	function set_alarm_callback(_index, _callback, _context) {
 		if (_index < num_alarms) {
 			dt_alarm[| _index].callback = _callback;
@@ -87,16 +91,16 @@ function DeltaTimeAlarmManager(_number) constructor {
 
 	/// @func            update()
 	/// @desc            Updates alarms
-	/// @param {integer} number
 	function update() {
-		for (var i=0; i<num_alarms; i++) {
-			var _alarm = dt_alarm[| i];
+		for (var _i=0; _i<num_alarms; _i++) {
+			var _alarm = dt_alarm[| _i];
 			
 			if (_alarm.duration != -1) {
 				var _elapsed = current_time - _alarm.start_time;
 		
 				if (_elapsed >= _alarm.duration * 1000) {
 					with (_alarm.context) {
+						// Feather disable once GM1041
 						script_execute(_alarm.callback);
 					}
 					if (_alarm.loop) {
@@ -110,8 +114,8 @@ function DeltaTimeAlarmManager(_number) constructor {
 	}
 	
 	function destroy() {
-		for (var i=0; i<num_alarms; i++) {
-			delete dt_alarm[| i];
+		for (var _i=0; _i<num_alarms; _i++) {
+			delete dt_alarm[| _i];
 		}
 		ds_list_destroy(dt_alarm);
 	}

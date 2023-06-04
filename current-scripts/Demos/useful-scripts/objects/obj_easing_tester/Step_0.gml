@@ -1,5 +1,5 @@
 t.update();
-ev = surf_height - script_execute(easing_func_id, 0, surf_height-1, t.v / t.max_v) - 1;
+ev = surf_height - easing_func(0, surf_height-1, t.v / t.max_v) - 1;
 
 if (t.v < t.max_v) {
 	surface_set_target(surf);

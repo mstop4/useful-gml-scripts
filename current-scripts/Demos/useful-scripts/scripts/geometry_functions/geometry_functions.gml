@@ -1,7 +1,7 @@
-/// @func                get_edge_position(line, bounding_box)
-/// @desc                Get the closest intersection point between a line segment and the edge of a rectangle
-/// @param {LineSegment} line 
-/// @param {Rectangle}   bounding_box
+/// @func            get_edge_position(line, bounding_box)
+/// @desc            Get the closest intersection point between a line segment and the edge of a rectangle
+/// @param {Struct}	 _line LineSegment
+/// @param {Struct}	 _bounding_box Rectangle
 function get_edge_position(_line, _bounding_box) {
 	var _cur_point = -1;
 	var _cur_dist;
@@ -72,16 +72,16 @@ function get_edge_position(_line, _bounding_box) {
 ///                      0 = on the line
 ///                      < 0 = below or left
 ///                      > 0 = above or right
-/// @param {LineSegment} line
-/// @param {Vector2}     P
+/// @param {Struct}	_line LineSegment
+/// @param {Struct}	_p Vector2
 function point_which_side(_line, _p) {
 	return (_p.x - _line.a.x) * (_line.b.y - _line.y) - (_p.y - _line.a.y) * (_line.b.x - _line.a.x);
 }
 
 /// @func           prune_path(path)
 /// @desc           Removes redundant points in a Path
-/// @param {Path}   path
-/// @param {Object} obstacle
+/// @param {Asset.GMPath}   _path
+/// @param {Asset.GMObject} _obstacle
 function prune_path(_path, _obstacle) {
 	var _num_points = path_get_number(_path);
 
@@ -91,13 +91,14 @@ function prune_path(_path, _obstacle) {
 	 var _cur = new Vector2(path_get_x(_path, 0), path_get_y(_path, 0));
 	 var _next = new Vector2(0, 0);
 
-	for (var i=1; i<_num_points; i++) {
-		_next.x = path_get_x(_path, i);
-		_next.y = path_get_y(_path, i); 
+	for (var _i=1; _i<_num_points; _i++) {
+		_next.x = path_get_x(_path, _i);
+		_next.y = path_get_y(_path, _i); 
 	
+		// Feather disable once GM1011
 		if (!collision_line(_cur.x, _cur.y, _next.x, _next.y, _obstacle, false, true)) {
-			if (i <_num_points-1)
-				path_delete_point(_path,i);
+			if (_i <_num_points-1)
+				path_delete_point(_path, _i);
 		}
 	
 		else {
@@ -110,8 +111,9 @@ function prune_path(_path, _obstacle) {
 
 /// @func                 line_line_intersect(line1, line2)
 /// @desc                 Finds the intersection point between two LineSegments
-/// @param {LineSegement} line1
-/// @param {LineSegement} line2
+/// @param {Struct} _line1 LineSegment
+/// @param {Struct} _line2 LineSegment
+/// @returns {Struct | real}
 function ray_line_intersect(_line1, _line2) {
 	var _ray_dir = point_direction(_line1.a.x, _line1.a.y, _line1.b.x, _line1.b.y);
 
@@ -137,8 +139,8 @@ function ray_line_intersect(_line1, _line2) {
 
 /// @func         ray_reflect(incident_dir, normal_dir)
 /// @desc         Rr = Ri - 2 * N * (Ri . N)
-/// @param {real} incident_dir
-/// @param {real} normal_dir
+/// @param {real} _incident_dir
+/// @param {real} _normal_dir
 function ray_reflect(_incident_dir, _normal_dir) {
 	var _ri = new Vector2(lengthdir_x(1, _incident_dir), lengthdir_y(1, _incident_dir));
 	var _n = new Vector2(lengthdir_x(1, _normal_dir), lengthdir_y(1, _normal_dir));

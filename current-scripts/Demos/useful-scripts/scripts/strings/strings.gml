@@ -1,13 +1,13 @@
 /// @func      concat(val1[, val2, ...])
 /// @desc      Concatenates a bunch of arguments into a string
-/// @param {*} value1
-/// @param {*} [value2]
+/// @param {any} _value1
+/// @param {any} [_value2]
 /// ...
 function concat() {
 	var _str = "";
 
-	for (var i=0; i<argument_count; i++) {
-		_str += string(argument[i]);
+	for (var _i=0; _i<argument_count; _i++) {
+		_str += string(argument[_i]);
 	}
 
 	return _str;
@@ -16,9 +16,9 @@ function concat() {
 
 /// @func         dialogue_line_breaker(str, max_width, font)
 /// @desc         Formats a long string so that it doesn't exceed max_width
-/// @arg {string} str        
-/// @arg {real}   max_width 
-/// @arg {Font}   font       
+/// @arg {string} _str        
+/// @arg {real}   _max_width 
+/// @arg {Asset.GMFont}   _font       
 function dialogue_line_breaker(_str, _max_width, _font) {
 	var _old_font = draw_get_font();
 	draw_set_font(_font);
@@ -34,8 +34,8 @@ function dialogue_line_breaker(_str, _max_width, _font) {
 	var _cur_char = "";
     
 	// break up string into lines
-	for (var i=1; i<=_in_str_len; i++) {
-	  _cur_char = string_char_at(_str,i);
+	for (var _i=1; _i<=_in_str_len; _i++) {
+	  _cur_char = string_char_at(_str,_i);
         
 	  // manual line break
 	  if (_cur_char == "\n") {
@@ -68,7 +68,7 @@ function dialogue_line_breaker(_str, _max_width, _font) {
 	  }
         
 	  // end of line
-	  if (i == _in_str_len) {
+	  if (_i == _in_str_len) {
 	    _out_str += _line_buffer + _word_buffer;
 	  }
 	}
@@ -80,15 +80,15 @@ function dialogue_line_breaker(_str, _max_width, _font) {
 
 /// @func          split_string(str, delimiter)
 /// @desc          Splits string into substrings
-/// @arg {string}  str
-/// @arg {string}  delimiter
+/// @arg {string}  _str
+/// @arg {string}  _delimiter
 function split_string(_str, _delimiter) {
 	var _substrings = [];
 	var _str_len = string_length(_str);
 	var _buffer = "";
 	
-	for (var i=1; i<=_str_len; i++) {
-		var _char = string_char_at(_str, i);
+	for (var _i=1; _i<=_str_len; _i++) {
+		var _char = string_char_at(_str, _i);
 		if (_char == _delimiter) {
 			array_push(_substrings, _buffer);
 			_buffer = "";
@@ -103,10 +103,10 @@ function split_string(_str, _delimiter) {
 
 /// @func          pad_string_width(str, char, position, width)
 /// @desc          Pads a string with char until it is a certain width (in pixels)
-/// @arg {string}  str
-/// @arg {string}  char
-/// @arg {integer} position
-/// @arg {real}    width
+/// @arg {string}  _str
+/// @arg {string}  _char
+/// @arg {real}		 _position
+/// @arg {real}    _width
 function pad_string_width(_str, _char, _position, _width) {
 	while (string_width(_str + _char) < _width) {
 		_str = string_insert(_char, _str, _position);
@@ -117,10 +117,10 @@ function pad_string_width(_str, _char, _position, _width) {
 
 /// @func          pad_string_width(str, char, position, width)
 /// @desc          Pads a string with char until it is a certain length (in characters)
-/// @arg {string}  str
-/// @arg {string}  char
-/// @arg {integer} position
-/// @arg {real}    width
+/// @arg {string}  _str
+/// @arg {string}  _char
+/// @arg {real}		 _position
+/// @arg {real}    _width
 function pad_string_length(_str, _char, _position, _width) {
 	while (string_length(_str + _char) <= _width) {
 		_str = string_insert(_char, _str, _position);
@@ -131,10 +131,10 @@ function pad_string_length(_str, _char, _position, _width) {
 
 /// @func         hide_overflow(string, suffix, font, max_width)
 /// @desc					Hides overflowing text
-/// @arg {string} string
-/// @arg {string} suffix
-/// @arg {Font}   font
-/// @arg {number} max_width
+/// @arg {string}				 _string
+/// @arg {string}				 _suffix
+/// @arg {Asset.GMFont}  _font
+/// @arg {real}					 _max_width
 function hide_overflow(_string, _suffix, _font, _max_width) {
 	var _cur_font = draw_get_font();
 	var _cur_str = _suffix;

@@ -1,5 +1,5 @@
 draw_surface(surf, x, y);
-draw_set_valign(fa_center);
+draw_set_valign(fa_middle);
 draw_set_font(fnt_demo);
 draw_set_colour(c_white);
 draw_text(x + surf_width + 10, y + surf_height/2, label);

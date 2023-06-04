@@ -1,3 +1,5 @@
+// Feather disable GM1043
+// Feather disable GM1035
 enum MENU_CONTROLS {
 	UP,
 	DOWN,
@@ -20,9 +22,9 @@ function MenuControlState(_player_inst) constructor {
 	held_state = [];
 	player_inst = _player_inst;
 	
-	for (var i=0; i< MENU_CONTROLS.MAX; i++) {
-		pressed_state[i] = false;
-		held_state[i] = false;
+	for (var _i=0; _i< MENU_CONTROLS.MAX; _i++) {
+		pressed_state[_i] = false;
+		held_state[_i] = false;
 	}
 	
 	function poll_input() {
@@ -44,12 +46,13 @@ function MenuControlState(_player_inst) constructor {
 	}
 	
 	function control_any_pressed() {
+		// Feather disable once GM1013
 		return player_inst.ctrl_any_pressed;
 	}
 }
 
 /// @func  MenuItem(config)
-/// @param config 
+/// @param _config 
 //         - {string} label
 function MenuItem(_config) constructor {
 	types = ds_list_create();
@@ -68,27 +71,27 @@ function MenuItem(_config) constructor {
 }
 
 /// @func  MenuDivider(config)
-/// @param config 
+/// @param _config 
 //         - {string} label
 function MenuDivider(_config) : MenuItem(_config) constructor {
 	ds_list_add(types, "divider");
 }
 
 /// @func  MenuSelectable(config)
-/// @param config 
+/// @param _config 
 //         - {string}   label
 //         - {function} on_confirm_func
 //         - {array}    on_confirm_args
 //         - {boolean}  silent_on_confirm
 function MenuSelectable(_config) : MenuItem(_config) constructor {
 	ds_list_add(types, "selectable");
-	on_confirm_func = asset_get_index(_config.on_confirm_func);
+	on_confirm_func = _config.on_confirm_func;
 	on_confirm_args = _config.on_confirm_args;
 	silent_on_confirm = _config.silent_on_confirm;
 }
 
 /// @func  MenuSpinnerBase(config)
-/// @param config 
+/// @param _config 
 //         - {string}   label
 //         - {function} on_confirm_func
 //         - {array}    on_confirm_args
@@ -98,16 +101,16 @@ function MenuSelectable(_config) : MenuItem(_config) constructor {
 //         - {boolean}  silent_on_change
 function MenuSpinnerBase(_config) : MenuItem(_config) constructor {
 	ds_list_add(types, "spinner");
-	on_confirm_func = asset_get_index(_config.on_confirm_func);
+	on_confirm_func = _config.on_confirm_func;
 	on_confirm_args = _config.on_confirm_args;
 	silent_on_confirm = _config.silent_on_confirm;
-	on_change_func = asset_get_index(_config.on_change_func);
+	on_change_func = _config.on_change_func;
 	on_change_args = _config.on_change_args;
 	silent_on_change = _config.silent_on_change;
 }
 
 /// @func  MenuSpinner(config)
-/// @param config 
+/// @param _config 
 //         - {string}   label
 //         - {array}    values
 //         - {integer}  init_index
@@ -131,7 +134,7 @@ function MenuSpinner(_config) : MenuSpinnerBase(_config) constructor {
 }
 
 /// @func  MenuKeyConfig(config)
-/// @param config 
+/// @param _config 
 //         - {string}   label
 //         - {array}    initial_kbm_bindings
 //         - {array}    initial_gamepad_bindings
@@ -139,9 +142,10 @@ function MenuSpinner(_config) : MenuSpinnerBase(_config) constructor {
 //         - {array}    on_change_args
 //         - {boolean}  silent_on_confirm
 //         - {boolean}  silent_on_change
+/// @returns {Any}
 function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 	ds_list_add(types, "keyconfig");
-	on_change_func = asset_get_index(_config.on_change_func);
+	on_change_func = _config.on_change_func;
 	on_change_args = _config.on_change_args;
 	silent_on_confirm = _config.silent_on_confirm;
 	silent_on_change = _config.silent_on_change;
@@ -229,13 +233,13 @@ function MenuKeyConfig(_config) : MenuItem(_config) constructor {
 	
 	function verify_locked_bindings() {
 		var _len = array_length(kbm_bindings);
-		for (var i=0; i<_len; i++) {
-			locked_kbm_bindings[i] = array_find(global.disallowed_keyboard_controls, kbm_bindings[i]) != -1;
+		for (var _i=0; _i<_len; _i++) {
+			locked_kbm_bindings[_i] = array_find(global.disallowed_keyboard_controls, kbm_bindings[_i]) != -1;
 		}
 		
 		_len = array_length(gamepad_bindings);
-		for (var i=0; i<_len; i++) {
-			locked_gamepad_bindings[i] = array_find(global.disallowed_gamepad_controls, gamepad_bindings[i]) != -1;
+		for (var _i=0; _i<_len; _i++) {
+			locked_gamepad_bindings[_i] = array_find(global.disallowed_gamepad_controls, gamepad_bindings[_i]) != -1;
 		}
 	}
 	
