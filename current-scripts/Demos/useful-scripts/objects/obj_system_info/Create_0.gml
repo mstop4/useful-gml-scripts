@@ -23,5 +23,6 @@ if (os_type == os_linux) {
 	
 	ds_map_destroy(os_info);
 	
+	// Feather disable once GM1043
 	steam_deck_info = get_steam_deck_info();
 }

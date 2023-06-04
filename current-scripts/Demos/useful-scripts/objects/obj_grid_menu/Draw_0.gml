@@ -10,12 +10,14 @@ if (view_height > 0 && view_scroll_progress_y.v != 0) {
 	_y_offset = (item_height + line_spacing) * -view_scroll_progress_y.v;
 }
 
+var _x, _y, _item;
+
 for (var i=view_area.left; i<=view_area.right; i++) {
-	var _x = x + cursor_padding * (i-view_area.left+1) + column_width * (i-view_area.left);
-	var _y = y;
+	_x = x + cursor_padding * (i-view_area.left+1) + column_width * (i-view_area.left);
+	_y = y;
 
 	for (var j=view_area.top; j<=view_area.bottom; j++) {
-		var _item = items[# i, j];
+		_item = items[# i, j];
 		
 		if (is_struct(_item)) {
 			if (view_width > 0) {

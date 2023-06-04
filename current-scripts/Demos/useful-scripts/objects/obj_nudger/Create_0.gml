@@ -1,3 +1,4 @@
+// Feather disable once GM2039
 scr_nudger_funcs();
 
 inst_id_v = noone;

@@ -1,5 +1,7 @@
 enabled = true;
 
+control_state = noone;
+
 item_height = 1;
 cursor_width = 1;
 cursor_height = 1;
@@ -18,4 +20,5 @@ view_scroll_arrow_height = sprite_get_height(view_scroll_arrows_spr);
 next_menu = noone;
 on_fade_out_end = noone;
 
+// Feather disable once GM2039
 menu_base_functions();

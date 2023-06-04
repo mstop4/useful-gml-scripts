@@ -11,18 +11,19 @@ wrapped_value = 0;
 
 blin_values = ds_grid_create(5, 5);
 blin_values[# 0, 0] = -10;
+// Feather disable once GM1043
 blin_values[# 0, 4] = 50;
 blin_values[# 4, 0] = 25;
 blin_values[# 4, 4] = 100;
 
-for (var i=0; i<5; i++) {
-	for (var j=0; j<5; j++) {
-		blin_values[# i, j] = blin(
+for (var _i=0; _i<5; _i++) {
+	for (var _j=0; _j<5; _j++) {
+		blin_values[# _i, _j] = blin(
 			blin_values[# 0, 0],
 			blin_values[# 4, 0],
 			blin_values[# 0, 4],
 			blin_values[# 4, 4],
-			i/4, j/4
+			_i/4, _j/4
 		);
 	}
 }

@@ -1,5 +1,5 @@
 /// @func  column_menu_init(config)
-/// @param config
+/// @param _config
 //         - {real} view_height
 //				 - {}       player_controller
 //         - {font}   label_font
@@ -50,20 +50,20 @@ function column_menu_update_view_area() {
 }
 
 /// @func column_menu_get_item_by_index(menu, index)
-/// @param {obj_column_menu} menu
-/// @param {number} index
+/// @param {Id.Instance} _menu obj_column_menu
+/// @param {real} _index
 function column_menu_get_item_by_index(_menu, _index) {
 	return _menu.items[| _index];
 }
 
 /// @func column_menu_get_item_by_label(menu, label)
-/// @param {obj_column_menu} menu
-/// @param {string} label
+/// @param {Id.Instance} _menu obj_column_menu
+/// @param {string} _label
 function column_menu_get_item_by_label(_menu, _label) {
-	for (var i=0; i<num_items; i++) {
-		if (_menu.items[| i].label == _label) return _menu.items[| i];
+	for (var _i=0; _i<num_items; _i++) {
+		if (_menu.items[| _i].label == _label) return _menu.items[| _i];
 	}
-	
+	// Feather disable once GM1035
 	return noone;
 }
 

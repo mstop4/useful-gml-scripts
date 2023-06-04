@@ -20,7 +20,7 @@ function translate_native_to_js_keycode(_keycode) {
 
 /// @func            keycode_to_string(keycode)
 /// @desc            converts keycode to name of key as a string
-/// @param {integer} keycode 
+/// @param {real} _keycode 
 function keycode_to_string(_keycode) {
   // alphanumeric
   if ((_keycode >= ord("0") && _keycode <= ord("9")) || (_keycode >= ord("A") && _keycode <= ord("Z"))) {
@@ -183,8 +183,8 @@ function keycode_to_string(_keycode) {
 
 /// @func            get_keyboard_icon_index(keycode, icons)
 /// @desc            converts keycode to image_index of keyboard icon
-/// @param {integer} keycode
-/// @param {Sprite}  icons
+/// @param {real} _keycode
+/// @param {Asset.GMSprite}  _icons
 function get_keyboard_icon_index(_keycode, _icons) {
 	if (_keycode < 0) return sprite_get_number(_icons) - 1;
 	var _js_keycode = translate_native_to_js_keycode(_keycode);
@@ -195,8 +195,8 @@ function get_keyboard_icon_index(_keycode, _icons) {
 
 /// @func            get_gamepad_icon_index(button_code, icons)
 /// @desc            converts keycode to image_index of keyboard icon
-/// @param {integer} button_code
-/// @param {Sprite}  icons
+/// @param {real}		 _button_code
+/// @param {Asset.GMSprite}  _icons
 function get_gamepad_icon_index(_button_code, _icons) {
 	var _offset_code = _button_code - 32768;
 	if (_offset_code < 0) return sprite_get_number(_icons) - 1;
@@ -207,7 +207,7 @@ function get_gamepad_icon_index(_button_code, _icons) {
 
 /// @func            gamepad_constant_to_string(keycode)
 /// @desc            converts gamepad constant to name as a string
-/// @param {integer} gp_constant 
+/// @param {Constant.GamepadButton} _gp_constant 
 function gamepad_constant_to_string(_gp_constant) {
 	 switch (_gp_constant) {
 		case gp_padu:

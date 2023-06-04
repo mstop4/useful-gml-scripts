@@ -1,3 +1,5 @@
+// Feather disable GM1029
+// Feather disable GM1009
 enum CONTROL_TYPE {
 	NONE,
 	KEYBOARD_AND_MOUSE,
@@ -50,16 +52,23 @@ function ControlManagerPlayer() constructor {
 	stick_deadzone = 0.1;
 	stick_threshold = 0.5;
 	max_touches = 8;
+
+	keyboard_map = [];
+	gamepad_map = [];
+	touch_map = [];
+	ctrl_held = [];
+	ctrl_pressed = [];
+	ctrl_released = [];
 	
 	// Mappable Controls
-	for (var i=0; i<CONTROLS.MAX; i++) {
-		keyboard_map[i] = new Binding(KEYBOARD_MAX_BINDINGS_PER_CONTROL, CONTROL_SOURCE.KEYBOARD);
-		gamepad_map[i] = new Binding(GAMEPAD_MAX_BINDINGS_PER_CONTROL, CONTROL_SOURCE.GAMEPAD);
-		touch_map[i] = new Binding(1, CONTROL_SOURCE.KEYBOARD);
+	for (var _i=0; _i<CONTROLS.MAX; _i++) {
+		keyboard_map[_i] = new Binding(KEYBOARD_MAX_BINDINGS_PER_CONTROL, CONTROL_SOURCE.KEYBOARD);
+		gamepad_map[_i] = new Binding(GAMEPAD_MAX_BINDINGS_PER_CONTROL, CONTROL_SOURCE.GAMEPAD);
+		touch_map[_i] = new Binding(1, CONTROL_SOURCE.KEYBOARD);
 		
-		ctrl_held[i] = false;
-		ctrl_pressed[i] = false;
-		ctrl_released[i] = false;
+		ctrl_held[_i] = false;
+		ctrl_pressed[_i] = false;
+		ctrl_released[_i] = false;
 	}
 
 	ctrl_any_pressed = {
@@ -83,6 +92,13 @@ function ControlManagerPlayer() constructor {
 	
 	// Touch
 	
+	/// @func set_binding
+	/// @param {real} _control_type CONTROL_TYPE
+	/// @param {real} _control_source CONTROL_SOURCE
+	/// @param {real} _control CONTROL
+	/// @param {real} _index
+	/// @param {real} _value
+	/// @param {real} _axis_direction AXIS_DIRECTION
 	function set_binding(
 		_control_type,
 		_control_source,
@@ -140,6 +156,7 @@ function ControlManagerPlayer() constructor {
 		} else if (_control_type == CONTROL_TYPE.GAMEPAD) {
 			return gamepad_map[_control];
 		} else {
+			// Feather disable once GM1035
 			return noone;
 		}
 	}
@@ -157,6 +174,7 @@ function ControlManagerPlayer() constructor {
 		} else if (_control_state == CONTROL_STATE.RELEASED) {
 			return ctrl_released[_control];
 		} else {
+			// Feather disable once GM1035
 			return noone;
 		}
 	}
@@ -165,39 +183,39 @@ function ControlManagerPlayer() constructor {
 		prev_stick_input.x = stick_input.x;
 		prev_stick_input.y = stick_input.y;
 
-		for (var i=0; i<CONTROLS.MAX; i++) {
-			ctrl_held[i] = false;
-			ctrl_pressed[i] = false;
-			ctrl_released[i] = false;
+		for (var _i=0; _i<CONTROLS.MAX; _i++) {
+			ctrl_held[_i] = false;
+			ctrl_pressed[_i] = false;
+			ctrl_released[_i] = false;
 		}
 
 		ctrl_any_pressed.control_type = CONTROL_TYPE.NONE;
 		ctrl_any_pressed.control_source = CONTROL_SOURCE.NONE;
 		ctrl_any_pressed.control_pressed = -1;
 
-		for (var i=0; i<DPAD_DIRECTION.MAX; i++) {
-			stick_dpad_held[i] = false;
-			stick_dpad_pressed[i] = false;
-			stick_dpad_released[i] = false;
+		for (var _i=0; _i<DPAD_DIRECTION.MAX; _i++) {
+			stick_dpad_held[_i] = false;
+			stick_dpad_pressed[_i] = false;
+			stick_dpad_released[_i] = false;
 		}
 
 		if (keyboard_enabled) {
-			for (var i=0; i<CONTROLS.MAX; i++) {
-				var _cur_values = keyboard_map[i].values;
+			for (var _i=0; _i<CONTROLS.MAX; _i++) {
+				var _cur_values = keyboard_map[_i].values;
 				var _num_values = array_length(_cur_values);
 				
 				for (var j=0; j<_num_values; j++) {
 					var _map_value = _cur_values[j];
 					if (_map_value == -1) continue;
 
-					if (keyboard_map[i].control_source == CONTROL_SOURCE.MOUSE) {
-						ctrl_held[i] = ctrl_held[i] || mouse_check_button(_map_value);
-						ctrl_pressed[i] = ctrl_pressed[i] || mouse_check_button_pressed(_map_value);
-						ctrl_released[i] = ctrl_released[i] || mouse_check_button_released(_map_value);
+					if (keyboard_map[_i].control_source == CONTROL_SOURCE.MOUSE) {
+						ctrl_held[_i] = ctrl_held[_i] || mouse_check_button(_map_value);
+						ctrl_pressed[_i] = ctrl_pressed[_i] || mouse_check_button_pressed(_map_value);
+						ctrl_released[_i] = ctrl_released[_i] || mouse_check_button_released(_map_value);
 					} else {
-						ctrl_held[i] = ctrl_held[i] || keyboard_check(_map_value);
-						ctrl_pressed[i] = ctrl_pressed[i] || keyboard_check_pressed(_map_value);
-						ctrl_released[i] = ctrl_released[i] || keyboard_check_released(_map_value);
+						ctrl_held[_i] = ctrl_held[_i] || keyboard_check(_map_value);
+						ctrl_pressed[_i] = ctrl_pressed[_i] || keyboard_check_pressed(_map_value);
+						ctrl_released[_i] = ctrl_released[_i] || keyboard_check_released(_map_value);
 					}
 				}
 			}
@@ -267,49 +285,49 @@ function ControlManagerPlayer() constructor {
 				}
 			}
 	
-			for (var i=0; i<CONTROLS.MAX; i++) {
-				var _cur_values = gamepad_map[i].values;
+			for (var _i=0; _i<CONTROLS.MAX; _i++) {
+				var _cur_values = gamepad_map[_i].values;
 				var _num_values = array_length(_cur_values);
 				
 				for (var j=0; j<_num_values; j++) {
 					var _map_value = _cur_values[j];
 					if (_map_value == -1) continue;
 				
-					ctrl_held[i] = ctrl_held[i] || gamepad_button_check(gamepad_slot, _map_value);
-					ctrl_pressed[i] = ctrl_pressed[i] || gamepad_button_check_pressed(gamepad_slot, _map_value);
-					ctrl_released[i] = ctrl_released[i] || gamepad_button_check_released(gamepad_slot, _map_value);
+					ctrl_held[_i] = ctrl_held[_i] || gamepad_button_check(gamepad_slot, _map_value);
+					ctrl_pressed[_i] = ctrl_pressed[_i] || gamepad_button_check_pressed(gamepad_slot, _map_value);
+					ctrl_released[_i] = ctrl_released[_i] || gamepad_button_check_released(gamepad_slot, _map_value);
 				
 					// Check Left-Stick-as-D-Pad values
 					if (_map_value == gp_padd) {
-						ctrl_held[i] = ctrl_held[i] || stick_dpad_held[DPAD_DIRECTION.DOWN];
-						ctrl_pressed[i] = ctrl_pressed[i] || stick_dpad_pressed[DPAD_DIRECTION.DOWN];
-						ctrl_released[i] = ctrl_released[i] || stick_dpad_released[DPAD_DIRECTION.DOWN];
+						ctrl_held[_i] = ctrl_held[_i] || stick_dpad_held[DPAD_DIRECTION.DOWN];
+						ctrl_pressed[_i] = ctrl_pressed[_i] || stick_dpad_pressed[DPAD_DIRECTION.DOWN];
+						ctrl_released[_i] = ctrl_released[_i] || stick_dpad_released[DPAD_DIRECTION.DOWN];
 					}
 					if (_map_value == gp_padl) {
-						ctrl_held[i] = ctrl_held[i] || stick_dpad_held[DPAD_DIRECTION.LEFT];
-						ctrl_pressed[i] = ctrl_pressed[i] || stick_dpad_pressed[DPAD_DIRECTION.LEFT];
-						ctrl_released[i] = ctrl_released[i] || stick_dpad_released[DPAD_DIRECTION.LEFT];
+						ctrl_held[_i] = ctrl_held[_i] || stick_dpad_held[DPAD_DIRECTION.LEFT];
+						ctrl_pressed[_i] = ctrl_pressed[_i] || stick_dpad_pressed[DPAD_DIRECTION.LEFT];
+						ctrl_released[_i] = ctrl_released[_i] || stick_dpad_released[DPAD_DIRECTION.LEFT];
 					}
 					if (_map_value == gp_padr) {
-						ctrl_held[i] = ctrl_held[i] || stick_dpad_held[DPAD_DIRECTION.RIGHT];
-						ctrl_pressed[i] = ctrl_pressed[i] || stick_dpad_pressed[DPAD_DIRECTION.RIGHT];
-						ctrl_released[i] = ctrl_released[i] || stick_dpad_released[DPAD_DIRECTION.RIGHT];
+						ctrl_held[_i] = ctrl_held[_i] || stick_dpad_held[DPAD_DIRECTION.RIGHT];
+						ctrl_pressed[_i] = ctrl_pressed[_i] || stick_dpad_pressed[DPAD_DIRECTION.RIGHT];
+						ctrl_released[_i] = ctrl_released[_i] || stick_dpad_released[DPAD_DIRECTION.RIGHT];
 					}
 					if (_map_value == gp_padu) {
-						ctrl_held[i] = ctrl_held[i] || stick_dpad_held[DPAD_DIRECTION.UP];
-						ctrl_pressed[i] = ctrl_pressed[i] || stick_dpad_pressed[DPAD_DIRECTION.UP];
-						ctrl_released[i] = ctrl_released[i] || stick_dpad_released[DPAD_DIRECTION.UP];
+						ctrl_held[_i] = ctrl_held[_i] || stick_dpad_held[DPAD_DIRECTION.UP];
+						ctrl_pressed[_i] = ctrl_pressed[_i] || stick_dpad_pressed[DPAD_DIRECTION.UP];
+						ctrl_released[_i] = ctrl_released[_i] || stick_dpad_released[DPAD_DIRECTION.UP];
 					}
 				}
 			}
 	
 			// Any pressed
 			// TODO: Cache button checks so they can be used with the above ctrl_* checks
-			for (var i=gp_face1; i<gp_axisrv; i++) {
-		    if (gamepad_button_check_pressed(gamepad_slot, i)) {
+			for (var _i=gp_face1; _i<gp_padr; _i++) {
+		    if (gamepad_button_check_pressed(gamepad_slot, _i)) {
 					ctrl_any_pressed.control_type = CONTROL_TYPE.GAMEPAD;
 					ctrl_any_pressed.control_source = CONTROL_SOURCE.GAMEPAD;
-					ctrl_any_pressed.control_pressed = i;
+					ctrl_any_pressed.control_pressed = _i;
 		      break;
 		    }
 		  }

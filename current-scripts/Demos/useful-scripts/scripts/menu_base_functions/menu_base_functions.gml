@@ -1,11 +1,11 @@
 /// @func  menu_base_init(config)
-/// @param {Struct} config
+/// @param {Struct} _config
 ///								 - {} player_controller
 ///								 - {Font} font
 ///								 - {Sprite} cursor_spr
 ///								 - {boolean} use_control_icons
-///								 - {Array.<Sprite>} keyboard_icons
-///								 - {Array.<Sprite>} gamepad_icons
+///								 - {Array<Asset.GMSprite>} keyboard_icons
+///								 - {Array<Asset.GMSprite>} gamepad_icons
 ///								 - {number} control_icons_scale
 function menu_base_init(_config) {
 	player_controller = _config.player_controller;
@@ -47,7 +47,7 @@ function menu_base_start_scroll_down() {
 }
 
 /// @func  handle_selectable_confirm(item)
-/// @param {MenuSelectable} item
+/// @param {Struct} _item MenuSelectable
 function handle_selectable_confirm(_item) {
 	if (!_item.enabled) return;
 	if (is_callable(_item.on_confirm_func)) {
@@ -60,7 +60,7 @@ function handle_selectable_confirm(_item) {
 }
 
 /// @func  handle_spinner_confirm(item)
-/// @param {MenuSpinner} item
+/// @param {Struct} _item MenuSpinner
 function handle_spinner_confirm(_item) {
 	if (!_item.enabled) return;
 	if (is_callable(_item.on_confirm_func)) {
@@ -73,8 +73,8 @@ function handle_spinner_confirm(_item) {
 }
 
 /// @func  handle_spinner_change(item, delta)
-/// @param {MenuSpinner} item
-/// @param {number} delta -1 or 1
+/// @param {Struct} _item MenuSpinner
+/// @param {real} _delta -1 or 1
 function handle_spinner_change(_item, _delta) {
 	if (!_item.enabled) return;
 	var _num_values = array_length(_item.values);
@@ -95,8 +95,8 @@ function handle_spinner_change(_item, _delta) {
 }
 
 /// @func  handle_key_config_select(item, delta)
-/// @param {MenuKeyConfig} item
-/// @param {number} delta
+/// @param {Struct} _item MenuKeyConfig
+/// @param {real} _delta
 function handle_key_config_select(_item, _delta) {
 	if (!_item.enabled) return;
 	var _num_values = KEYBOARD_MAX_BINDINGS_PER_CONTROL + GAMEPAD_MAX_BINDINGS_PER_CONTROL;
@@ -115,7 +115,7 @@ function handle_key_config_select(_item, _delta) {
 }
 
 /// @func  handle_key_config_confirm(item)
-/// @param {MenuKeyConfig} item
+/// @param {Struct} _item MenuKeyConfig
 function handle_key_config_confirm(_item) {
 	if (!_item.enabled) return;
 	var _last_pressed = control_state.control_any_pressed();	
@@ -147,6 +147,7 @@ function handle_key_config_cancel(_item) {
 	if (!_item.enabled) return;
 	if (discovery_mode == MENU_DISCOVERY_MODE.SELECTING) {
 		discovery_mode = MENU_DISCOVERY_MODE.NONE;
+		// Feather disable once GM1043
 		self.active_key_config = noone;		
 	}
 }
@@ -209,10 +210,13 @@ function handle_key_config_discovery(_item) {
 		discovery_mode = MENU_DISCOVERY_MODE.NONE;
 		active_key_config.discovery_binding_info = false;
 
+		// Feather disable once GM2017
 		if (is_callable(self.active_key_config.on_change_func)) {
+			// Feather disable once GM1050
 			self.active_key_config.on_change_func(_control_type, _last_pressed.control_source, active_key_config.control, _control_index, _last_pressed.control_pressed, self.active_key_config.on_change_args);
 		}
 
+		// Feather disable once GM1043
 		self.active_key_config = noone;
 		io_clear();
 	}

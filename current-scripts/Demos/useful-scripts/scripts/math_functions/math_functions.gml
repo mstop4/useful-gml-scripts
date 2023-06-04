@@ -1,6 +1,6 @@
 /// @func            normalize_2d(vec)
 /// @desc            Normalizes a Vector2
-/// @param {Vector2} vec
+/// @param {Struct} vec Vector2
 function normalize_2d(_vec) {
 	var _len = point_distance(0, 0, _vec.x, _vec.y);
 	return new Vector2(_vec.x / _len, _vec.y / _len);
@@ -9,7 +9,7 @@ function normalize_2d(_vec) {
 
 /// @func            normalize_3d(vec)
 /// @desc            Normalizes a Vector3
-/// @param {Vector3} vec
+/// @param {Struct} _vec Vector3
 function normalize_3d(_vec) {
 	var _len = point_distance_3d(0, 0, 0, _vec.x, _vec.y, _vec.z);
 	return new Vector3(_vec.x / _len, _vec.y / _len, _vec.z / _len);
@@ -18,8 +18,8 @@ function normalize_3d(_vec) {
 
 /// @func            cross_product(vec1, vec2)
 /// @desc            Calculates cross product of two Vector3s
-/// @param {Vector3} vec1 
-/// @param {Vector3} vec2
+/// @param {Struct} _vec1 Vector3
+/// @param {Struct} _vec2 Vector3
 function cross_product(_vec1, _vec2) {
 	return new Vector3(
 		_vec1.y*_vec2.z - _vec1.z*_vec2.y,
@@ -31,8 +31,8 @@ function cross_product(_vec1, _vec2) {
 
 /// @func            cross_product_2d(vec1, vec2)
 /// @desc            Calculates the z-component of the "cross product" of two Vector2s
-/// @param {Vector2} vec1 
-/// @param {Vector2} vec2
+/// @param {Struct} _vec1 Vector2
+/// @param {Struct} _vec2 Vector2
 function cross_product_2d(_vec1, _vec2) {
 	return _vec1.x*_vec2.y - _vec1.y*_vec2.x;
 }
@@ -40,8 +40,8 @@ function cross_product_2d(_vec1, _vec2) {
 
 /// @func            cross_product_normalized(vec1, vec2)
 /// @desc            Calculates the normalized cross product of two Vector3s
-/// @param {Vector3} vec1 
-/// @param {Vector3} vec2
+/// @param {Struct} _vec1 Vector3
+/// @param {Struct} _vec2 Vector3
 function cross_product_normalized(_vec1, _vec2) {
 	var _xp = new Vector3(
 		_vec1.y*_vec2.z - _vec1.z*_vec2.y,

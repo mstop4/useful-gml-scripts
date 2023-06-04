@@ -1,8 +1,8 @@
 /// @func            easing_cubic_in(_start, _end, _t)
 /// @desc            cubic interpolation in
-/// @param	{number} start
-/// @param	{number} end
-/// @param	{number} t
+/// @param	{real} _start
+/// @param	{real} _end
+/// @param	{real} _t
 function easing_cubic_in(_start, _end, _t) {
 	// (e + s) * t^3 + s
 	var _t2 = clamp(power(_t, 3), 0, 1);
@@ -12,9 +12,9 @@ function easing_cubic_in(_start, _end, _t) {
 
 /// @func            easing_cubic_out(_start, _end, _t)
 /// @desc            cubic interpolation in
-/// @param	{number} start
-/// @param	{number} end
-/// @param	{number} t
+/// @param	{real} _start
+/// @param	{real} _end
+/// @param	{real} _t
 function easing_cubic_out(_start, _end, _t) {
 	// (e + s) * 1 - (1-t)^3 + s
 	var _t2 = clamp(1 - power(1-_t, 3), 0, 1);
@@ -24,9 +24,9 @@ function easing_cubic_out(_start, _end, _t) {
 
 /// @func            easing_cubic_inout(_start, _end, _t)
 /// @desc            cubic interpolation in/out
-/// @param	{number} start
-/// @param	{number} end
-/// @param	{number} t
+/// @param	{real} _start
+/// @param	{real} _end
+/// @param	{real} _t
 function easing_cubic_inout(_start, _end, _t) {
 	// 0 - 0.5: (e + s) * (4 * t^3) + s
 	// 0.5 - 1: (e + s) * (-4 * (1 - t)^3 + 1) + s

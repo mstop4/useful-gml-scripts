@@ -1,16 +1,16 @@
-/// @func             draw_circle_meter(x, y, radius, start_angle, direction, percentage, front_color, back_color, texture, fidelity, alpha)
-/// @desc             Draws circular progress meter on a surface
-/// @param {Surface}  surface
-/// @param {real}     x          
-/// @param {real}     y          
-/// @param {real}     radius     
-/// @param {real}     start_angle
-/// @param {real}     direction    < 0 = clockwise, > 0 = counter-clockwise. Can't be 0.
-/// @param {real}     percentage   0 - 1
-/// @param {Colour}   front_color        
-/// @param {Colour}   back_color
-/// @param {Sprite}   sprite       use -1 for no sprite
-/// @param {integer}  fidelity        
+/// @func											draw_circle_meter(x, y, radius, start_angle, direction, percentage, front_color, back_color, texture, fidelity, alpha)
+/// @desc											Draws circular progress meter on a surface
+/// @param {Id.Surface}				_surface
+/// @param {real}							_x          
+/// @param {real}							_y          
+/// @param {real}							_radius     
+/// @param {real}							_start_angle
+/// @param {real}							_direction    < 0 = clockwise, > 0 = counter-clockwise. Can't be 0.
+/// @param {real}							_percentage   0 - 1
+/// @param {real}							_front_color  colour      
+/// @param {real}							_back_color   colour
+/// @param {Asset.GMSprite}   _sprite       use -1 for no sprite
+/// @param {real}							_fidelity        
 function draw_circle_meter(_surface, _x, _y, _radius, _start_angle, _direction, _percentage, _front_color, _back_color, _sprite, _fidelity) {
 	if (!surface_exists(_surface) || _direction == 0) return;
 
@@ -78,21 +78,21 @@ function draw_circle_meter(_surface, _x, _y, _radius, _start_angle, _direction, 
 }
 
 
-/// @func            draw_curved_meter(x, y, inner_radius, outer_radius, min_angle, max_angle, direction, percentage, front_color, back_color, sprite, fidelity)
-/// @desc            Draws circular progress meter on a surface
-/// @param {Surface} surface
-/// @param {real}    x               
-/// @param {real}    y               
-/// @param {real}    inner_radius    
-/// @param {real}    outer_radius        
-/// @param {real}    min_angle    
-/// @param {real}    max_angle     
-/// @param {real}    direction    < 0 = clockwise, > 0 = counter-clockwise. Can't be 0.
-/// @param {real}    percentage   0 - 1  
-/// @param {Colour}  front_color     
-/// @param {Colour}  back_color
-/// @apram {Sprite}  sprite       use -1 for no sprite
-/// @param {integer} fidelity        
+/// @func										  draw_curved_meter(x, y, inner_radius, outer_radius, min_angle, max_angle, direction, percentage, front_color, back_color, sprite, fidelity)
+/// @desc										  Draws circular progress meter on a surface
+/// @param {Id.Surface}				_surface
+/// @param {real}							_x               
+/// @param {real}							_y               
+/// @param {real}							_inner_radius    
+/// @param {real}							_outer_radius        
+/// @param {real}							_min_angle    
+/// @param {real}							_max_angle     
+/// @param {real}							_direction    < 0 = clockwise, > 0 = counter-clockwise. Can't be 0.
+/// @param {real}							_percentage   0 - 1  
+/// @param {real}							_front_color  colour   
+/// @param {real}							_back_color   colour
+/// @apram {Asset.GMSprite}		_sprite       use -1 for no sprite
+/// @param {real}							_fidelity        
 function draw_curved_meter(_surface, _x, _y, _inner_radius, _outer_radius, _min_angle, _max_angle, _direction, _percentage, _front_color, _back_color, _sprite, _fidelity) {
 	if (!surface_exists(_surface) || _direction == 0) return;
 
@@ -174,17 +174,17 @@ function draw_curved_meter(_surface, _x, _y, _inner_radius, _outer_radius, _min_
 
 /// @func            draw_outlined_text(x, y, string, xscale, yscale, angle, inner_color, outline_color, outline_width, alpha, fidelity)
 /// @desc            Draws text with outline
-/// @param {real}    x          
-/// @param {real}    y          
-/// @param {string}  string        
-/// @param {real}    xscale     
-/// @param {real}    yscale     
-/// @param {real}    angle      
-/// @param {Colour}  inner_color  
-/// @param {Colour}  outline_color 
-/// @param {real}    outline_width  
-/// @param {real}    alpha      
-/// @param {integer} fidelity   
+/// @param {real}    _x          
+/// @param {real}    _y          
+/// @param {string}  _string        
+/// @param {real}    _xscale     
+/// @param {real}    _yscale     
+/// @param {real}    _angle      
+/// @param {real}		 _inner_color colour
+/// @param {real}		 _outline_color colour
+/// @param {real}    _outline_width  
+/// @param {real}    _alpha      
+/// @param {real}		 _fidelity   
 function draw_outlined_text(_x, _y, _string, _xscale, _yscale, _angle, _inner_color, _outline_color, _outline_width, _alpha, _fidelity) {
 	draw_set_color(_outline_color);
 

@@ -1,3 +1,4 @@
+// Feather disable GM1009
 var _super_input = keyboard_check(vk_shift);
 var _log_input = true;
 

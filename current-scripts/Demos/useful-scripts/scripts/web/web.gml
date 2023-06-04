@@ -1,6 +1,6 @@
 /// @func           url_encode(url)
 /// @desc           URL-Encodes a string according to RFC 1738. Based on https://help.yoyogames.com/hc/en-us/articles/216754718-Encoding-URLs
-/// @param {string{ url
+/// @param {string} _url
 function url_encode(_url) {
 	var _encoded_url = "";
 	
@@ -15,7 +15,7 @@ function url_encode(_url) {
 	];
 	var _num_special_chars = array_length(_special_chars);
 	
-	var decimal_to_hex = [
+	var _decimal_to_hex = [
 		"0", "1", "2", "3",
 		"4", "5", "6", "7",
 		"8", "9", "A", "B",
@@ -39,8 +39,8 @@ function url_encode(_url) {
 		}
 		
 		if (_is_special) {
-			var _high = decimal_to_hex[_char div 16];
-			var _low = decimal_to_hex[_char mod 16];
+			var _high = _decimal_to_hex[_char div 16];
+			var _low = _decimal_to_hex[_char mod 16];
 			_encoded_url += "%" + _high + _low;
 		} else {
 			_encoded_url += chr(_char);

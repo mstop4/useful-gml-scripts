@@ -1,7 +1,7 @@
 /// @func         grids_are_equal(grid1, grid2)
 /// @desc         Compares all cells of two DS Grids for equality
-/// @param {Grid} grid1
-/// @param {Grid} grid2
+/// @param {Id.DsGrid} _grid1
+/// @param {Id.DsGrid} _grid2
 
 function grids_are_equal(_grid1, _grid2) {
 	return ds_grid_write(_grid1) == ds_grid_write(_grid2);
@@ -9,15 +9,15 @@ function grids_are_equal(_grid1, _grid2) {
 
 /// @func          choose_from_array(array)
 /// @desc					 Chooses a random element from an array
-/// @param {Array} array
+/// @param {Array} _array
 function choose_from_array(_array) {
 	return _array[irandom(array_length(_array)-1)];
 }
 
 /// @func          array_is_subset(array)
 /// @desc					 Checks if Array a is a subset of array b
-/// @param {Array} a
-/// @param {Array} b
+/// @param {Array} _a
+/// @param {Array} _b
 function array_is_subset(_a, _b) {
 	var _a_len = array_length(_a);
 	var _b_len = array_length(_b);
@@ -84,7 +84,8 @@ function shuffle_array(_array) {
 
 /// @func          file_jsonc_parse(filename)
 /// @desc					 Parses a JSON with Comments from file, stripping out the comments
-/// @param {Array} filename
+/// @param {String} _filename
+/// @returns {Struct}
 function file_jsonc_parse(_filename) {
 	var _jsonc_file = file_text_open_read(_filename);
 	if (_jsonc_file == -1) return {};
