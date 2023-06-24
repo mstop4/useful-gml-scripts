@@ -1,3 +1,4 @@
+// Feather disable GM1013
 if (!enabled) exit;
 
 control_state.poll_input();
