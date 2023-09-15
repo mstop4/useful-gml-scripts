@@ -1,6 +1,6 @@
-// Feather disable GM1010
-
 // Feather disable GM1013
+// Feather disable GM1010
+// Feather disable GM1009
 event_inherited();
 var _x_offset = 0;
 var _y_offset = 0;

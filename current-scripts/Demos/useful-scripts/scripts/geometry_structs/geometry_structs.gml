@@ -1,3 +1,5 @@
+// Feather disable GM1010
+
 function LineSegment(_ax, _ay, _bx, _by) constructor {
 	a = new Vector2(_ax, _ay);
 	b = new Vector2(_bx, _by);
