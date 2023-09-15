@@ -73,8 +73,9 @@ function get_os_version_string(_os_version) {
 function get_os_browser_string(_os_browser) {
 	if (_os_browser == browser_not_a_browser) {
 		return "Not a browser";
-	} else // Feather disable once GM1044
-if (_os_browser >= 0 && _os_browser < array_length(global._os_browser_strings)) {
+	} 
+	// Feather disable once GM1044
+	else if (_os_browser >= 0 && _os_browser < array_length(global._os_browser_strings)) {
 		return global._os_browser_strings[_os_browser];
 	} else {
 		return global._os_browser_strings[browser_unknown];

@@ -11,14 +11,15 @@ enum TWEEN_LIMIT_MODE {
 	BOUNCE
 }
 
-/// @func Tween(value, delta, min_v, max_v, limit_mode, stop_outside_range)
-function Tween(_value, _delta, _min_v, _max_v, _limit_mode, _stop_outside_range) constructor {
+/// @func Tween(value, delta, min_v, max_v, limit_mode, stop_outside_range, outside_range_callback)
+function Tween(_value, _delta, _min_v, _max_v, _limit_mode, _stop_outside_range, _outside_range_callback) constructor {
 	v = _value;
 	d = _delta;
 	min_v = _min_v;
 	max_v = _max_v;
 	limit_mode = _limit_mode;
 	stop_outside_range = _stop_outside_range;
+	outside_range_callback = _outside_range_callback;
 
 	static update = function() {
 		if (d != 0) {
@@ -78,8 +79,11 @@ function Tween(_value, _delta, _min_v, _max_v, _limit_mode, _stop_outside_range)
 					v = _new_v;
 			}
 			
-			if (stop_outside_range && _old_v == v) {
+			if (stop_outside_range && (v >= max_v || v <= min_v)) {
 				d = 0;
+				if (is_callable(outside_range_callback)) {
+					outside_range_callback();
+				}
 			}
 		}
 	}

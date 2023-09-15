@@ -122,7 +122,7 @@ function MenuSpinnerBase(_config) : MenuItem(_config) constructor {
 //         - {boolean}  silent_on_change
 function MenuSpinner(_config) : MenuSpinnerBase(_config) constructor {
 	values = _config.values;
-	cur_index = clamp(_config.init_index, 0, array_length(values));
+	cur_index = clamp(_config.init_index, 0, array_length(values) - 1);
 	
 	function get_full_label() {
 		return concat(label, ": ", values[cur_index]);
