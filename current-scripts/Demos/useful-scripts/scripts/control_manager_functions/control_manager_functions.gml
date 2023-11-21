@@ -27,3 +27,17 @@ function is_on_steam_deck() {
 function get_steam_deck_gamepad_index() {
 	return self.steam_deck_info.gamepad_index;
 }
+
+/// @desc Checks the connection status of devices
+function check_device_connection_statuses() {
+	gamepad_connected = array_create(device_count, false);
+	num_gamepads_connected = 0;
+
+	for (var _i=0; _i<device_count; _i++) {
+		var _is_connected = gamepad_is_connected(_i);
+		if (_is_connected) {
+			num_gamepads_connected++;
+		}
+		gamepad_connected[_i] = _is_connected;
+	}
+}

@@ -11,5 +11,5 @@ reset_graph = function() {
 surf = surface_create(surf_width, surf_height);
 reset_graph();
 
-t = new Tween(0, 1, 0, surf_width, TWEEN_LIMIT_MODE.CEILING, false);
+t = new Tween(0, 1, 0, surf_width, TWEEN_LIMIT_MODE.CEILING, false, pointer_null);
 ev = 0;

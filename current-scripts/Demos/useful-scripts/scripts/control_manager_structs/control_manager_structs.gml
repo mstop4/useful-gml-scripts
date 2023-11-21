@@ -325,7 +325,7 @@ function ControlManagerPlayer() constructor {
 	
 			// Any pressed
 			// TODO: Cache button checks so they can be used with the above ctrl_* checks
-			for (var _i=gp_face1; _i<gp_padr; _i++) {
+			for (var _i=gp_face1; _i<=gp_padr; _i++) {
 		    if (gamepad_button_check_pressed(gamepad_slot, _i)) {
 					ctrl_any_pressed.control_type = CONTROL_TYPE.GAMEPAD;
 					ctrl_any_pressed.control_source = CONTROL_SOURCE.GAMEPAD;

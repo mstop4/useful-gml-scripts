@@ -128,6 +128,7 @@ function handle_key_config_confirm(_item) {
 			_item.current_binding_index = 0;
 		}
 		discovery_mode = MENU_DISCOVERY_MODE.SELECTING;
+		// Feather ignore once GM1043
 		self.active_key_config = _item;
 	} else if (discovery_mode == MENU_DISCOVERY_MODE.SELECTING) {
 		// Selecting

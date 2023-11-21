@@ -78,8 +78,9 @@ function dialogue_line_breaker(_str, _max_width, _font) {
 	return _out_str;
 }
 
-/// @func          split_string(str, delimiter)
-/// @desc          Splits string into substrings
+/// @desc          Splits string into substrings.
+///								 Deprecated: Use string_split instead.
+/// @deprecated
 /// @arg {string}  _str
 /// @arg {string}  _delimiter
 function split_string(_str, _delimiter) {

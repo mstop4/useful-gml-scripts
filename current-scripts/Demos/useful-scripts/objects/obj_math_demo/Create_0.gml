@@ -3,10 +3,10 @@ vec_b = new Vector2(-1, 2);
 vec_c = new Vector3(-2, 3, 4);
 vec_d = new Vector3(10, -5, 7);
 
-pulse_counter = new Tween(0, 0.01, 0, 1, TWEEN_LIMIT_MODE.WRAP, false);
+pulse_counter = new Tween(0, 0.01, 0, 1, TWEEN_LIMIT_MODE.WRAP, false, pointer_null);
 pulse_t = 0;
 
-wrap_counter = new Tween(-10, 0.01, -10, 10, TWEEN_LIMIT_MODE.WRAP, false);
+wrap_counter = new Tween(-10, 0.01, -10, 10, TWEEN_LIMIT_MODE.WRAP, false, pointer_null);
 wrapped_value = 0;
 
 blin_values = ds_grid_create(5, 5);
