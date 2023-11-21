@@ -6,7 +6,7 @@ function init_steam_deck_info() {
 }
 
 function add_player() {
-	var _new_player = new ControlManagerPlayer();
+	var _new_player = new ControlManagerPlayer(id);
 	ds_list_add(players, _new_player);
 	num_players++;
 	return num_players-1;
@@ -40,4 +40,37 @@ function check_device_connection_statuses() {
 		}
 		gamepad_connected[_i] = _is_connected;
 	}
+}
+
+
+/// @desc Starts listening for any input on any gamepad
+function start_gamepad_discovery_mode(_player_index) {
+	gamepad_discovery_mode = true;
+	gamepad_discovery_player_index = _player_index;
+}
+
+/// @desc Listens for any input on any gamepad. If detected, returns device index
+function listen_for_gamepad_input() {
+	var _gamepad_index = -1;
+	
+	for (var _i=0; _i<device_count; _i++) {
+		if (_gamepad_index != -1) break;
+
+		for (var _j=gp_face1; _j<=gp_padr; _j++) {
+			if (gamepad_button_check_pressed(_i, _j)) {
+				_gamepad_index = _i;
+				break;
+			}
+		}
+	}
+	
+	if (_gamepad_index != -1) {
+		self.stop_gamepad_discovery_mode();
+		self.players[| self.gamepad_discovery_player_index].set_gamepad_slot(_gamepad_index);
+	}
+}
+
+/// @desc Stop listening for input on any gamepad
+function stop_gamepad_discovery_mode() {
+	gamepad_discovery_mode = false;
 }

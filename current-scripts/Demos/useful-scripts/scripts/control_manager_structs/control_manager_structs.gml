@@ -43,7 +43,9 @@ function Binding(_num_values, _control_source) constructor {
 	axis_drection = AXIS_DIRECTION.POSITIVE;
 }
 
-function ControlManagerPlayer() constructor {
+/// @param {Id.Instance} _control_manager
+function ControlManagerPlayer(_control_manager) constructor {
+	control_manager = _control_manager;
 	keyboard_enabled = true;
 	gamepad_enabled = true;
 	touch_enabled = true;
@@ -230,7 +232,7 @@ function ControlManagerPlayer() constructor {
 			}
 		}
 
-		if (gamepad_enabled) {		
+		if (gamepad_enabled && !control_manager.gamepad_discovery_mode) {		
 			// Process Left Stick
 			if (gamepad_stick_enabled) {
 				stick_input.x = gamepad_axis_value(gamepad_slot, gp_axislh);
@@ -333,12 +335,12 @@ function ControlManagerPlayer() constructor {
 		      break;
 		    }
 		  }
+			
+			axis_held.x = stick_dpad_held[DPAD_DIRECTION.RIGHT] - stick_dpad_held[DPAD_DIRECTION.LEFT]; 
+			axis_held.y = stick_dpad_held[DPAD_DIRECTION.DOWN] - stick_dpad_held[DPAD_DIRECTION.UP]; 
+			axis_pressed.x = stick_dpad_pressed[DPAD_DIRECTION.RIGHT] - stick_dpad_pressed[DPAD_DIRECTION.LEFT]; 
+			axis_pressed.y = stick_dpad_pressed[DPAD_DIRECTION.DOWN] - stick_dpad_pressed[DPAD_DIRECTION.UP];
 		}
-
-		axis_held.x = stick_dpad_held[DPAD_DIRECTION.RIGHT] - stick_dpad_held[DPAD_DIRECTION.LEFT]; 
-		axis_held.y = stick_dpad_held[DPAD_DIRECTION.DOWN] - stick_dpad_held[DPAD_DIRECTION.UP]; 
-		axis_pressed.x = stick_dpad_pressed[DPAD_DIRECTION.RIGHT] - stick_dpad_pressed[DPAD_DIRECTION.LEFT]; 
-		axis_pressed.y = stick_dpad_pressed[DPAD_DIRECTION.DOWN] - stick_dpad_pressed[DPAD_DIRECTION.UP];
 	}
 
 	function clear_all_input() {

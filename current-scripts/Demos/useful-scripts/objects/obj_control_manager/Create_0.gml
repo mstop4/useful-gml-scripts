@@ -6,3 +6,5 @@ num_players = 0;
 device_count = gamepad_get_device_count();
 gamepad_connected = array_create(device_count, false);
 num_gamepads_connected = 0;
+gamepad_discovery_mode = false;
+gamepad_discovery_player_index = 0;
