@@ -22,7 +22,7 @@ menu.grid_menu_init({
 
 menu.grid_menu_add_selectable(0, 0, { 
 	label: "Foo",
-	on_confirm_func: menu_demo_on_confirm,
+	on_confirm_func: menu_demo_on_selectable_confirm,
 	on_confirm_args: ["Foo"],
 	silent_on_confirm: false
 });
@@ -39,56 +39,56 @@ menu.grid_menu_add_selectable(0, 0, {
 
 menu.grid_menu_add_selectable(0, 1, { 
 	label: "Bar",
-	on_confirm_func: menu_demo_on_confirm,
+	on_confirm_func: menu_demo_on_selectable_confirm,
 	on_confirm_args: ["Bar"],
 	silent_on_confirm: false
 });
 
 menu.grid_menu_add_selectable(1, 0, { 
 	label: "Baz",
-	on_confirm_func: menu_demo_on_confirm,
+	on_confirm_func: menu_demo_on_selectable_confirm,
 	on_confirm_args: ["Baz"],
 	silent_on_confirm: false
 });
 
 menu.grid_menu_add_selectable(1, 1, { 
 	label: "Qux",
-	on_confirm_func: menu_demo_on_confirm,
+	on_confirm_func: menu_demo_on_selectable_confirm,
 	on_confirm_args: ["Qux"],
 	silent_on_confirm: false
 });
 
 menu.grid_menu_add_selectable(2, 0, { 
 	label: "Boo",
-	on_confirm_func: menu_demo_on_confirm,
+	on_confirm_func: menu_demo_on_selectable_confirm,
 	on_confirm_args: ["Boo"],
 	silent_on_confirm: false
 });
 
 menu.grid_menu_add_selectable(2, 1, { 
 	label: "Far",
-	on_confirm_func: menu_demo_on_confirm,
+	on_confirm_func: menu_demo_on_selectable_confirm,
 	on_confirm_args: ["Far"],
 	silent_on_confirm: false
 });
 
 menu.grid_menu_add_selectable(2, 2, { 
 	label: "Qaz",
-	on_confirm_func: menu_demo_on_confirm,
+	on_confirm_func: menu_demo_on_selectable_confirm,
 	on_confirm_args: ["Qaz"],
 	silent_on_confirm: false
 });
 
 menu.grid_menu_add_selectable(0, 2, { 
 	label: "Bux",
-	on_confirm_func: menu_demo_on_confirm,
+	on_confirm_func: menu_demo_on_selectable_confirm,
 	on_confirm_args: ["Bux"],
 	silent_on_confirm: false
 });
 
 menu.grid_menu_add_selectable(1, 2, { 
 	label: "Huh",
-	on_confirm_func: menu_demo_on_confirm,
+	on_confirm_func: menu_demo_on_selectable_confirm,
 	on_confirm_args: ["Huh"],
 	silent_on_confirm: false
 });

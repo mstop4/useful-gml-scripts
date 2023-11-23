@@ -72,7 +72,7 @@ if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
 	
 	if (_item.type == "menu") {
 		if (active_item == noone) {
-			self.nested_menu_toggle_submenu_by_index(pos);
+			self.nested_menu_toggle_submenu_by_index(self, pos);
 			player_controller.clear_all_input();
 		}
 	}
@@ -93,7 +93,7 @@ if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
 		var _submenu = active_item.submenu;
 		if (_submenu.active_key_config != -1) exit;
 		
-		nested_menu_toggle_submenu_by_index(-1);
+		self.nested_menu_toggle_submenu_by_index(self, -1);
 		player_controller.clear_all_input();
 		exit;
 	}
