@@ -151,6 +151,28 @@ function grid_menu_add_selectable(_x, _y, _config) {
 	return _new;
 }
 
+/// @param {real} _x
+/// @param {real} _y
+/// @param {Struct} _config 
+//         - {string}   label
+//         - {string}   init_value
+//         - {function} on_confirm_func
+//         - {array}    on_confirm_args
+//         - {function} on_change_func
+//         - {array}    on_change_args
+//         - {boolean}  silent_on_confirm
+//         - {boolean}  silent_on_change
+function grid_menu_add_valued_selectable(_x, _y, _config) {
+	if (_x < 0 || _x >= ds_grid_width(items)
+		|| _y < 0 || _y >= ds_grid_height(items))
+			return;
+	
+	var _new = new MenuValuedSelectable(_config);
+	_new.parent_menu = self.id;
+	items[# _x, _y] = _new;
+	return _new;
+}
+
 /// @func  grid_menu_add_spinner(x, y, config)
 /// @param _x
 /// @param _y

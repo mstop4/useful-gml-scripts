@@ -18,7 +18,7 @@ if (control_state.pressed_state[MENU_CONTROLS.UP]) {
 			pos.y = wrap(pos.y-1, 0, ds_grid_height(items));
 			_item = items[# pos.x, pos.y];
 		} until ((is_struct(_item)
-			&& ds_list_find_index(_item.types, "divider") == -1)
+			&& _item.type != "divider")
 			|| _cur_pos == pos.y)		
 
 		var _should_scroll = self.grid_menu_update_view().y && (pos.y < _cur_pos);
@@ -36,7 +36,7 @@ if (control_state.pressed_state[MENU_CONTROLS.DOWN]) {
 			pos.y = wrap(pos.y+1, 0, ds_grid_height(items));
 			_item = items[# pos.x, pos.y];
 		} until ((is_struct(_item)
-			&& ds_list_find_index(_item.types, "divider") == -1)
+			&& _item.type != "divider")
 			|| _cur_pos == pos.y)		
 	
 		var _should_scroll = self.grid_menu_update_view().y && (pos.y > _cur_pos);
@@ -50,12 +50,12 @@ if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {
 	var _item = items[# pos.x, pos.y];
 
 	if (is_struct(_item)) {
-		if (ds_list_find_index(_item.types, "spinner") != -1) {
+		if (_item.type == "spinner") {
 			self.handle_spinner_change(_item, -1);
 			return;
 		}
 			
-		else if (ds_list_find_index(_item.types, "keyconfig") != -1
+		else if (_item.type == "keyconfig"
 			&& active_key_config == _item) {
 			self.handle_key_config_select(_item, -1);
 			return;
@@ -66,7 +66,7 @@ if (control_state.pressed_state[MENU_CONTROLS.LEFT]) {
 		pos.x = wrap(pos.x-1, 0, ds_grid_width(items));
 		_item = items[# pos.x, pos.y];
 	} until ((is_struct(_item)
-			&& ds_list_find_index(_item.types, "divider") == -1)
+			&& _item.type != "divider")
 			|| _cur_pos == pos.x)		
 	
 	var _should_scroll = self.grid_menu_update_view().x && (pos.x < _cur_pos);
@@ -79,12 +79,12 @@ if (control_state.pressed_state[MENU_CONTROLS.RIGHT]) {
 	var _item = items[# pos.x, pos.y];
 
 	if (is_struct(_item)) {
-		if (ds_list_find_index(_item.types, "spinner") != -1) {
+		if (_item.type = "spinner") {
 			self.handle_spinner_change(_item, 1);
 			return;
 		}
 			
-		else if (ds_list_find_index(_item.types, "keyconfig") != -1
+		else if (_item.type == "keyconfig"
 			&& active_key_config == _item) {
 			self.handle_key_config_select(_item, -1);
 			return;
@@ -95,7 +95,7 @@ if (control_state.pressed_state[MENU_CONTROLS.RIGHT]) {
 		pos.x = wrap(pos.x+1, 0, ds_grid_width(items));
 		_item = items[# pos.x, pos.y];
 	} until ((is_struct(_item)
-			&& ds_list_find_index(_item.types, "divider") == -1)
+			&& _item.type != "divider")
 			|| _cur_pos == pos.x)		
 	
 	var _should_scroll = self.grid_menu_update_view().x && (pos.x > _cur_pos);
@@ -107,13 +107,16 @@ if (control_state.pressed_state[MENU_CONTROLS.CONFIRM]) {
 	var _item = items[# pos.x, pos.y];
 	if (!is_struct(_item)) return;
 	
-	if (ds_list_find_index(_item.types, "spinner") != -1)
+	if (_item.type == "spinner")
 		self.handle_spinner_confirm(_item);
 	
-	else if (ds_list_find_index(_item.types, "selectable") != -1)
+	else if (_item.type == "selectable")
 		self.handle_selectable_confirm(_item);
+
+	else if (_item.type == "valuedSelectable")
+		self.handle_valued_selectable_confirm(_item);
 		
-	else if (ds_list_find_index(_item.types, "keyconfig") != -1)
+	else if (_item.type == "keyconfig")
 		self.handle_key_config_confirm(_item);
 }
 
@@ -121,7 +124,7 @@ if (control_state.pressed_state[MENU_CONTROLS.CANCEL]) {
 	var _item = items[# pos.x, pos.y];
 	if (!is_struct(_item)) return;
 		
-	if (ds_list_find_index(_item.types, "keyconfig") != -1
+	if (_item.type == "keyconfig"
 		&& active_key_config == _item)
 		self.handle_key_config_cancel(_item);
 }
@@ -130,6 +133,6 @@ if (control_state.pressed_state[MENU_CONTROLS.DELETE_BINDING]) {
 	var _item = items[# pos.x, pos.y];
 	if (!is_struct(_item)) return;
 		
-	if (ds_list_find_index(_item.types, "keyconfig") != -1)
+	if (_item.type == "keyconfig")
 		self.handle_key_config_delete(_item);
 }

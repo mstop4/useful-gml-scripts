@@ -6,6 +6,6 @@
 //         - {array}         on_confirm_args
 //         - {boolean}       silent_on_confirm
 function NestedMenuSubmenu(_config) : MenuSelectable(_config) constructor {
-	ds_list_add(types, "menu");
+	type = "menu";
 	submenu = _config.submenu;
 }

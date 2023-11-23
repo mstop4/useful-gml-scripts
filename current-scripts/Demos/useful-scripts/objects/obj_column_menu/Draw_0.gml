@@ -23,8 +23,9 @@ for (var _i=view_area.x; _i<=view_area.y; _i++) {
 				draw_set_alpha(menu_alpha.v);
 			}
 		}
-
-		self.menu_base_draw_item(_item, _x, _y + _y_offset);
+		
+		var _is_focused = pos == _i;
+		self.menu_base_draw_item(_item, _x, _y + _y_offset, _is_focused);
 	}
 	_y += item_height + line_spacing;
 }
@@ -35,14 +36,18 @@ if (view_height > 0) {
 		_item = items[| view_area.x - 1];
 		if (is_struct(_item)) {
 			draw_set_alpha(abs(view_scroll_progress_y.v));
-			self.menu_base_draw_item(_item, _x, y - (item_height + line_spacing) + _y_offset);
+			
+			var _is_focused = pos == view_area.x - 1;
+			self.menu_base_draw_item(_item, _x, y - (item_height + line_spacing) + _y_offset, _is_focused);
 		}
 	} else if (view_scroll_progress_y.v > 0 && view_area.y + 1 < num_items) {
 		// Scroll down last element
 		_item = items[| view_area.y + 1];
 		if (is_struct(_item)) {
 			draw_set_alpha(abs(view_scroll_progress_y.v));
-			self.menu_base_draw_item(_item, _x, _y + _y_offset);
+			
+			var _is_focused = pos == view_area.y + 1;
+			self.menu_base_draw_item(_item, _x, _y + _y_offset + _is_focused);
 		}
 	}
 }

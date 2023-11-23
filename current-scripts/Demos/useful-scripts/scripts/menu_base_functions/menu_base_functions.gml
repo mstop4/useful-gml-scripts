@@ -59,6 +59,18 @@ function handle_selectable_confirm(_item) {
 	}
 }
 
+/// @param {Struct.MenuValuedSelectable} _item 
+function handle_valued_selectable_confirm(_item) {
+	if (!_item.enabled) return;
+	if (is_callable(_item.on_confirm_func)) {
+		_item.on_confirm_func(_item, _item.on_confirm_args);
+	}
+
+	if (!_item.silent_on_confirm && audio_exists(cursor_confirm_sfx)) {
+		audio_play_sound(cursor_confirm_sfx, 1, false);
+	}
+}
+
 /// @func  handle_spinner_confirm(item)
 /// @param {Struct} _item MenuSpinner
 function handle_spinner_confirm(_item) {
@@ -226,10 +238,12 @@ function handle_key_config_discovery(_item) {
 	}
 }
 
-function menu_base_draw_item(_item, _x, _y) {
-	var _type = _item.types[| ds_list_size(_item.types)-1];
+function menu_base_draw_item(_item, _x, _y, _is_focused = false) {
+	var _type = _item.type;
 	if (_item.enabled) draw_set_colour(c_white);
 	else draw_set_colour(c_gray);
+
+	var _item_value;
 
 	switch (_type) {
 		case "item":
@@ -238,89 +252,117 @@ function menu_base_draw_item(_item, _x, _y) {
 			draw_text(_x, _y, _item.label);
 			break;
 			
-	case "spinner":
-		draw_set_font(self.menu_label_font);
-		draw_text(_x, _y, _item.label);
-		draw_set_font(self.menu_value_font);
-		draw_text(_x + label_width, _y + spinner_value_text_y_offset, _item.get_value());
-		break;
+		case "valuedSelectable":
+			draw_set_font(self.menu_label_font);
+			draw_text(_x, _y, _item.label);
+			draw_set_font(self.menu_value_font);
+			draw_text(_x + label_width, _y + spinner_value_text_y_offset, _item.get_value());
+			break;
 			
-	case "keyconfig":
-		draw_set_font(self.menu_label_font);
-		draw_text(_x, _y, _item.label);
-		var _cur_x = _x + label_width;
-		var _cur_binding_index = 0;
-		draw_set_font(self.menu_value_font);
+		case "spinner":
+			_item_value = _item.get_value();
+			draw_set_font(self.menu_label_font);
+			draw_text(_x, _y, _item.label);
+			draw_set_font(self.menu_value_font);
+			draw_text(_x + label_width, _y + spinner_value_text_y_offset, _item_value);
 		
-		// Draw keyboard bindings
-		for (var _i=0; _i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; _i++) {
-			if (use_control_icons) {
-				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.KEYBOARD_AND_MOUSE, _i);
-				draw_sprite_ext(keyboard_icons[keyboard_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v);
-				if (_item.locked_kbm_bindings[_i]) {
-					draw_sprite_ext(lock_sprite, 0,
-						_cur_x + keyboard_icons_width[keyboard_icons_index] * control_icons_scale + 24,
-						_y + (control_icons_y_offset + keyboard_icons_half_height[keyboard_icons_index]) * control_icons_scale,
-						control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v
-					);
-				}
-			} else {
-				var _item_value = _item.get_text_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, _i);
-				if (_item.locked_kbm_bindings[_i]) {
-					draw_set_colour(c_gray);
-				} else {
-					if (_item.enabled) draw_set_colour(c_white);
-					else draw_set_colour(c_gray);
-				}
-				draw_text(_cur_x, _y, _item_value);
-			}
-
-			if (discovery_mode != MENU_DISCOVERY_MODE.NONE
-				&& active_key_config == _item
-				&& _cur_binding_index == _item.current_binding_index) {
-				draw_sprite(sub_cursor_spr, 0, _cur_x - cursor_padding, _y + item_height / 2);
-			}
+			if (_is_focused) {
+				var _alpha = draw_get_alpha();
+				var _text_width = string_width(_item_value);
 			
-			_cur_x += binding_spacing;
-			_cur_binding_index++;
-		}
+				draw_sprite_ext(
+					spinner_scroll_arrows_spr,
+					0,
+					_x + label_width - spinner_scroll_arrows_margin,
+					_y + spinner_value_text_y_offset + spinner_scroll_arrows_y + item_height / 2,
+					1, 1, 90, c_white, _alpha
+				);
+			
+				draw_sprite_ext(
+					spinner_scroll_arrows_spr,
+					0,
+					_x + label_width + spinner_scroll_arrows_margin + _text_width,
+					_y + spinner_value_text_y_offset + spinner_scroll_arrows_y + item_height / 2,
+					1, 1, 270, c_white, _alpha
+				);
+			}
+			break;
+			
+		case "keyconfig":
+			draw_set_font(self.menu_label_font);
+			draw_text(_x, _y, _item.label);
+			var _cur_x = _x + label_width;
+			var _cur_binding_index = 0;
+			draw_set_font(self.menu_value_font);
 		
-		_cur_x += binding_type_spacing;
-		
-		// Draw gamepad bindings
-		for (var _i=0; _i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; _i++) {
-			if (use_control_icons) {
-				var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.GAMEPAD, _i);
-				draw_sprite_ext(gamepad_icons[gamepad_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v);
-				if (_item.locked_gamepad_bindings[_i]) {
+			// Draw keyboard bindings
+			for (var _i=0; _i<KEYBOARD_MAX_BINDINGS_PER_CONTROL; _i++) {
+				if (use_control_icons) {
+					var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.KEYBOARD_AND_MOUSE, _i);
+					draw_sprite_ext(keyboard_icons[keyboard_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v);
+					if (_item.locked_kbm_bindings[_i]) {
 						draw_sprite_ext(lock_sprite, 0,
-						_cur_x + gamepad_icons_width[gamepad_icons_index] * control_icons_scale + 24,
-						_y + (control_icons_y_offset + gamepad_icons_half_height[gamepad_icons_index]) * control_icons_scale,
-						control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v
-					);
-				}
-			} else {
-				var _item_value = _item.get_text_value(CONTROL_TYPE.GAMEPAD, _i);
-				if (_item.locked_gamepad_bindings[_i]) {
-					draw_set_colour(c_gray);
+							_cur_x + keyboard_icons_width[keyboard_icons_index] * control_icons_scale + 24,
+							_y + (control_icons_y_offset + keyboard_icons_half_height[keyboard_icons_index]) * control_icons_scale,
+							control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v
+						);
+					}
 				} else {
-					if (_item.enabled) draw_set_colour(c_white);
-					else draw_set_colour(c_gray);
-				}			
+					_item_value = _item.get_text_value(CONTROL_TYPE.KEYBOARD_AND_MOUSE, _i);
+					if (_item.locked_kbm_bindings[_i]) {
+						draw_set_colour(c_gray);
+					} else {
+						if (_item.enabled) draw_set_colour(c_white);
+						else draw_set_colour(c_gray);
+					}
+					draw_text(_cur_x, _y, _item_value);
+				}
+				if (discovery_mode != MENU_DISCOVERY_MODE.NONE
+					&& active_key_config == _item
+					&& _cur_binding_index == _item.current_binding_index) {
+					draw_sprite(sub_cursor_spr, 0, _cur_x - cursor_padding, _y + item_height / 2);
+				}
 			
-				draw_text(_cur_x, _y, _item_value);
+				_cur_x += binding_spacing;
+				_cur_binding_index++;
 			}
+		
+			_cur_x += binding_type_spacing;
+		
+			// Draw gamepad bindings
+			for (var _i=0; _i<GAMEPAD_MAX_BINDINGS_PER_CONTROL; _i++) {
+				if (use_control_icons) {
+					var _item_icon_index = _item.get_icon_index(CONTROL_TYPE.GAMEPAD, _i);
+					draw_sprite_ext(gamepad_icons[gamepad_icons_index], _item_icon_index, _cur_x, _y + control_icons_y_offset * control_icons_scale, control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v);
+					if (_item.locked_gamepad_bindings[_i]) {
+							draw_sprite_ext(lock_sprite, 0,
+							_cur_x + gamepad_icons_width[gamepad_icons_index] * control_icons_scale + 24,
+							_y + (control_icons_y_offset + gamepad_icons_half_height[gamepad_icons_index]) * control_icons_scale,
+							control_icons_scale, control_icons_scale, 0, c_white, menu_alpha.v
+						);
+					}
+				} else {
+					_item_value = _item.get_text_value(CONTROL_TYPE.GAMEPAD, _i);
+					if (_item.locked_gamepad_bindings[_i]) {
+						draw_set_colour(c_gray);
+					} else {
+						if (_item.enabled) draw_set_colour(c_white);
+						else draw_set_colour(c_gray);
+					}			
 			
-			if (discovery_mode != MENU_DISCOVERY_MODE.NONE
-				&& active_key_config == _item
-				&& _cur_binding_index == _item.current_binding_index) {
-				draw_sprite(sub_cursor_spr, 0, _cur_x - cursor_padding, _y + item_height / 2);
-			}			
+					draw_text(_cur_x, _y, _item_value);
+				}
+
+				if (discovery_mode != MENU_DISCOVERY_MODE.NONE
+					&& active_key_config == _item
+					&& _cur_binding_index == _item.current_binding_index) {
+					draw_sprite(sub_cursor_spr, 0, _cur_x - cursor_padding, _y + item_height / 2);
+				}
 	
-			_cur_x += binding_spacing;
-			_cur_binding_index++;
-		}
-		break;
+				_cur_x += binding_spacing;
+				_cur_binding_index++;
+			}
+			break;
 		
 		default:
 			draw_text(_x, _y, _item.label);

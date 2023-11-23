@@ -55,8 +55,7 @@ function MenuControlState(_player_inst) constructor {
 /// @param _config 
 //         - {string} label
 function MenuItem(_config) constructor {
-	types = ds_list_create();
-	ds_list_add(types, "item");
+	type = "item";
 	label = _config.label;
 	parent_menu = noone;
 	enabled = true;
@@ -65,16 +64,14 @@ function MenuItem(_config) constructor {
 		enabled = _enabled;
 	}
 	
-	function destroy() {
-		ds_list_destroy(types);
-	}
+	function destroy() {}
 }
 
 /// @func  MenuDivider(config)
 /// @param _config 
 //         - {string} label
 function MenuDivider(_config) : MenuItem(_config) constructor {
-	ds_list_add(types, "divider");
+	type = "divider";
 }
 
 /// @func  MenuSelectable(config)
@@ -84,10 +81,45 @@ function MenuDivider(_config) : MenuItem(_config) constructor {
 //         - {array}    on_confirm_args
 //         - {boolean}  silent_on_confirm
 function MenuSelectable(_config) : MenuItem(_config) constructor {
-	ds_list_add(types, "selectable");
+	type = "selectable";
 	on_confirm_func = _config.on_confirm_func;
 	on_confirm_args = _config.on_confirm_args;
 	silent_on_confirm = _config.silent_on_confirm;
+}
+
+/// @func  MenuValuedSelectable(config)
+/// @param _config 
+//         - {string}   label
+//         - {string}   init_value
+//         - {function} on_confirm_func
+//         - {array}    on_confirm_args
+//         - {function} on_change_func
+//         - {array}    on_change_args
+//         - {boolean}  silent_on_confirm
+//         - {boolean}  silent_on_change   NOTE: doesn't work yet
+function MenuValuedSelectable(_config) : MenuSpinnerBase(_config) constructor {
+	type = "valuedSelectable";
+	value = _config.init_value;
+	
+	function get_full_label() {
+		return concat(label, ": ", value);
+	}
+	
+	function get_value() {
+		return value;
+	}
+	
+	function set_value(_value) {
+		value = _value;
+		if (is_callable(on_change_func)) {
+			on_change_func(value, on_change_args);
+		}
+
+		// FIXME
+		/*if (!silent_on_change && audio_exists(cursor_confirm_sfx)) {
+			audio_play_sound(cursor_confirm_sfx, 1, false);
+		}*/
+	}
 }
 
 /// @func  MenuSpinnerBase(config)
@@ -100,7 +132,7 @@ function MenuSelectable(_config) : MenuItem(_config) constructor {
 //         - {boolean}  silent_on_confirm
 //         - {boolean}  silent_on_change
 function MenuSpinnerBase(_config) : MenuItem(_config) constructor {
-	ds_list_add(types, "spinner");
+	type = "spinner";
 	on_confirm_func = _config.on_confirm_func;
 	on_confirm_args = _config.on_confirm_args;
 	silent_on_confirm = _config.silent_on_confirm;
@@ -144,7 +176,7 @@ function MenuSpinner(_config) : MenuSpinnerBase(_config) constructor {
 //         - {boolean}  silent_on_change
 /// @returns {Any}
 function MenuKeyConfig(_config) : MenuItem(_config) constructor {
-	ds_list_add(types, "keyconfig");
+	type = "keyconfig";
 	on_change_func = _config.on_change_func;
 	on_change_args = _config.on_change_args;
 	silent_on_confirm = _config.silent_on_confirm;
