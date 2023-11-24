@@ -8,3 +8,5 @@ gamepad_connected = array_create(device_count, false);
 num_gamepads_connected = 0;
 gamepad_discovery_mode = false;
 gamepad_discovery_player_index = 0;
+gamepad_on_discovered_func = pointer_null;
+gamepad_on_discovered_params = [];

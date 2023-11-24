@@ -165,6 +165,10 @@ function ControlManagerPlayer(_control_manager) constructor {
 		}
 	}
 	
+	function get_gamepad_slot() {
+		return gamepad_slot;
+	}
+	
 	function set_gamepad_slot(_index) {
 		gamepad_slot = _index;
 		clear_all_input();

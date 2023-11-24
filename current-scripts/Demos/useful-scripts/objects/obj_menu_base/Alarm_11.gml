@@ -8,7 +8,7 @@ if (is_callable(on_fade_out_end)) {
 }
 
 if (instance_exists(next_menu)) {
-	next_menu.menu_fade_in();
+	next_menu.menu_fade_in(undefined, []);
 }
 
 next_menu = noone;

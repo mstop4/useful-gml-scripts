@@ -42,11 +42,15 @@ function check_device_connection_statuses() {
 	}
 }
 
-
-/// @desc Starts listening for any input on any gamepad
-function start_gamepad_discovery_mode(_player_index) {
+/// @desc Starts listening for any input on any 
+/// @param {Real}			_player_index
+/// @param {Function} _on_discovered_func
+/// @param {Array}		_on_discovered_params
+function start_gamepad_discovery_mode(_player_index, _on_discovered_func, _on_discovered_params) {
 	gamepad_discovery_mode = true;
 	gamepad_discovery_player_index = _player_index;
+	gamepad_on_discovered_func = _on_discovered_func;
+	gamepad_on_discovered_params = _on_discovered_params;
 }
 
 /// @desc Listens for any input on any gamepad. If detected, returns device index
@@ -65,12 +69,17 @@ function listen_for_gamepad_input() {
 	}
 	
 	if (_gamepad_index != -1) {
-		self.stop_gamepad_discovery_mode();
 		self.players[| self.gamepad_discovery_player_index].set_gamepad_slot(_gamepad_index);
+		if (is_callable(gamepad_on_discovered_func)) {
+			gamepad_on_discovered_func(_gamepad_index, gamepad_on_discovered_params);
+			gamepad_on_discovered_func = pointer_null;
+		}
+		self.stop_gamepad_discovery_mode();
 	}
 }
 
 /// @desc Stop listening for input on any gamepad
 function stop_gamepad_discovery_mode() {
 	gamepad_discovery_mode = false;
+	gamepad_on_discovered_func = pointer_null;
 }

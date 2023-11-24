@@ -383,9 +383,11 @@ function menu_fade_out(_next_menu, _on_end_cb, _on_end_cb_args) {
 	alarm[11] = menu_fade_time;
 }
 
-function menu_fade_in() {
+function menu_fade_in(_on_end_cb, _on_end_cb_args) {
 	enabled = false;
 	visible = true;
+	on_fade_in_end = _on_end_cb;
+	on_fade_in_end_args = _on_end_cb_args;
 	menu_alpha.v = 0;
 	menu_alpha.d = 1/menu_fade_time;
 	alarm[10] = menu_fade_time;
