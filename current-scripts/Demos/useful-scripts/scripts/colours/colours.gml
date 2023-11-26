@@ -36,6 +36,30 @@ function rgb_to_bgr(_rgb_colour) {
 	return (_rgb_colour & $FF) << 16 | (_rgb_colour & $FF00) | (_rgb_colour & $FF0000) >> 16;
 }
 
+/// @func           rgb_hex_string_to_real(hex_str)
+/// @desc           Converts RGB hex string to a real
+/// @param {string} _hex_str
+function rgb_hex_string_to_real(_hex_str) {
+	if (!is_string(_hex_str)) return -1;
+	var _str_len = string_length(_hex_str);
+	var _value = 0;
+	
+	for (var i=_str_len; i>0; i--) {
+		_value = _value << 4;
+		var _char = string_upper(string_copy(_hex_str, i, 1));
+		
+		if (_char == "#") continue;
+		var _ord = ord(_char);
+		
+		if (_ord >= ord("A") && _ord <= ord("F")) {
+			_value += _ord - ord("A") + 10;
+		} else if (_ord >= ord("0") && _ord <= ord("9")) {
+			_value += real(_char);
+		}
+	}
+	
+	return _value;
+}
 
 /// @func    vary_color_hsv(base_color, variance_hue, variance_sat, variance_val)
 /// @desc    Shifts the components of an HSV colour
